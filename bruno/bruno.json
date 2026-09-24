@@ -1,0 +1,6 @@
+{
+  "version": "1",
+  "name": "ama-rag-workshop",
+  "type": "collection",
+  "ignore": ["node_modules", ".git"]
+}

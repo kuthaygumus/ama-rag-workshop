@@ -1,0 +1,14 @@
+$ npm run soru
+
+━━ GÜNÜN SORUSU  7 yıllık bir çalışanın yıllık izni kaç iş günü?
+   HOW   chunker fixed · in-memory search (black box) · rerank on · filter {"edition":"2025","access":["all"]}
+
+Bu bilgi politikalarda yer almıyor.
+
+         [1] hr-leave@2025#c19  Yıllık İzin Politikası › §6,7
+         [2] hr-working-hours@2025#c11  Çalışma Saatleri ve Uzaktan Çalışma › §5
+         [3] hr-leave@2025#c11  Yıllık İzin Politikası › §4
+
+   LEDGER (.cache/soru-ledger.jsonl)
+         16:45  Yıllık izin, çalışanın işverenine bağlı olara…  bare model, no documents
+         16:45  Bu bilgi politikalarda yer almıyor.             chunker fixed · in-memory search (black box) · rerank on · filter {"e…

@@ -1,0 +1,28 @@
+meta {
+  name: filter on metadata
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{chromaDb}}/collections/{{collectionId}}/get
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "where": { "edition": "2025" },
+    "limit": 5,
+    "include": ["metadatas"]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  The same filter step 6 puts inside every search. Try `"2026"` after ingesting that edition, or
+  `{ "access": "hr-only" }` — then think about who should be allowed to send this request.
+}

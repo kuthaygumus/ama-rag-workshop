@@ -1,0 +1,15 @@
+$ npm run step -- 1
+
+━━ STEP 1/8 · LOAD
+   IN    corpus/2025/
+   WHAT  read every file · front matter → metadata (id, edition, department, access, lang) · body kept as-is
+   OUT   8 documents · 42677 characters
+         announcement-meal-card   tr  all        1377 chars    37 lines
+         benefits                 tr  all        4848 chars   124 lines
+         code-of-conduct          tr  all        5253 chars   130 lines
+         hr-leave                 tr  all        7681 chars   199 lines
+         hr-salary-bands          tr  hr-only    4500 chars   119 lines
+         hr-working-hours         tr  all        6193 chars   152 lines
+         it-security              en  all        6631 chars   160 lines
+         travel-expenses          tr  all        6194 chars   153 lines
+   TIME  5 ms  →  data/1-docs.json

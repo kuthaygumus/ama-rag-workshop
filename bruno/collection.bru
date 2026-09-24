@@ -1,0 +1,11 @@
+docs {
+  # Look inside — do not build here
+
+  The pipeline runs in the terminal (`npm run step -- N`). Bruno only LOOKS at the two services it
+  talks to, with the same HTTP calls our code makes:
+
+  - `00-ollama` — the models: what is installed, one sentence → 1024 numbers, one bare answer
+  - `01-chroma` — the vector database: is it up, what collections, how many records, what is inside
+
+  Select the `local` environment (top right). Run `01-chroma` after step 5, when there is something to see.
+}

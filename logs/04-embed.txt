@@ -1,0 +1,9 @@
+$ npm run step -- 4
+
+━━ STEP 4/8 · EMBED
+   IN    data/3-chunks.json  (60 chunks)
+   WHAT  send each chunk's text to bge-m3 (Ollama /api/embed, 24 per call)
+   OUT   60 vectors · 1024 numbers each · 0 computed, 60 from cache
+         announcement-meal-card@2025#1 → [-0.0538, -0.0108, -0.0047, -0.0064, -0.0463, -0.0545, … ]
+         length (norm) of that vector: 1.000
+   TIME  40 ms  →  data/4-vectors.json

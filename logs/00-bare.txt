@@ -1,0 +1,10 @@
+$ npm run step -- 0
+
+━━ STEP 0/8 · BARE MODEL
+   IN    7 yıllık bir çalışanın yıllık izni kaç iş günü?
+   WHAT  ask gemma3:4b directly — no documents, no search
+   OUT   34 prompt tokens · 53 output tokens
+
+Yıllık izin, çalışanın işverenine bağlı olarak değişir. Ancak, Türkiye'de 7 yıllık bir çalışanın yıllık izni genellikle 50 iş günü (15 gün ücretli izin + 35 gün yıllık izin) olur.
+
+   TIME  1521 ms

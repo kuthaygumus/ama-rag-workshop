@@ -1,0 +1,36 @@
+$ npm run eval
+
+━━ EVAL  23 gold questions · chroma store · edition 2025 · k=5
+         q01  table          ·  rr 0.33  hr-leave#4 hr-working-hours#5 hr-leave#3
+         q02  paraphrase     ·  rr 0.33  hr-working-hours#5 hr-leave#4 hr-leave#3
+         q03  table          ·  rr 0.33  hr-leave#4 hr-leave#2 hr-leave#3
+         q04  twin-table     ·  rr 0.50  travel-expenses#3 travel-expenses#4 travel-expenses#2
+         q05  twin-table     ✓  rr 1.00  travel-expenses#3 travel-expenses#2 travel-expenses#4
+         q06  twin-table     ·  rr 0.50  travel-expenses#3 travel-expenses#4 travel-expenses#2
+         q07  direct         ·  rr 0.50  travel-expenses#6 travel-expenses#7 travel-expenses#1
+         q08  tr-en          ✓  rr 1.00  it-security#2 hr-working-hours#2 it-security#3
+         q09  tr-en          ·  rr 0.50  it-security#7 it-security#5 code-of-conduct#5
+         q10  tr-en          ·  rr 0.50  it-security#7 it-security#3 it-security#4
+         q11  tr-en          ✓  rr 1.00  it-security#2 travel-expenses#7 hr-leave#3
+         q12  access         –  rr 0.00  travel-expenses#3 hr-working-hours#4 travel-expenses#4
+         q13  injection      ·  rr 0.33  benefits#2 announcement-meal-card#1 announcement-meal-card#2
+         q14  out-of-corpus  –  rr 0.00  hr-working-hours#2 benefits#7 hr-leave#2
+         q15  out-of-corpus  –  rr 0.00  code-of-conduct#6 code-of-conduct#7 benefits#4
+         q16  out-of-corpus  –  rr 0.00  hr-leave#5 hr-leave#2 hr-leave#8
+         q17  direct         ✓  rr 1.00  hr-working-hours#6 hr-working-hours#4 hr-working-hours#2
+         q18  direct         ✓  rr 1.00  hr-leave#5 hr-leave#8 hr-leave#4
+         q19  direct         ✓  rr 1.00  benefits#4 benefits#2 benefits#3
+         q20  direct         ·  rr 0.50  code-of-conduct#2 code-of-conduct#3 travel-expenses#4
+         q21  direct         ✓  rr 1.00  hr-working-hours#4 hr-working-hours#5 hr-working-hours#3
+         q22  direct         ✓  rr 1.00  hr-leave#7 hr-leave#8 hr-leave#2
+         q23  direct         ✓  rr 1.00  code-of-conduct#5 it-security#7 code-of-conduct#4
+
+   OUT   hit@1 0.474 · recall@5 1.000 · MRR 0.702  (19 retrieval questions)
+         table         n=2  hit@1 0.00  MRR 0.33
+         paraphrase    n=1  hit@1 0.00  MRR 0.33
+         twin-table    n=3  hit@1 0.33  MRR 0.67
+         direct        n=8  hit@1 0.75  MRR 0.88
+         tr-en         n=4  hit@1 0.50  MRR 0.75
+         injection     n=1  hit@1 0.00  MRR 0.33
+         hr-only chunks reached nobody ✓
+   TIME  →  data/eval.json

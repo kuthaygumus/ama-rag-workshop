@@ -1,0 +1,15 @@
+$ npm run soru
+
+━━ GÜNÜN SORUSU  7 yıllık bir çalışanın yıllık izni kaç iş günü?
+   HOW   chunker section · in-memory search (black box) · rerank on · filter {"edition":"2025","access":["all"]}
+
+Tablodan, 7 tam yıl kıdeminde 22 iş günü ücretli izin hakkı olduğunu görüyoruz [1].
+
+         [1] hr-leave@2025#3  Yıllık İzin Politikası › §3
+         [2] hr-leave@2025#7  Yıllık İzin Politikası › §7
+         [3] hr-leave@2025#4  Yıllık İzin Politikası › §4
+
+   LEDGER (.cache/soru-ledger.jsonl)
+         16:45  Yıllık izin, çalışanın işverenine bağlı olara…  bare model, no documents
+         16:45  Bu bilgi politikalarda yer almıyor.             chunker fixed · in-memory search (black box) · rerank on · filter {"e…
+         16:45  Tablodan, 7 tam yıl kıdeminde 22 iş günü ücre…  chunker section · in-memory search (black box) · rerank on · filter {…

@@ -1,0 +1,28 @@
+# One container: the vector database. Ollama is NOT here — it runs on your machine, where the models
+# are already pulled and the GPU is.
+#
+#   podman compose up -d      # start Chroma in the background (http://localhost:8000)
+#   podman compose ps         # is it healthy?
+#   podman compose down       # stop it; the data stays in the volume
+#   podman compose down -v    # stop it and delete the stored vectors
+#
+# No compose? The same thing in one line:
+#   podman run -d --name chroma -p 8000:8000 -v chroma-data:/data docker.io/chromadb/chroma:1.5.9
+
+services:
+  chroma:
+    image: docker.io/chromadb/chroma:1.5.9
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma-data:/data
+    environment:
+      ANONYMIZED_TELEMETRY: "false"
+    healthcheck:
+      test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8000 && echo -e 'GET /api/v2/heartbeat HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q nanosecond <&3"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+volumes:
+  chroma-data:

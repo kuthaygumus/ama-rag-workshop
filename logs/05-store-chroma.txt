@@ -1,0 +1,12 @@
+$ npm run step -- 5
+
+━━ STEP 5/8 · STORE
+   IN    data/4-vectors.json  (60 vectors, edition 2025)
+   WHAT  replace edition 2025 in Chroma collection "kraken-policies" (HNSW index, cosine)
+   OUT   60 records added · 60 in the store · editions: 2025
+
+         the day's question, top-5 ids:
+           JSON (brute force)  hr-leave@2025#3  hr-leave@2025#4  hr-leave@2025#5  hr-leave@2025#7  hr-leave@2025#6
+           chroma              hr-leave@2025#3  hr-leave@2025#4  hr-leave@2025#5  hr-leave@2025#7  hr-leave@2025#6
+           identical ✓ — the database changes the scale, not the ranking
+   TIME  136 ms  →  data/5-store.json

@@ -1,0 +1,40 @@
+$ npm run ask -- "Çalışanlara hisse opsiyonu veriliyor mu?"
+
+━━ STEP 6/8 · RETRIEVE
+   IN    Çalışanlara hisse opsiyonu veriliyor mu?
+   WHAT  embed the question (bge-m3, 18 ms) · ask chroma for the 5 closest · filter {"edition":"2025","access":["all"]}
+   OUT   5 chunks handed on · search 11 ms
+          1  0.519  benefits@2025#7          Yan Haklar › §7                              İşe başlangıcından itibaren 6 ayını dol…
+          2  0.498  hr-leave@2025#1          Yıllık İzin Politikası › §1                  Bu politika, Kraken Air çalışanlarının …
+          3  0.497  hr-leave@2025#4          Yıllık İzin Politikası › §4                  Her birim, yıllık ücretli izin planını …
+          4  0.496  hr-leave@2025#2          Yıllık İzin Politikası › §2                  Yıllık ücretli izne hak kazanmak için, …
+          5  0.491  benefits@2025#2          Yan Haklar › §2                              Her çalışana, fiilen çalışılan her iş g…
+         ─ ─ ─ cut: k = 5 ─ ─ ─
+          6  0.491  hr-working-hours@2025#1  Çalışma Saatleri ve Uzaktan Çalışma › §1     Bu politika, Kraken Air'de haftalık çal…
+          7  0.490  benefits@2025#4          Yan Haklar › §4                              Çalışanların spor salonu, yüzme havuzu …
+          8  0.488  code-of-conduct@2025#4   Etik ve Davranış Kuralları › §4              Çalışan, kişisel çıkarlarının şirketin …
+   TIME  73 ms  →  data/6-retrieved.json
+
+━━ STEP 7/8 · RERANK
+   IN    data/6-retrieved.json  (5 chunks for "Çalışanlara hisse opsiyonu veriliyor mu?")
+   WHAT  gemma3:4b scores each (question, chunk) pair 0–10 · re-sort · keep the top 3
+   OUT   5 chunks scored in 5655 ms · ties: 4 of 5
+          1  ▲ was 4  rel  2  vec 0.496  hr-leave@2025#2          Yıllık İzin Politikası › §2
+          2  ▼ was 1  rel  0  vec 0.519  benefits@2025#7          Yan Haklar › §7
+          3  ▼ was 2  rel  0  vec 0.498  hr-leave@2025#1          Yıllık İzin Politikası › §1
+         ─ ─ ─ into the prompt: top 3 ─ ─ ─
+          4  ▼ was 3  rel  0  vec 0.497  hr-leave@2025#4          Yıllık İzin Politikası › §4
+          5    was 5  rel  0  vec 0.491  benefits@2025#2          Yan Haklar › §2
+   TIME  5659 ms  →  data/7-reranked.json
+
+━━ STEP 8/8 · ANSWER
+   IN    data/7-reranked.json  (top 3 of 5 chunks)
+   WHAT  rules (7) + numbered sources + question → gemma3:4b  (add --prompt to see it)
+   OUT   1071 prompt tokens · 10 output tokens · 2778 ms · ABSTAINED
+
+Bu bilgi politikalarda yer almıyor.
+
+         [1] hr-leave@2025#2  Yıllık İzin Politikası › §2
+         [2] benefits@2025#7  Yan Haklar › §7
+         [3] hr-leave@2025#1  Yıllık İzin Politikası › §1
+   TIME  2781 ms  →  data/8-answer.json

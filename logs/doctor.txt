@@ -1,0 +1,13 @@
+$ npm run doctor
+
+━━ DOCTOR
+         ✓ Node.js                      22.22.2
+         ✓ Ollama                       http://localhost:11434
+         ✓ model gemma3:4b
+         ✓ model bge-m3
+         ✓ Chroma                       http://localhost:8000
+         ✓ corpus/2025                  8 documents
+         ✓ embed one sentence           1024 numbers · 183 ms
+         ✓ one answer                   391 ms · "Ankara"
+
+Ready.

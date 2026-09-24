@@ -1,0 +1,28 @@
+meta {
+  name: peek at three records
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{chromaDb}}/collections/{{collectionId}}/get
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "limit": 3,
+    "include": ["documents", "metadatas"]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  What a vector database actually stores per chunk: an `id`, the chunk's text (`documents`) and its
+  `metadatas` — docId, edition, access … Add `"embeddings"` to `include` to see the 1024 numbers too.
+  The text is stored because a vector cannot be turned back into words.
+}

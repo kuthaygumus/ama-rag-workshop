@@ -1,0 +1,30 @@
+meta {
+  name: bare answer (no RAG)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{ollama}}/api/generate
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "model": "{{chatModel}}",
+    "system": "Kısa cevap ver.",
+    "prompt": "7 yıllık bir çalışanın yıllık izni kaç iş günü?",
+    "stream": false,
+    "options": { "temperature": 0, "seed": 42 }
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Step 0 by hand: the model alone, no documents. Read `response` — and ask yourself where that number
+  came from. `prompt_eval_count` is how many tokens it read; remember it for step 8.
+}

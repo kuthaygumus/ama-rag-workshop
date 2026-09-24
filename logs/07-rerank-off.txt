@@ -1,0 +1,13 @@
+$ npm run step -- 7   (RERANK = false)
+
+━━ STEP 7/8 · RERANK
+   IN    data/6-retrieved.json  (5 chunks for "7 yıllık bir çalışanın yıllık izni kaç iş günü?")
+   WHAT  rerank is OFF · keep the top 3 in vector order
+   OUT   order unchanged
+          1    was 1  vec 0.631  hr-leave@2025#3          Yıllık İzin Politikası › §3
+          2    was 2  vec 0.628  hr-leave@2025#4          Yıllık İzin Politikası › §4
+          3    was 3  vec 0.627  hr-leave@2025#5          Yıllık İzin Politikası › §5
+         ─ ─ ─ into the prompt: top 3 ─ ─ ─
+          4    was 4  vec 0.626  hr-leave@2025#7          Yıllık İzin Politikası › §7
+          5    was 5  vec 0.624  hr-leave@2025#6          Yıllık İzin Politikası › §6
+   TIME  1 ms  →  data/7-reranked.json

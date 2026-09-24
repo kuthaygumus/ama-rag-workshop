@@ -1,0 +1,41 @@
+$ npm run step -- 3 / 4 / 5   (chunker: fixed)
+
+━━ STEP 3/8 · CHUNK
+   IN    data/2-clean.json  (8 documents)
+   WHAT  fixed: a cut every 300 characters, blind to headings and tables
+   OUT   139 chunks · avg 287 chars · min 11 · max 300
+
+         the chunk holding "| 7 |" → hr-leave@2025#c08  (sections 3)
+           │ 2 |
+           │ | 6 | 22 |
+           │ | 7 | 22 |
+           │ | 8 | 22 |
+           │ | 9 | 22 |
+           │ | 10 | 25 |
+           │ | 11 | 25 |
+           │ | 12 | 25 |
+           │ | 13 | 25 |
+           │ | 14 | 25 |
+           │ | 15 ve üzeri | 28 |
+           │
+           │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da ara
+   TIME  5 ms  →  data/3-chunks.json
+
+━━ STEP 4/8 · EMBED
+   IN    data/3-chunks.json  (139 chunks)
+   WHAT  send each chunk's text to bge-m3 (Ollama /api/embed, 24 per call)
+   OUT   139 vectors · 1024 numbers each · 0 computed, 139 from cache
+         announcement-meal-card@2025#c00 → [-0.0471, -0.0148, 0.0016, -0.0067, -0.0497, -0.0485, … ]
+         length (norm) of that vector: 1.000
+   TIME  47 ms  →  data/4-vectors.json
+
+━━ STEP 5/8 · STORE
+   IN    data/4-vectors.json  (139 vectors, edition 2025)
+   WHAT  replace edition 2025 in Chroma collection "kraken-policies" (HNSW index, cosine)
+   OUT   139 records added · 139 in the store · editions: 2025
+
+         the day's question, top-5 ids:
+           JSON (brute force)  hr-leave@2025#c19  hr-leave@2025#c12  hr-leave@2025#c11  hr-working-hours@2025#c11  hr-leave@2025#c17
+           chroma              hr-leave@2025#c12  hr-leave@2025#c11  hr-working-hours@2025#c11  hr-leave@2025#c07  benefits@2025#c11
+           different order — look at the scores: near-ties can swap
+   TIME  259 ms  →  data/5-store.json

@@ -1,0 +1,19 @@
+meta {
+  name: heartbeat
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{chroma}}/api/v2/heartbeat
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Is the container up? A number back = yes. Connection refused = `podman compose up -d`.
+}

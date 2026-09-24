@@ -1,0 +1,6 @@
+$ every document in one prompt (no retrieval)
+   documents      8 (40092 characters)
+   prompt tokens  11358
+   time           30137 ms
+
+Kraken Air'de 7 yıllık bir çalışanın yıllık ücretli izin hakkı 22 iş günüdür. [1]

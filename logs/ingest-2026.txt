@@ -1,0 +1,94 @@
+$ npm run ingest -- --edition 2026
+
+━━ STEP 1/8 · LOAD
+   IN    corpus/2026/
+   WHAT  read every file · front matter → metadata (id, edition, department, access, lang) · body kept as-is
+   OUT   8 documents · 42678 characters
+         announcement-meal-card   tr  all        1377 chars    37 lines
+         benefits                 tr  all        4848 chars   124 lines
+         code-of-conduct          tr  all        5253 chars   130 lines
+         hr-leave                 tr  all        7681 chars   199 lines
+         hr-salary-bands          tr  hr-only    4500 chars   119 lines
+         hr-working-hours         tr  all        6193 chars   152 lines
+         it-security              en  all        6632 chars   160 lines
+         travel-expenses          tr  all        6194 chars   153 lines
+   TIME  6 ms  →  data/1-docs.json
+
+━━ STEP 2/8 · CLEAN
+   IN    data/1-docs.json  (8 documents, edition 2026)
+   WHAT  drop noise lines (4 rules) · re-join lines the page width broke
+   OUT   1074 lines → 512 lines · 74 noise lines removed
+         announcement-meal-card   − 3 noise lines
+         benefits                 − 9 noise lines
+         code-of-conduct          − 9 noise lines
+         hr-leave                 −12 noise lines
+         hr-salary-bands          − 9 noise lines
+         hr-working-hours         −12 noise lines
+         it-security              − 8 noise lines
+         travel-expenses          −12 noise lines
+
+         before (hr-leave, first 6 lines):
+           │ Kraken Air | Yıllık İzin Politikası | Sürüm 2026
+           │ GİZLİ – Yalnızca şirket içi kullanım içindir
+           │
+           │ # Yıllık İzin Politikası
+           │
+           │ ## 1. Amaç ve Kapsam
+         after:
+           │ # Yıllık İzin Politikası
+           │
+           │ ## 1. Amaç ve Kapsam
+   TIME  3 ms  →  data/2-clean.json
+
+━━ STEP 3/8 · CHUNK
+   IN    data/2-clean.json  (8 documents)
+   WHAT  section: a cut at every '## n.' heading, title › heading kept in front
+   OUT   60 chunks · avg 688 chars · min 93 · max 1528
+
+         the chunk holding "| 7 |" → hr-leave@2026#3  (sections 3)
+           │ [Yıllık İzin Politikası › 3. Yıllık Ücretli İzin]
+           │ Yıllık ücretli izin süresi, işe giriş tarihinden itibaren tamamlanan tam hizmet yılına göre belirlenir. Tabloda her kıdem yılı için izin hakkı ayrı bir satırda verilmiştir.
+           │
+           │ | Kıdem (tam yıl) | Yıllık ücretli izin (iş günü) |
+           │ |---|---|
+           │ | 1 | 16 |
+           │ | 2 | 16 |
+           │ | 3 | 18 |
+           │ | 4 | 18 |
+           │ | 5 | 24 |
+           │ | 6 | 24 |
+           │ | 7 | 24 |
+           │ | 8 | 24 |
+           │ | 9 | 24 |
+           │ | 10 | 26 |
+           │ | 11 | 26 |
+           │ | 12 | 26 |
+           │ | 13 | 26 |
+           │ | 14 | 26 |
+           │ | 15 ve üzeri | 28 |
+           │
+           │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da aranır.
+           │
+           │ Takvim yılı içinde kullanılmayan günler, en fazla 5 iş günü ile sınırlı olarak bir sonraki yıla devredilebilir; devrin koşulları 7. bölümde açıklanmıştır.
+   TIME  2 ms  →  data/3-chunks.json
+
+━━ STEP 4/8 · EMBED
+   IN    data/3-chunks.json  (60 chunks)
+   WHAT  send each chunk's text to bge-m3 (Ollama /api/embed, 24 per call)
+   OUT   60 vectors · 1024 numbers each · 0 computed, 60 from cache
+         announcement-meal-card@2026#1 → [-0.0538, -0.0108, -0.0047, -0.0064, -0.0463, -0.0545, … ]
+         length (norm) of that vector: 1.000
+   TIME  35 ms  →  data/4-vectors.json
+
+━━ STEP 5/8 · STORE
+   IN    data/4-vectors.json  (60 vectors, edition 2026)
+   WHAT  replace edition 2026 in Chroma collection "kraken-policies" (HNSW index, cosine)
+   OUT   60 records added · 120 in the store · editions: 2025, 2026
+
+         the day's question, top-5 ids:
+           JSON (brute force)  hr-leave@2026#3  hr-leave@2026#4  hr-leave@2026#5  hr-leave@2026#7  hr-leave@2026#6
+           chroma              hr-leave@2026#3  hr-leave@2026#4  hr-leave@2026#5  hr-leave@2026#7  hr-leave@2026#6
+           identical ✓ — the database changes the scale, not the ranking
+   TIME  189 ms  →  data/5-store.json
+
+Ingest done (edition 2026). Now: npm run soru

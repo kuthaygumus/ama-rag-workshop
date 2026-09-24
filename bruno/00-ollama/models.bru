@@ -1,0 +1,20 @@
+meta {
+  name: installed models
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{ollama}}/api/tags
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Every model pulled on this laptop. We need two: `gemma3:4b` (writes answers) and `bge-m3` (turns
+  text into vectors). Missing one? `ollama pull <name>`.
+}

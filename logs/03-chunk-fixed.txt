@@ -1,0 +1,22 @@
+$ npm run step -- 3   (chunker: fixed)
+
+━━ STEP 3/8 · CHUNK
+   IN    data/2-clean.json  (8 documents)
+   WHAT  fixed: a cut every 300 characters, blind to headings and tables
+   OUT   139 chunks · avg 287 chars · min 11 · max 300
+
+         the chunk holding "| 7 |" → hr-leave@2025#c08  (sections 3)
+           │ 2 |
+           │ | 6 | 22 |
+           │ | 7 | 22 |
+           │ | 8 | 22 |
+           │ | 9 | 22 |
+           │ | 10 | 25 |
+           │ | 11 | 25 |
+           │ | 12 | 25 |
+           │ | 13 | 25 |
+           │ | 14 | 25 |
+           │ | 15 ve üzeri | 28 |
+           │
+           │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da ara
+   TIME  2 ms  →  data/3-chunks.json

@@ -1,0 +1,52 @@
+$ npm run step -- 3 / 4 / 5   (chunker: section)
+
+━━ STEP 3/8 · CHUNK
+   IN    data/2-clean.json  (8 documents)
+   WHAT  section: a cut at every '## n.' heading, title › heading kept in front
+   OUT   60 chunks · avg 688 chars · min 93 · max 1528
+
+         the chunk holding "| 7 |" → hr-leave@2025#3  (sections 3)
+           │ [Yıllık İzin Politikası › 3. Yıllık Ücretli İzin]
+           │ Yıllık ücretli izin süresi, işe giriş tarihinden itibaren tamamlanan tam hizmet yılına göre belirlenir. Tabloda her kıdem yılı için izin hakkı ayrı bir satırda verilmiştir.
+           │
+           │ | Kıdem (tam yıl) | Yıllık ücretli izin (iş günü) |
+           │ |---|---|
+           │ | 1 | 16 |
+           │ | 2 | 16 |
+           │ | 3 | 18 |
+           │ | 4 | 18 |
+           │ | 5 | 22 |
+           │ | 6 | 22 |
+           │ | 7 | 22 |
+           │ | 8 | 22 |
+           │ | 9 | 22 |
+           │ | 10 | 25 |
+           │ | 11 | 25 |
+           │ | 12 | 25 |
+           │ | 13 | 25 |
+           │ | 14 | 25 |
+           │ | 15 ve üzeri | 28 |
+           │
+           │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da aranır.
+           │
+           │ Takvim yılı içinde kullanılmayan günler, en fazla 5 iş günü ile sınırlı olarak bir sonraki yıla devredilebilir; devrin koşulları 7. bölümde açıklanmıştır.
+   TIME  2 ms  →  data/3-chunks.json
+
+━━ STEP 4/8 · EMBED
+   IN    data/3-chunks.json  (60 chunks)
+   WHAT  send each chunk's text to bge-m3 (Ollama /api/embed, 24 per call)
+   OUT   60 vectors · 1024 numbers each · 0 computed, 60 from cache
+         announcement-meal-card@2025#1 → [-0.0538, -0.0108, -0.0047, -0.0064, -0.0463, -0.0545, … ]
+         length (norm) of that vector: 1.000
+   TIME  16 ms  →  data/4-vectors.json
+
+━━ STEP 5/8 · STORE
+   IN    data/4-vectors.json  (60 vectors, edition 2025)
+   WHAT  replace edition 2025 in Chroma collection "kraken-policies" (HNSW index, cosine)
+   OUT   60 records added · 60 in the store · editions: 2025
+
+         the day's question, top-5 ids:
+           JSON (brute force)  hr-leave@2025#3  hr-leave@2025#4  hr-leave@2025#5  hr-leave@2025#7  hr-leave@2025#6
+           chroma              hr-leave@2025#3  hr-leave@2025#4  hr-leave@2025#5  hr-leave@2025#7  hr-leave@2025#6
+           identical ✓ — the database changes the scale, not the ranking
+   TIME  173 ms  →  data/5-store.json

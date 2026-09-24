@@ -1,0 +1,20 @@
+meta {
+  name: count
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{chromaDb}}/collections/{{collectionId}}/count
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  How many records — one per chunk. Compare with step 5's log. After ingesting the 2026 edition the
+  number grows: both editions live side by side, and step 6's filter decides which one may answer.
+}

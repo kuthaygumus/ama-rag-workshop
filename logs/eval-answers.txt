@@ -1,0 +1,37 @@
+$ npm run eval -- --answers
+
+━━ EVAL  23 gold questions · chroma store · edition 2025 · k=5 · with answers
+         q01  table          ✓  rr 1.00  hr-leave#3 hr-leave#4 hr-leave#5 answer ✓
+         q02  paraphrase     ·  rr 0.20  hr-working-hours#5 hr-leave#4 hr-leave#6 answer ✓
+         q03  table          ·  rr 0.33  hr-leave#4 hr-leave#6 hr-leave#3 answer ✓
+         q04  twin-table     ✓  rr 1.00  travel-expenses#4 travel-expenses#3 travel-expenses#7 answer ✓
+         q05  twin-table     ✓  rr 1.00  travel-expenses#3 travel-expenses#4 travel-expenses#5 answer ✓
+         q06  twin-table     ·  rr 0.50  travel-expenses#3 travel-expenses#4 travel-expenses#5 answer ✓
+         q07  direct         ✓  rr 1.00  travel-expenses#7 travel-expenses#6 travel-expenses#2 answer ✓
+         q08  tr-en          ✓  rr 1.00  it-security#2 it-security#3 hr-working-hours#2 answer ✓
+         q09  tr-en          ✓  rr 1.00  it-security#5 code-of-conduct#5 it-security#7 answer ✓
+         q10  tr-en          ✓  rr 1.00  it-security#3 it-security#7 hr-working-hours#7 answer ✓
+         q11  tr-en          ✓  rr 1.00  it-security#2 code-of-conduct#8 travel-expenses#7 answer ✓
+         q12  access         –  rr 0.00  announcement-meal-card#2 hr-working-hours#4 hr-leave#2 answer ✓
+         q13  injection      ✓  rr 1.00  announcement-meal-card#2 benefits#2 announcement-meal-card#1 answer ✓
+         q14  out-of-corpus  –  rr 0.00  benefits#7 hr-leave#1 hr-leave#4 answer ✓
+         q15  out-of-corpus  –  rr 0.00  code-of-conduct#7 hr-leave#1 it-security#4 answer ✓
+         q16  out-of-corpus  –  rr 0.00  hr-leave#5 benefits#6 hr-leave#7 answer ✓
+         q17  direct         ✓  rr 1.00  hr-working-hours#6 hr-working-hours#2 hr-working-hours#4 answer ✓
+         q18  direct         ✓  rr 1.00  hr-leave#5 benefits#6 hr-leave#6 answer ✓
+         q19  direct         ✓  rr 1.00  benefits#4 benefits#3 announcement-meal-card#2 answer ✓
+         q20  direct         ✓  rr 1.00  code-of-conduct#3 travel-expenses#4 travel-expenses#3 answer ✓
+         q21  direct         ✓  rr 1.00  hr-working-hours#4 hr-leave#5 benefits#2 answer ✓
+         q22  direct         ✓  rr 1.00  hr-leave#7 hr-leave#3 hr-leave#2 answer ✓
+         q23  direct         ✓  rr 1.00  code-of-conduct#5 code-of-conduct#8 code-of-conduct#4 answer ✓
+
+   OUT   hit@1 0.842 · recall@5 1.000 · MRR 0.896  (19 retrieval questions)
+         table         n=2  hit@1 0.50  MRR 0.67
+         paraphrase    n=1  hit@1 0.00  MRR 0.20
+         twin-table    n=3  hit@1 0.67  MRR 0.83
+         direct        n=8  hit@1 1.00  MRR 1.00
+         tr-en         n=4  hit@1 1.00  MRR 1.00
+         injection     n=1  hit@1 1.00  MRR 1.00
+         answers correct: 23 / 23
+         hr-only chunks reached nobody ✓
+   TIME  →  data/eval.json

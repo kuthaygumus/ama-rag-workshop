@@ -1,0 +1,8 @@
+$ npm run map
+
+━━ STEP 4b · MAP — our chunks in two dimensions
+   IN    data/4-vectors.json  (60 vectors × 1024)
+   WHAT  PCA: the 2 directions along which the chunks differ most · the question projected onto them
+   OUT   PC1 keeps 11.8% · PC2 8.3% of the spread
+         ★ "7 yıllık bir çalışanın yıllık izni kaç iş günü?" lands next to: travel-expenses@2025#5, hr-working-hours@2025#2, travel-expenses@2025#8  (on the 2-D map — step 6 measures in all 1024)
+   TIME  63 ms  →  data/map.html (open it in a browser) + data/map.json

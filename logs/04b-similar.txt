@@ -1,0 +1,24 @@
+$ npm run similar
+
+━━ STEP 4b · SIMILAR — which texts did the model put close together?
+   WHAT  embed both texts, measure cosine (1 = same direction)
+
+         0.526 ███████████░░░░░░░░░  paraphrase
+            Tatil hakkım kaç gün?
+            Yıllık ücretli izin süresi kıdeme göre belirlenir.
+
+         0.701 ██████████████░░░░░░  TR ↔ EN
+            Şifremi ne sıklıkla değiştirmem gerekiyor?
+            Passwords must be changed every 90 days.
+
+         0.940 ███████████████████░  twin tables
+            Yurt içi seyahatte günlük harcırah ne kadar?
+            Yurt dışı seyahatte günlük harcırah ne kadar?
+
+         0.841 █████████████████░░░  negation trap
+            Deneme süresindeki çalışanlar uzaktan çalışabilir.
+            Deneme süresindeki çalışanlar uzaktan çalışamaz.
+
+         0.456 █████████░░░░░░░░░░░  unrelated
+            Yemek kartına her ay yükleme yapılır.
+            USB bellek kullanımı yasaktır.

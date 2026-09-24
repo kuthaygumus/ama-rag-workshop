@@ -1,0 +1,13 @@
+$ npm run step -- 8   (after rerank off)
+
+━━ STEP 8/8 · ANSWER
+   IN    data/7-reranked.json  (top 3 of 5 chunks)
+   WHAT  rules (7) + numbered sources + question → gemma3:4b  (add --prompt to see it)
+   OUT   1315 prompt tokens · 29 output tokens · 3802 ms
+
+Tablo 1'e göre 7 yıllık bir çalışanın yıllık ücretli izin hakkı 22 iş gundur [1].
+
+         [1] hr-leave@2025#3  Yıllık İzin Politikası › §3
+         [2] hr-leave@2025#4  Yıllık İzin Politikası › §4
+         [3] hr-leave@2025#5  Yıllık İzin Politikası › §5
+   TIME  3803 ms  →  data/8-answer.json

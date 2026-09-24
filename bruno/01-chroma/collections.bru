@@ -1,0 +1,32 @@
+meta {
+  name: collections
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{chromaDb}}/collections
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const col = res.getBody().find((c) => c.name === "kraken-policies");
+  if (col) bru.setVar("collectionId", col.id);
+}
+
+tests {
+  test("step 5 created kraken-policies", function () {
+    expect(res.getBody().map((c) => c.name)).to.include("kraken-policies");
+  });
+}
+
+docs {
+  Collections are Chroma's tables. Step 5 made `kraken-policies`. Note `configuration.hnsw.space:
+  cosine` — the same similarity our JSON search used. This request also remembers the collection's
+  id for the next ones.
+}

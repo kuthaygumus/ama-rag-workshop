@@ -1,0 +1,36 @@
+{
+  "name": "ama-rag-workshop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build a RAG pipeline step by step on a synthetic company policy handbook: load, clean, chunk, embed, store, retrieve, rerank, answer, evaluate. Local models via Ollama, Chroma in Podman, TypeScript only.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "doctor": "tsx src/cli/doctor.ts",
+    "step": "tsx src/cli/step.ts",
+    "ingest": "tsx src/cli/ingest.ts",
+    "ask": "tsx src/cli/ask.ts",
+    "soru": "tsx src/cli/soru.ts",
+    "similar": "tsx src/explore/similar.ts",
+    "map": "tsx src/explore/map.ts",
+    "eval": "tsx src/cli/eval.ts",
+    "catchup": "tsx src/cli/catchup.ts",
+    "capture": "tsx src/cli/capture.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run check:legacy && vitest run",
+    "check:sibling": "vitest run --config vitest.sibling.config.ts",
+    "check:legacy": "tsx src/cli/check-legacy.ts"
+  },
+  "dependencies": {
+    "chromadb": "3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.0"
+  }
+}

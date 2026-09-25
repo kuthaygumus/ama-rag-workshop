@@ -105,8 +105,8 @@ export interface GenerateOptions {
 }
 
 /**
- * Ask the chat model. Deterministic on purpose: temperature 0 and a fixed seed, so every laptop in
- * the room gets the same answer to the same prompt.
+ * Ask the chat model. Deterministic on purpose: temperature 0 and a fixed seed, so the same machine
+ * gives the same answer to the same prompt (other hardware may differ slightly).
  * @param prompt the user message — for RAG, the sources plus the question
  * @returns the answer text with its token counts and duration
  */

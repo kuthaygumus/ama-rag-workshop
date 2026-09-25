@@ -3,7 +3,7 @@ $ npm run step -- 8 --prompt
 ━━ STEP 8/8 · ANSWER
    IN    data/7-reranked.json  (top 3 of 5 chunks)
    WHAT  rules (7) + numbered sources + question → gemma3:4b  (add --prompt to see it)
-   OUT   1155 prompt tokens · 28 output tokens · 894 ms
+   OUT   1155 prompt tokens · 28 output tokens · 888 ms
 
          ┌─ the exact text the model receives ─────────────────────────
          │ SYSTEM:
@@ -75,4 +75,4 @@ Tablodan, 7 tam yıl kıdeminde 22 iş günü ücretli izin hakkı olduğunu gö
          [1] hr-leave@2025#3  Yıllık İzin Politikası › §3
          [2] hr-leave@2025#7  Yıllık İzin Politikası › §7
          [3] hr-leave@2025#4  Yıllık İzin Politikası › §4
-   TIME  898 ms  →  data/8-answer.json
+   TIME  891 ms  →  data/8-answer.json

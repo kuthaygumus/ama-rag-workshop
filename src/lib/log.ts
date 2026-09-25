@@ -1,4 +1,4 @@
-// Every step prints the same five lines, so the room always knows where to look:
+// Every step prints the same five lines, so you always know where to look:
 //
 //   ━━ STEP 3/8 · CHUNK
 //      IN    what the step read

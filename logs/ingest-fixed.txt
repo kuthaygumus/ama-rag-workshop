@@ -19,7 +19,7 @@ $ npm run step -- 3 / 4 / 5   (chunker: fixed)
            │ | 15 ve üzeri | 28 |
            │
            │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da ara
-   TIME  5 ms  →  data/3-chunks.json
+   TIME  6 ms  →  data/3-chunks.json
 
 ━━ STEP 4/8 · EMBED
    IN    data/3-chunks.json  (139 chunks)
@@ -27,7 +27,7 @@ $ npm run step -- 3 / 4 / 5   (chunker: fixed)
    OUT   139 vectors · 1024 numbers each · 0 computed, 139 from cache
          announcement-meal-card@2025#c00 → [-0.0471, -0.0148, 0.0016, -0.0067, -0.0497, -0.0485, … ]
          length (norm) of that vector: 1.000
-   TIME  47 ms  →  data/4-vectors.json
+   TIME  42 ms  →  data/4-vectors.json
 
 ━━ STEP 5/8 · STORE
    IN    data/4-vectors.json  (139 vectors, edition 2025)
@@ -36,6 +36,6 @@ $ npm run step -- 3 / 4 / 5   (chunker: fixed)
 
          the day's question, top-5 ids:
            JSON (brute force)  hr-leave@2025#c19  hr-leave@2025#c12  hr-leave@2025#c11  hr-working-hours@2025#c11  hr-leave@2025#c17
-           chroma              hr-leave@2025#c12  hr-leave@2025#c11  hr-working-hours@2025#c11  hr-leave@2025#c07  benefits@2025#c11
-           different order — look at the scores: near-ties can swap
-   TIME  259 ms  →  data/5-store.json
+           chroma              hr-leave@2025#c19  hr-leave@2025#c12  hr-leave@2025#c11  hr-working-hours@2025#c11  hr-leave@2025#c17
+           identical ✓ — the database changes the scale, not the ranking
+   TIME  254 ms  →  data/5-store.json

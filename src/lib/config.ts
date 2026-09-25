@@ -59,7 +59,7 @@ export const config = {
 
   /** Ollama's default context window is small; our prompts need room for 3 chunks + rules. */
   numCtx: 8192,
-  /** temperature 0 + a fixed seed = the same answer on every laptop in the room. */
+  /** temperature 0 (in ollama.ts) + a fixed seed = the same answer on the same machine; other hardware may differ slightly. */
   seed: 42,
   /** Chunks per /api/embed call. */
   embedBatch: 24,

@@ -7,4 +7,4 @@ $ npm run step -- 0
 
 Yıllık izin, çalışanın işverenine bağlı olarak değişir. Ancak, Türkiye'de 7 yıllık bir çalışanın yıllık izni genellikle 50 iş günü (15 gün ücretli izin + 35 gün yıllık izin) olur.
 
-   TIME  1521 ms
+   TIME  1623 ms

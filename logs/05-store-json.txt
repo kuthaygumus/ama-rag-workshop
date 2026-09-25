@@ -4,4 +4,4 @@ $ npm run step -- 5 --store json
    IN    data/4-vectors.json  (60 vectors, edition 2025)
    WHAT  replace edition 2025 in data/store.json (no index: every search visits every vector)
    OUT   60 records added · 60 in the store · editions: 2025
-   TIME  22 ms  →  data/5-store.json
+   TIME  23 ms  →  data/5-store.json

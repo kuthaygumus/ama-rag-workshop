@@ -1,6 +1,6 @@
 $ npm run eval -- --answers
 
-━━ EVAL  23 gold questions · chroma store · edition 2025 · k=5 · with answers
+━━ EVAL  23 gold questions · chroma store · edition 2025 (store: 2025) · k=5 · with answers
          q01  table          ✓  rr 1.00  hr-leave#3 hr-leave#4 hr-leave#5 answer ✓
          q02  paraphrase     ·  rr 0.20  hr-working-hours#5 hr-leave#4 hr-leave#6 answer ✓
          q03  table          ·  rr 0.33  hr-leave#4 hr-leave#6 hr-leave#3 answer ✓

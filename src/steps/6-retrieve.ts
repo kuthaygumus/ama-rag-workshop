@@ -14,8 +14,8 @@ import type { Filter, Hit } from "../lib/types.js";
 import type { StoreReceipt } from "./5-store.js";
 
 // TOGGLE edition filter
-const EDITION: "latest" | "all" = "latest"; // default — only the newest edition in the store may answer
-// const EDITION: "latest" | "all" = "all"; // alternative — every edition competes, old ones included
+const EDITION_FILTER: "latest" | "all" = "latest"; // default — only the newest edition in the store may answer
+// const EDITION_FILTER: "latest" | "all" = "all"; // alternative — every edition competes, old ones included
 
 // TOGGLE access filter — who is asking?
 const ASKER_MAY_READ: string[] | undefined = ["all"]; // default — a regular employee: public documents only
@@ -24,7 +24,8 @@ const ASKER_MAY_READ: string[] | undefined = ["all"]; // default — a regular e
 export interface RetrieveOptions {
   store: VectorStore;
   k?: number;
-  edition?: "latest" | "all";
+  /** "latest", "all", or one edition by name (the eval pins the edition its gold set was written for). */
+  edition?: string;
   access?: string[] | undefined;
 }
 
@@ -47,10 +48,11 @@ export interface Retrieved {
  */
 export async function retrieve(question: string, o: RetrieveOptions): Promise<Retrieved> {
   const k = o.k ?? config.topK;
-  const edition = o.edition ?? EDITION;
+  const edition = o.edition ?? EDITION_FILTER;
   const access = "access" in o ? o.access : ASKER_MAY_READ;
   const filter: Filter = {};
   if (edition === "latest") filter.edition = (await o.store.editions()).at(-1);
+  else if (edition !== "all") filter.edition = edition;
   if (access) filter.access = access;
 
   let t = performance.now();

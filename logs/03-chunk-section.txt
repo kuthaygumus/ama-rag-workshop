@@ -30,4 +30,4 @@ $ npm run step -- 3   (chunker: section)
            │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da aranır.
            │
            │ Takvim yılı içinde kullanılmayan günler, en fazla 5 iş günü ile sınırlı olarak bir sonraki yıla devredilebilir; devrin koşulları 7. bölümde açıklanmıştır.
-   TIME  4 ms  →  data/3-chunks.json
+   TIME  5 ms  →  data/3-chunks.json

@@ -19,4 +19,4 @@ $ npm run step -- 3   (chunker: fixed)
            │ | 15 ve üzeri | 28 |
            │
            │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da ara
-   TIME  2 ms  →  data/3-chunks.json
+   TIME  8 ms  →  data/3-chunks.json

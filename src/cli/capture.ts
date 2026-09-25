@@ -144,6 +144,6 @@ await record("stuff-everything", "every document in one prompt (no retrieval)", 
 // Veri değişince · the 2026 edition
 await run("ingest-2026", ["src/cli/ingest.ts", "--edition", "2026"]);
 await run("soru-4-2026", ["src/cli/soru.ts"]);
-await record("edition-all", `npm run soru   (EDITION = "all")`, () => pipeline(config.dayQuestion, { edition: "all" }));
+await record("edition-all", `npm run soru   (EDITION_FILTER = "all")`, () => pipeline(config.dayQuestion, { edition: "all" }));
 
 console.log("capture: done — now in the site repo: npm run sync");

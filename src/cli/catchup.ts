@@ -1,5 +1,5 @@
 // npm run catchup -- <n>
-// Lost? This puts you exactly where the room is after step n — without touching the code you wrote.
+// Lost? This puts you exactly at the end of step n — without touching the code you wrote.
 //   1. every TOGGLE block goes back to its default line (the one marked "// default")
 //   2. data/ is emptied and the store is reset
 //   3. steps 1..n run again
@@ -16,7 +16,7 @@ import { exitOnError } from "./errors.js";
 async function main(): Promise<void> {
   const n = Number(cli.positionals[0]);
   if (!Number.isInteger(n) || n < 1 || n > 8) {
-    console.error("usage: npm run catchup -- <1-8>   (the step the room just finished)");
+    console.error("usage: npm run catchup -- <1-8>   (the step you want to reach)");
     process.exit(1);
   }
   banner(`CATCH-UP to step ${n}`);
@@ -46,7 +46,7 @@ async function main(): Promise<void> {
     () => import("../steps/8-answer.js").then((m) => m.run()),
   ];
   for (const step of steps.slice(0, n)) await step();
-  console.log(`\nYou are at step ${n}, same as the room.\n`);
+  console.log(`\nYou are at the end of step ${n}.\n`);
 }
 
 await main().catch(exitOnError);

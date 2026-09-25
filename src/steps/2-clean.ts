@@ -10,19 +10,19 @@ import type { CleanDoc, Doc } from "../lib/types.js";
 import { corpusHash } from "./1-load.js";
 
 // ── YOUR TURN ───────────────────────────────────────────────────────────────────────────────────
-// The English document (it-security) ends every page with "CONFIDENTIAL – Internal use only".
+// The English document (it-security) repeats "CONFIDENTIAL – Internal use only" under the page header.
 // No rule removes it yet: open data/2-clean.json and find it. Write the rule the way the Turkish
-// footer rule below is written, re-run step 2, and check: npm run check:sibling
-export const englishFooter: RegExp | undefined = undefined;
+// confidentiality rule below is written, re-run step 2, and check: npm run check:sibling
+export const englishConfidential: RegExp | undefined = undefined;
 
 // TOGGLE noise rules — comment one out, re-run step 2, and find what it used to remove
 const NOISE: RegExp[] = [
   /^Kraken Air \| .+ \| (Sürüm|Edition) \d{4}$/, // default — page header, repeated on every page
-  /^GİZLİ – .+$/, // default — Turkish confidentiality footer
+  /^GİZLİ – .+$/, // default — Turkish confidentiality line, under the page header
   /^Sayfa \d+ \/ \d+$/, // default — Turkish page number
   /^Page \d+ of \d+$/, // default — English page number
 
-  ...(englishFooter ? [englishFooter] : []),
+  ...(englishConfidential ? [englishConfidential] : []),
 ];
 
 /** True for a line that is extraction noise, not content. */

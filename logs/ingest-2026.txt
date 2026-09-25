@@ -12,7 +12,7 @@ $ npm run ingest -- --edition 2026
          hr-working-hours         tr  all        6193 chars   152 lines
          it-security              en  all        6632 chars   160 lines
          travel-expenses          tr  all        6194 chars   153 lines
-   TIME  6 ms  →  data/1-docs.json
+   TIME  8 ms  →  data/1-docs.json
 
 ━━ STEP 2/8 · CLEAN
    IN    data/1-docs.json  (8 documents, edition 2026)
@@ -38,7 +38,7 @@ $ npm run ingest -- --edition 2026
            │ # Yıllık İzin Politikası
            │
            │ ## 1. Amaç ve Kapsam
-   TIME  3 ms  →  data/2-clean.json
+   TIME  4 ms  →  data/2-clean.json
 
 ━━ STEP 3/8 · CHUNK
    IN    data/2-clean.json  (8 documents)
@@ -70,7 +70,7 @@ $ npm run ingest -- --edition 2026
            │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da aranır.
            │
            │ Takvim yılı içinde kullanılmayan günler, en fazla 5 iş günü ile sınırlı olarak bir sonraki yıla devredilebilir; devrin koşulları 7. bölümde açıklanmıştır.
-   TIME  2 ms  →  data/3-chunks.json
+   TIME  3 ms  →  data/3-chunks.json
 
 ━━ STEP 4/8 · EMBED
    IN    data/3-chunks.json  (60 chunks)
@@ -78,7 +78,7 @@ $ npm run ingest -- --edition 2026
    OUT   60 vectors · 1024 numbers each · 0 computed, 60 from cache
          announcement-meal-card@2026#1 → [-0.0538, -0.0108, -0.0047, -0.0064, -0.0463, -0.0545, … ]
          length (norm) of that vector: 1.000
-   TIME  35 ms  →  data/4-vectors.json
+   TIME  31 ms  →  data/4-vectors.json
 
 ━━ STEP 5/8 · STORE
    IN    data/4-vectors.json  (60 vectors, edition 2026)
@@ -89,6 +89,6 @@ $ npm run ingest -- --edition 2026
            JSON (brute force)  hr-leave@2026#3  hr-leave@2026#4  hr-leave@2026#5  hr-leave@2026#7  hr-leave@2026#6
            chroma              hr-leave@2026#3  hr-leave@2026#4  hr-leave@2026#5  hr-leave@2026#7  hr-leave@2026#6
            identical ✓ — the database changes the scale, not the ranking
-   TIME  189 ms  →  data/5-store.json
+   TIME  172 ms  →  data/5-store.json
 
 Ingest done (edition 2026). Now: npm run soru

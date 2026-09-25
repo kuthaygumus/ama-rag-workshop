@@ -3,11 +3,11 @@ $ npm run step -- 7
 ━━ STEP 7/8 · RERANK
    IN    data/6-retrieved.json  (5 chunks for "7 yıllık bir çalışanın yıllık izni kaç iş günü?")
    WHAT  gemma3:4b scores each (question, chunk) pair 0–10 · re-sort · keep the top 3
-   OUT   5 chunks scored in 2134 ms · ties: 0 of 5
+   OUT   5 chunks scored in 2243 ms · ties: 0 of 5
           1    was 1  rel 10  vec 0.631  hr-leave@2025#3          Yıllık İzin Politikası › §3
           2  ▲ was 4  rel  9  vec 0.626  hr-leave@2025#7          Yıllık İzin Politikası › §7
           3  ▼ was 2  rel  6  vec 0.628  hr-leave@2025#4          Yıllık İzin Politikası › §4
          ─ ─ ─ into the prompt: top 3 ─ ─ ─
           4  ▲ was 5  rel  3  vec 0.624  hr-leave@2025#6          Yıllık İzin Politikası › §6
           5  ▼ was 3  rel  0  vec 0.627  hr-leave@2025#5          Yıllık İzin Politikası › §5
-   TIME  2138 ms  →  data/7-reranked.json
+   TIME  2244 ms  →  data/7-reranked.json

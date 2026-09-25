@@ -6,4 +6,4 @@ $ npm run step -- 4
    OUT   60 vectors · 1024 numbers each · 0 computed, 60 from cache
          announcement-meal-card@2025#1 → [-0.0538, -0.0108, -0.0047, -0.0064, -0.0463, -0.0545, … ]
          length (norm) of that vector: 1.000
-   TIME  40 ms  →  data/4-vectors.json
+   TIME  38 ms  →  data/4-vectors.json

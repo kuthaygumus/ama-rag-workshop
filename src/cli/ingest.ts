@@ -19,7 +19,7 @@ try {
   await chunk();
   await embed();
   await store();
-  console.log(`\nIngest done (edition ${config.edition}). Now: npm run soru\n`);
+  console.log(`\nIngest done (edition ${config.edition}). Now: npm run question\n`);
 } catch (e) {
   exitOnError(e);
 }

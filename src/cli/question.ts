@@ -1,4 +1,4 @@
-// npm run soru
+// npm run question
 // The day's question through whatever the pipeline can do RIGHT NOW, plus the ledger of every
 // answer it gave today. Run it after each step and watch the answer move.
 //   nothing built yet      → the bare model answers (step 0)
@@ -17,7 +17,7 @@ import { rerank } from "../steps/7-rerank.js";
 import { answer } from "../steps/8-answer.js";
 import { exitOnError } from "./errors.js";
 
-const LEDGER = ".cache/soru-ledger.jsonl";
+const LEDGER = ".cache/question-ledger.jsonl";
 
 interface Entry {
   at: string;
@@ -41,7 +41,7 @@ async function pipeline(): Promise<{ store: VectorStore; how: string } | undefin
     return { store: openStore(receipt.store), how: `${receipt.store} store · chunker ${chunker}` };
   } catch {
     // no store yet (or it is older than the chunks): search the chunks in memory
-    const memory = new JsonStore("data/.soru-memory.json");
+    const memory = new JsonStore("data/.question-memory.json");
     const { vectors } = await embed(chunks.map((c) => c.text));
     await memory.replaceEdition(chunks[0]!.edition, chunks.map((c, i) => ({ ...c, vector: vectors[i]! })));
     return { store: memory, how: `chunker ${chunker} · in-memory search (black box)` };

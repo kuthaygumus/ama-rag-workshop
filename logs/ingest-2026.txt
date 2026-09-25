@@ -91,4 +91,4 @@ $ npm run ingest -- --edition 2026
            identical ✓ — the database changes the scale, not the ranking
    TIME  172 ms  →  data/5-store.json
 
-Ingest done (edition 2026). Now: npm run soru
+Ingest done (edition 2026). Now: npm run question

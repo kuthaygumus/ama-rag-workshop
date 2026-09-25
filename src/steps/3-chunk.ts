@@ -3,14 +3,14 @@
 // "yıllık izin kaç gün?" lives in three lines of it. So we cut documents into pieces (chunks); later
 // the search picks the few pieces that matter.
 //
-// HOW we cut decides what the search can ever find. Two ways below — try both and run `npm run soru`.
+// HOW we cut decides what the search can ever find. Two ways below — try both and run `npm run question`.
 import { readStep, writeStep } from "../lib/data.js";
 import { done, line, more, stepHeader } from "../lib/log.js";
 import type { Chunk, CleanDoc } from "../lib/types.js";
 
 export type ChunkerName = "section" | "fixed";
 
-// TOGGLE chunker — keep exactly one line active, then: npm run step -- 3  (and npm run soru)
+// TOGGLE chunker — keep exactly one line active, then: npm run step -- 3  (and npm run question)
 const CHUNKER: ChunkerName = "section"; // default
 // const CHUNKER: ChunkerName = "fixed"; // alternative
 

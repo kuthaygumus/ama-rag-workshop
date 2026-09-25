@@ -20,6 +20,7 @@ const MARKERS: RegExp[] = [
   /\bHelios\b/i,
   /\bIRIS\b/,
   /\blab\b/i,
+  /npm run soru\b|soru\.ts\b|soru-ledger/, // renamed to question on 25 Sep 2026
 ];
 const SKIP = new Set(["node_modules", ".git", "data", ".cache", ".astro"]);
 const TEXT = /\.(ts|js|mjs|cjs|json|jsonl|md|mdx|astro|css|html|svg|yaml|yml|bru|txt|env|example)$|^\.[a-z]+$/;

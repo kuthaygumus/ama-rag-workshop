@@ -12,7 +12,7 @@
     "step": "tsx src/cli/step.ts",
     "ingest": "tsx src/cli/ingest.ts",
     "ask": "tsx src/cli/ask.ts",
-    "soru": "tsx src/cli/soru.ts",
+    "question": "tsx src/cli/question.ts",
     "similar": "tsx src/explore/similar.ts",
     "map": "tsx src/explore/map.ts",
     "eval": "tsx src/cli/eval.ts",

@@ -80,7 +80,7 @@ export async function answer(rr: Reranked, rules: string[] = RULES): Promise<Ans
   };
 }
 
-/** Print the answer block (shared with ask and soru). */
+/** Print the answer block (shared with ask and question). */
 export function printAnswer(a: Answer, showPrompt = Boolean(cli.flags.prompt)): void {
   if (showPrompt) {
     more("");

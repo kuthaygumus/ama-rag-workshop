@@ -48,7 +48,7 @@ Each step runs on its own, reads the previous step's file in `data/` and writes 
 | `npm run step -- 8` | answer from the top chunks (`--prompt` shows the prompt) | `data/8-answer.json` |
 
 Shortcuts: `npm run ingest` (steps 1–5), `npm run ask -- "question"` (steps 6–8),
-`npm run soru` (the day's question through whatever works right now, plus the ledger of its answers),
+`npm run question` (the day's question through whatever works right now, plus the ledger of its answers),
 `npm run eval` (hit@1 / recall@k / MRR over `eval/gold.jsonl`; `--answers` also checks the answers).
 
 **Toggles** — lines marked `// default` and `// alternative` inside a `// TOGGLE` block: swap which one is

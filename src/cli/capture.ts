@@ -1,7 +1,7 @@
 // npm run capture   (trainer tool — takes ~15 minutes)
 // Plays the whole day once, in order, and records every output into logs/<name>.txt. The course site
 // shows these files and nothing else: no number on the site is typed by hand.
-// It resets data/, the store and the soru ledger, and leaves the store with both editions at the end.
+// It resets data/, the store and the question ledger, and leaves the store with both editions at the end.
 process.env.NO_COLOR = "1";
 
 import { spawnSync } from "node:child_process";
@@ -67,7 +67,7 @@ async function pipeline(question: string, o: { access?: string[] | undefined; ed
 }
 
 await mkdir("logs", { recursive: true });
-await rm(".cache/soru-ledger.jsonl", { force: true });
+await rm(".cache/question-ledger.jsonl", { force: true });
 await clearData();
 await openStore().reset();
 console.log("capture: playing the day …");
@@ -75,7 +75,7 @@ console.log("capture: playing the day …");
 // Başlamadan
 await run("doctor", ["src/cli/doctor.ts"]);
 await record("00-bare", "npm run step -- 0", () => steps.s0.run());
-await run("soru-0-bare", ["src/cli/soru.ts"]);
+await run("question-0-bare", ["src/cli/question.ts"]);
 
 // A · raw data + clean
 await record("01-load", "npm run step -- 1", () => steps.s1.run());
@@ -83,9 +83,9 @@ await record("02-clean", "npm run step -- 2", () => steps.s2.run());
 
 // B · chunking: fixed first, then by section
 await record("03-chunk-fixed", "npm run step -- 3   (chunker: fixed)", () => steps.s3.run("fixed"));
-await run("soru-1-fixed", ["src/cli/soru.ts"]);
+await run("question-1-fixed", ["src/cli/question.ts"]);
 await record("03-chunk-section", "npm run step -- 3   (chunker: section)", () => steps.s3.run("section"));
-await run("soru-2-section", ["src/cli/soru.ts"]);
+await run("question-2-section", ["src/cli/question.ts"]);
 
 // C · embedding + "what do we have?"
 await record("04-embed", "npm run step -- 4", () => steps.s4.run());
@@ -103,7 +103,7 @@ await record("07-rerank-off", "npm run step -- 7   (RERANK = false)", () => step
 await record("08-answer-rerank-off", "npm run step -- 8   (after rerank off)", () => steps.s8.run());
 await record("07-rerank", "npm run step -- 7", () => steps.s7.run(true));
 await run("08-answer", ["src/cli/step.ts", "8", "--prompt"]);
-await run("soru-3-full", ["src/cli/soru.ts"]);
+await run("question-3-full", ["src/cli/question.ts"]);
 
 // E / Güvenlik · access filter
 await run("ask-access-on", ["src/cli/ask.ts", first("access")]);
@@ -143,7 +143,7 @@ await record("stuff-everything", "every document in one prompt (no retrieval)", 
 
 // Veri değişince · the 2026 edition
 await run("ingest-2026", ["src/cli/ingest.ts", "--edition", "2026"]);
-await run("soru-4-2026", ["src/cli/soru.ts"]);
-await record("edition-all", `npm run soru   (EDITION_FILTER = "all")`, () => pipeline(config.dayQuestion, { edition: "all" }));
+await run("question-4-2026", ["src/cli/question.ts"]);
+await record("edition-all", `npm run question   (EDITION_FILTER = "all")`, () => pipeline(config.dayQuestion, { edition: "all" }));
 
 console.log("capture: done — now in the site repo: npm run sync");

@@ -53,7 +53,7 @@ async function main(): Promise<void> {
   const p = await pipeline();
   let entry: Entry;
   if (!p) {
-    const gen = await generate(config.dayQuestion, { system: "Kısa cevap ver." });
+    const gen = await generate(config.dayQuestion, { system: "Answer briefly." });
     entry = { at: new Date().toISOString(), how: "bare model, no documents", answer: gen.text, sources: [] };
     line("HOW", entry.how);
     console.log(`\n${yellow(gen.text)}\n`);
@@ -77,7 +77,7 @@ async function main(): Promise<void> {
   const all = (await readFile(LEDGER, "utf8")).trim().split("\n").map((l) => JSON.parse(l) as Entry);
   console.log(`\n   ${bold("LEDGER")} ${dim(`(${LEDGER})`)}`);
   for (const e of all.slice(-12)) {
-    more(`${new Date(e.at).toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" })}  ${preview(e.answer, 46).padEnd(46)}  ${dim(preview(e.how, 70))}`);
+    more(`${new Date(e.at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}  ${preview(e.answer, 46).padEnd(46)}  ${dim(preview(e.how, 70))}`);
   }
   console.log();
 }

@@ -53,7 +53,14 @@ async function save(name: string, text: string): Promise<void> {
 
 const gold = (await readFile("eval/gold.jsonl", "utf8")).trim().split("\n").map((l) => JSON.parse(l) as Gold);
 const first = (type: string) => gold.find((g) => g.type === type)!.query;
-const noRule = (fragment: string) => steps.s8.RULES.filter((r) => !r.includes(fragment));
+/** The rules without the ONE rule that holds `fragment`. Throws when the fragment is in no rule or in several:
+ *  a stale fragment would otherwise record a "rule-off" log with every rule still on. */
+const noRule = (fragment: string) => {
+  const left = steps.s8.RULES.filter((r) => !r.includes(fragment));
+  const removed = steps.s8.RULES.length - left.length;
+  if (removed !== 1) throw new Error(`rule-off fragment "${fragment}" must be in exactly one rule (found in ${removed})`);
+  return left;
+};
 
 /** Steps 6 → 7 → 8 with explicit settings, printed like the real steps. */
 async function pipeline(question: string, o: { access?: string[] | undefined; edition?: "latest" | "all"; rules?: string[]; rerank?: boolean } = {}) {
@@ -111,9 +118,9 @@ await record("ask-access-off", `npm run ask -- "${first("access")}"   (ASKER_MAY
 
 // F · answer generation: abstain + injection
 await run("ask-out-of-corpus", ["src/cli/ask.ts", first("out-of-corpus")]);
-await record("ask-out-of-corpus-rule-off", `npm run ask -- "${first("out-of-corpus")}"   (abstain rule commented out)`, () => pipeline(first("out-of-corpus"), { rules: noRule("yoksa yalnızca") }));
+await record("ask-out-of-corpus-rule-off", `npm run ask -- "${first("out-of-corpus")}"   (abstain rule commented out)`, () => pipeline(first("out-of-corpus"), { rules: noRule("write only this") }));
 await run("ask-injection", ["src/cli/ask.ts", first("injection")]);
-await record("ask-injection-rule-off", `npm run ask -- "${first("injection")}"   (the concrete-ban rule commented out)`, () => pipeline(first("injection"), { rules: noRule("asla şifre") }));
+await record("ask-injection-rule-off", `npm run ask -- "${first("injection")}"   (the concrete-ban rule commented out)`, () => pipeline(first("injection"), { rules: noRule("Never ask the user for a password") }));
 
 // 4 · quality: section vs fixed, then answers
 await run("eval-section", ["src/cli/eval.ts"]);
@@ -134,7 +141,7 @@ await record("ingest-section", "npm run step -- 3 / 4 / 5   (chunker: section)",
 await record("stuff-everything", "every document in one prompt (no retrieval)", async () => {
   const docs = JSON.parse(await readFile("data/2-clean.json", "utf8")).data as { id: string; text: string }[];
   const all = docs.map((d) => `### ${d.id}\n${d.text}`).join("\n\n");
-  const g = await generate(`KAYNAKLAR:\n\n${all}\n\nSORU: ${config.dayQuestion}\nCEVAP:`, { system: steps.s8.system(), numCtx: 32768 });
+  const g = await generate(`SOURCES:\n\n${all}\n\nQUESTION: ${config.dayQuestion}\nANSWER:`, { system: steps.s8.system(), numCtx: 32768 });
   console.log(`   documents      ${docs.length} (${all.length} characters)`);
   console.log(`   prompt tokens  ${g.promptTokens}`);
   console.log(`   time           ${g.ms} ms`);

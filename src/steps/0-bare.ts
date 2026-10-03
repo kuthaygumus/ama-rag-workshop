@@ -15,7 +15,7 @@ export async function run(question = config.dayQuestion): Promise<string> {
   const t0 = performance.now();
   line("IN", question);
   line("WHAT", `ask ${config.chatModel} directly — no documents, no search`);
-  const gen = await generate(question, { system: "Kısa cevap ver." });
+  const gen = await generate(question, { system: "Answer briefly." });
   line("OUT", `${gen.promptTokens} prompt tokens · ${gen.outputTokens} output tokens`);
   console.log(`\n${yellow(gen.text)}\n`);
   done(t0);

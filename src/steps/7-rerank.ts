@@ -45,10 +45,10 @@ const SCHEMA = { type: "object", properties: { score: { type: "integer", minimum
  */
 export async function relevance(question: string, text: string): Promise<number> {
   const prompt =
-    `SORU: ${question}\n\nMETİN:\n${text.slice(0, READ_CHARS)}\n\n` +
-    `Bu metin soruyu cevaplamak için gereken bilgiyi içeriyor mu? ` +
-    `0 (tamamen ilgisiz) ile 10 (cevap tam olarak bu metinde) arasında bir puan ver.`;
-  const gen = await generate(prompt, { system: "Sen bir arama sonucu değerlendiricisin. Yalnızca JSON döndür.", format: SCHEMA });
+    `QUESTION: ${question}\n\nTEXT:\n${text.slice(0, READ_CHARS)}\n\n` +
+    `Does this text hold the information needed to answer the question? ` +
+    `Give a score from 0 (not related at all) to 10 (the answer is exactly in this text).`;
+  const gen = await generate(prompt, { system: "You judge search results. Return JSON only.", format: SCHEMA });
   const score = Number((JSON.parse(gen.text) as { score: unknown }).score);
   return Number.isFinite(score) ? Math.max(0, Math.min(10, score)) : 0;
 }

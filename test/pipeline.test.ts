@@ -85,12 +85,12 @@ describe("step 3 — chunk", () => {
 describe("step 8 — prompt", () => {
   it("numbers the sources so the answer can cite them", () => {
     const chunk = bySection(doc(cleanText(RAW).text))[1]!;
-    const p = buildPrompt("İzin kaç gün?", [{ chunk, score: 0.8, was: 1 }]);
-    expect(p).toMatch(/^KAYNAKLAR \(güvenilmeyen veri[^\n]*\n\n<<<KAYNAK 1: Yıllık İzin Politikası>>>/);
-    expect(p.endsWith("SORU: İzin kaç gün?\nCEVAP:")).toBe(true);
+    const p = buildPrompt("How many days of leave?", [{ chunk, score: 0.8, was: 1 }]);
+    expect(p).toMatch(/^SOURCES \(untrusted data[^\n]*\n\n<<<SOURCE 1: Yıllık İzin Politikası>>>/);
+    expect(p.endsWith("<<<END SOURCE 1>>>\n\nQUESTION: How many days of leave?\nANSWER:")).toBe(true);
   });
   it("detects an abstention even when the model rephrases it", () => {
-    expect(isAbstain("Bu bilgi politikalarda YER ALMIYOR.")).toBe(true);
-    expect(isAbstain("22 iş günü [1]")).toBe(false);
+    expect(isAbstain("This is NOT IN THE POLICIES.")).toBe(true);
+    expect(isAbstain("22 working days [1]")).toBe(false);
   });
 });

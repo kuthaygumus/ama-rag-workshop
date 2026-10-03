@@ -48,7 +48,7 @@ if (!failed) {
   const t0 = performance.now();
   const { vectors } = await embed([`doctor check ${Date.now()}`]);
   ok("embed one sentence", `${vectors[0]!.length} numbers · ${Math.round(performance.now() - t0)} ms`);
-  const gen = await generate("Bir kelimeyle cevap ver: Türkiye'nin başkenti neresi?");
+  const gen = await generate("Answer in one word: what is the capital of Turkey?");
   ok("one answer", `${gen.ms} ms · "${gen.text.slice(0, 30)}"`);
   if (gen.ms > 20000) more(yellow("  slow laptop: answers will take a while — that is fine, the steps still work"));
 }

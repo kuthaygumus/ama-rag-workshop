@@ -623,6 +623,13 @@ const SRC_FILES = filesIn("src").filter((f) => f.endsWith(".ts"));
 /** Words built from parts, so a grep for them finds the code that uses them, not this check. */
 const W = (...p: string[]) => p.join("");
 
+/** Turkish case rules turn "I" into a dotless i, so an English needle would never match an upper-case answer. */
+A({ id: "T03", tier: 1, cls: "N", sids: "S7.35 S7.36" }, () => {
+  const needles = [new RegExp(W("toLocale(Lower|Upper)Case\\(\\s*", "['\"]tr")), new RegExp(W("['\"]tr-", "TR['\"]"))];
+  const hits = SRC_FILES.flatMap((f) => read(f).split("\n").flatMap((l, i) => (needles.some((re) => re.test(l)) ? [`${f}:${i + 1}`] : [])));
+  return out(!hits.length, hits.join(", ") || "no Turkish locale call left in src/");
+});
+
 A({ id: "T04", part: "anchors", tier: 1, cls: "N", sids: "S1.04 S1.25 S2.17 S2.21 S2.34 S3.08 S3.22 S3.35 S3.36 S4.12 S4.16 S5.19 S5.20 S5.26 S5.33 S5.37 S5.52 S7.12 S7.13 S7.15 S7.16 S7.20 S7.22 S7.23 S7.24 S7.25 S7.26 S7.28 S7.29 S7.33 S7.38 S7.45" }, () => {
   const has = (f: string, ...needles: string[]) => needles.every((n) => read(f).includes(n));
   const steps = readdirSync("src/steps").filter((f) => /^[1-8]-.+\.ts$/.test(f)).sort();

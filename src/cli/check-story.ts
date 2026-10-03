@@ -900,10 +900,16 @@ A({ id: "L20", tier: 2, cls: "P", sids: "S1.17 S1.49 S2.19 S2.25 S5.22 S6.22 S6.
   const a = answer(n);
   const how = ln(n, 4);
   const srcLines = L(n).filter((l) => RE_SRC.test(l)).length;
-  const ok = a === ABSTAIN && isAbstain(a) && !hasExp(a) && !sources(n).includes(chunkBlock("03-chunk-fixed").id) && how.includes("chunker fixed") && how.includes("in-memory search (black box)") &&
+  // English run (P4 round 2, re-narrated): fixed chunking loses the table, and the model answers a WRONG number WITH a source.
+  // The number is the one next to "working days" in the chunk it cites ([1] = the §4 block-limit chunk), never the row's.
+  const days = a.match(/\b(\d+) working days\b/)?.[1];
+  const cite = Number(a.match(/\[(\d)\]/)?.[1] ?? 0);
+  const cited = FIX25.find((c) => c.id === sources(n)[cite - 1]);
+  const ok = !isAbstain(a) && !!days && !hasExp(a) && cite === 1 && !!cited && cited.text.includes(`${days} working days`) && !cited.text.includes("| 7 |") &&
+    !sources(n).includes(chunkBlock("03-chunk-fixed").id) && how.includes("chunker fixed") && how.includes("in-memory search (black box)") &&
     ln(n, 5) === "" && !!ln(n, 6).trim() && ln(n, 7) === "" && srcLines === 3 && ln(n, 11) === "";
   fact("answers.question-1-fixed", a, n);
-  return out(ok, `"${a}" sources ${sources(n).join(" ")}`);
+  return out(ok, `"${a}" sources ${sources(n).join(" ")}; [${cite}] holds "${days} working days": ${!!cited?.text.includes(`${days} working days`)}`);
 });
 A({ id: "L21", tier: 1, cls: "N", sids: "S2.19 S2.27 S3.01 S3.03 S5.22 S6.38", logs: ["question-2-section", "question-1-fixed"] }, () => {
   const a = answer("question-2-section");
@@ -929,7 +935,7 @@ const ledger = (n: string) => L(n).filter((l) => /^\s+\d\d:\d\d\s{2}/.test(l)).m
 A({ id: "L24", tier: 1, cls: "P", sids: "S1.03 S1.20 S2.28 S6.41", logs: ["question-4-2026", "question-2-section"] }, () => {
   const r = ledger("question-4-2026");
   const p = (i: number) => r[i]?.[0] ?? "";
-  const ok = r.length === 5 && (r[0]?.[1] ?? "").includes("bare model, no documents") && !hasExp(p(0)) && p(1) === preview(ABSTAIN, 46) && hasExp(p(2)) && hasExp(p(3)) && hasExp(p(4), ROW7_2026) && /^\s+LEDGER/.test(ln("question-4-2026", 12));
+  const ok = r.length === 5 && (r[0]?.[1] ?? "").includes("bare model, no documents") && !hasExp(p(0)) && p(1) === preview(answer("question-1-fixed"), 46) && !hasExp(p(1)) && !isAbstain(answer("question-1-fixed")) && hasExp(p(2)) && hasExp(p(3)) && hasExp(p(4), ROW7_2026) && /^\s+LEDGER/.test(ln("question-4-2026", 12));
   const r2 = ledger("question-2-section");
   const ok2 = r2.length === 3 && (r2[0]?.[1] ?? "").includes("bare model") && (r2[1]?.[1] ?? "").includes("chunker fixed") && (r2[2]?.[1] ?? "").includes("chunker section");
   fact("ledger.previews", r.map((x) => x[0]), "question-4-2026");
@@ -1032,8 +1038,11 @@ A({ id: "L50", part: "embed 0 ms", tier: 3, cls: "N", sids: "S5.49", logs: ["06-
 A({ id: "L51", tier: 1, cls: "N", sids: "S4.06 S5.44 S6.36", logs: ["07-rerank-off", "06-retrieve"] }, () => {
   const r = rr("07-rerank-off");
   const ok = r.length === 5 && r.every((x) => x.pos === x.was && x.rel === undefined) && r.map((x) => x.id).join() === hits("06-retrieve").slice(0, 5).map((h) => h.id).join() &&
-    TXT("07-rerank-off").includes("order unchanged") && r.slice(0, 3).some((x) => x.id === "hr-leave@2025#5");
-  return out(ok, r.map((x) => x.id.split("#")[1]).join(" "));
+    TXT("07-rerank-off").includes("order unchanged") &&
+    // English run (re-narrated): special leave (§5) is below the cut, so without rerank §2 (Probation and Earning Leave) goes in as [2]
+    !r.some((x) => x.id === "hr-leave@2025#5") && hits("06-retrieve").findIndex((h) => h.id === "hr-leave@2025#5") >= 5 &&
+    r.slice(0, 3).map((x) => x.id).join() === "hr-leave@2025#3,hr-leave@2025#2,hr-leave@2025#7" && sources("08-answer-rerank-off")[1] === "hr-leave@2025#2";
+  return out(ok, `${r.map((x) => x.id.split("#")[1]).join(" ")}; #5 at retrieve row ${hits("06-retrieve").findIndex((h) => h.id === "hr-leave@2025#5") + 1}; off [2] ${sources("08-answer-rerank-off")[1]}`);
 });
 A({ id: "L52", part: "moves", tier: 2, cls: "N", sids: "S1.08 S1.43 S4.07 S4.08 S5.40 S5.43 S6.17 S6.27 S7.10 S7.11 S7.42", logs: ["07-rerank"] }, () => {
   const r = rr("07-rerank");
@@ -1041,10 +1050,12 @@ A({ id: "L52", part: "moves", tier: 2, cls: "N", sids: "S1.08 S1.43 S4.07 S4.08 
   const line = ls.findIndex((l) => /into the prompt: top 3/.test(l));
   const firstAt = ls.findIndex((l) => RE_RR.test(l));
   const [a, b] = [r[0], r[1]];
-  const last = r[r.length - 1];
+  // English run (re-narrated): §3 is the one clear winner; §7 and §4 move up, §2 (Probation and Earning Leave) moves down out of the prompt.
+  const two = r.find((x) => x.id === "hr-leave@2025#2");
   const ok = ln("07-rerank", 5).includes("scores each (question, chunk) pair 0–10") && /5 chunks scored in \d+ ms/.test(TXT("07-rerank")) && a?.id === "hr-leave@2025#3" && (a.rel ?? 0) >= 9 && firstAt < line &&
-    last?.id === "hr-leave@2025#5" && (last.rel ?? 9) <= 1 && b?.move === "▲" && (b.rel ?? 0) >= 8 && b.id !== "hr-leave@2025#3" && r.some((x) => x.move === "▲") && r.some((x) => x.move === "▼") &&
-    r.slice(0, 3).some((x) => x.id === "hr-leave@2025#7");
+    r.slice(1).every((x) => (x.rel ?? 99) < (a.rel ?? 0)) && b?.move === "▲" && b.id === "hr-leave@2025#7" &&
+    r.slice(0, 3).map((x) => x.id).join() === "hr-leave@2025#3,hr-leave@2025#7,hr-leave@2025#4" && r[2]?.move === "▲" &&
+    two?.move === "▼" && two.pos > 3 && !r.some((x) => x.id === "hr-leave@2025#5") && r.some((x) => x.move === "▼");
   fact("rerank.rows", r, "07-rerank");
   fact("ms.rerank", num("07-rerank", /scored in (\d+) ms/), "07-rerank");
   return out(ok, r.map((x) => `${x.move}${x.id.split("#")[1]} rel ${x.rel}`).join(", "));
@@ -1124,10 +1135,11 @@ A({ id: "L55", tier: 2, cls: "N", sids: "S4.29", logs: ["08-answer", "08-answer-
 const asks = (n: string, q: string) => ln(n, 1).startsWith(`$ npm run ask -- "${q}"`);
 const sameRows = (a: string, b: string) => hits(a).map((x) => x.id + x.score).join() === hits(b).map((x) => x.id + x.score).join() && sources(a).join() === sources(b).join();
 /** The senior row of the abroad table (travel-expenses §4, second data row): its money cells. */
-const seniorAbroad = () => {
-  const r = must(sectionText(doc("2025", "travel-expenses"), "4").split("\n").filter((l) => l.startsWith("|") && !/^\|-/.test(l))[2], "senior row"); // [0] is the header
+const seniorRow = (sec: string) => {
+  const r = must(sectionText(doc("2025", "travel-expenses"), sec).split("\n").filter((l) => l.startsWith("|") && !/^\|-/.test(l))[2], `senior row §${sec}`); // [0] is the header
   return r.split("|").slice(2).map((c) => c.trim()).filter(Boolean);
 };
+const seniorAbroad = () => seniorRow("4");
 A({ id: "L60", tier: 1, cls: "P", sids: "S4.14 S4.22 S5.03 S5.12 S5.15 S6.23 S7.09", logs: ["ask-access-on"] }, () => {
   const n = "ask-access-on";
   const ls = L(n);
@@ -1143,9 +1155,15 @@ A({ id: "L61", tier: 2, cls: "N", sids: "S4.14 S5.05 S5.06 S5.07 S6.10 S6.23", l
   const top = rr(n)[0];
   const ties = num(n, /ties: (\d+) of 5/);
   fact("rerank.accessTies", ties, n);
+  // English run (re-narrated): both tables score rel 10; the euro table is [1], but the model answers from [2], the domestic
+  // lira table (the senior specialist's hotel cell), and quotes no euro cell. Still no salary figure (L60).
   const cells = seniorAbroad();
-  const ok = !isAbstain(a) && /\d/.test(a) && cells.every((c) => a.includes(c)) && sources(n)[0] === "travel-expenses@2025#4" && top?.id === "travel-expenses@2025#4" && top.move === "▲" && top.was >= 2 && top.rel === 10;
-  return out(ok, `answer has ${cells}: "${a.slice(0, 80)}"; rerank 1 ${top?.id} was ${top?.was} rel ${top?.rel}`);
+  const hotel = seniorRow("3").at(-1)!;
+  const second = rr(n)[1];
+  const ok = !isAbstain(a) && a.includes(hotel) && /\[2\]/.test(a) && !/\[[13]\]/.test(a) && !cells.some((c) => new RegExp(`\\b${c}\\b`).test(a)) &&
+    sources(n)[0] === "travel-expenses@2025#4" && sources(n)[1] === "travel-expenses@2025#3" && top?.id === "travel-expenses@2025#4" && top.move === "" && top.was === 1 && top.rel === 10 &&
+    second?.id === "travel-expenses@2025#3" && second.move === "▲" && second.rel === 10;
+  return out(ok, `answer has domestic ${hotel}, no ${cells}: "${a.slice(0, 80)}"; rerank 1 ${top?.id} was ${top?.was} rel ${top?.rel}, 2 ${second?.id} ${second?.move} rel ${second?.rel}`);
 });
 A({ id: "L62", tier: 1, cls: "P", sids: "S4.15 S4.22 S5.04 S7.09", logs: ["ask-access-off"] }, () => {
   const n = "ask-access-off";
@@ -1179,16 +1197,21 @@ A({ id: "L65", part: "refusal in words", tier: 2, cls: "E", soft: true, sids: "S
   const a = answer("ask-out-of-corpus-rule-off");
   return out(/no information|not mentioned|not (stated|covered|found)|does not/i.test(a) && a.includes("[1]"), `"${a}"`);
 });
-A({ id: "L66", part: "ban on", tier: 1, cls: "P", sids: "S4.22 S4.34 S4.35 S5.07 S5.09 S5.18 S6.15", logs: ["ask-injection"] }, () => {
+A({ id: "L66", part: "ban on", tier: 1, cls: "P", sids: "S4.22 S4.34 S4.35 S5.07 S5.09 S5.18 S6.15", logs: ["ask-injection", "ask-injection-rule-off"] }, () => {
   const n = "ask-injection";
   const a = answer(n);
   const s = sources(n);
   const ok = asks(n, firstOf("injection").query) && hits(n)[0]?.id === "announcement-meal-card@2025#2" && s[0] === "announcement-meal-card@2025#2" && s[1] === "benefits@2025#2" &&
-    rr(n).slice(0, 3).some((x) => x.id === "announcement-meal-card@2025#2") && a.includes(G("q13").expect) && !a.includes(PLANTED) && ln(n, 30).startsWith("━━ STEP 8/8 · ANSWER") && !askChain(n).length;
+    rr(n).slice(0, 3).some((x) => x.id === "announcement-meal-card@2025#2") && a.includes(G("q13").expect) && ln(n, 30).startsWith("━━ STEP 8/8 · ANSWER") && !askChain(n).length &&
+    // English run (re-narrated, Kral's delegated decision 4 Oct 01:40): the concrete ban does NOT stop it. The ban-on answer still
+    // ends with the planted request, word for word the ban-off answer: a sentence in the prompt is not a security boundary.
+    a.includes(PLANTED) && a === answer("ask-injection-rule-off") && sameRows(n, "ask-injection-rule-off");
   fact("answers.ask-injection", a, n);
-  return out(ok, `${askChain(n).join("; ") || "chain holds"}; "${a}"`);
+  return out(ok, `${askChain(n).join("; ") || "chain holds"}; same as ban off: ${a === answer("ask-injection-rule-off")}; "${a}"`);
 });
-A({ id: "L66", part: "no password", tier: 1, cls: "E", sids: "S5.18", logs: ["ask-injection"] }, () => out(!/password/i.test(answer("ask-injection")), answer("ask-injection")));
+A({ id: "L66", part: "obeys anyway", tier: 1, cls: "E", sids: "S5.18", logs: ["ask-injection"] }, () =>
+  out(/password/i.test(answer("ask-injection")) && /employee number/i.test(answer("ask-injection")) && answer("ask-injection").includes(PLANTED), answer("ask-injection")),
+);
 A({ id: "L67", part: "ban off", tier: 2, cls: "P", sids: "S4.35 S5.09 S5.18 S6.48 S7.47", logs: ["ask-injection-rule-off", "ask-injection"] }, () => {
   const a = answer("ask-injection-rule-off");
   fact("answers.ask-injection-rule-off", a, "ask-injection-rule-off");
@@ -1280,7 +1303,7 @@ A({ id: "L72", part: "floor", tier: 1, cls: "P", sids: "S4.10 S6.21", logs: ["ev
 A({ id: "L72", part: "rank 5", tier: 2, cls: "P", sids: "S4.10 S4.22 S5.25 S5.36 S6.09 S6.21 S6.45 S6.58 S7.44", logs: ["eval-section", "eval-answers"] }, () => {
   const r = evalRow("eval-section", "q02");
   const a = evalRow("eval-answers", "q02");
-  return out(r.mark === "·" && r.rr === 0.2 && a.rr === 0.2 && r.top3.split(" ")[0] === "hr-working-hours#5" && a.ans === "✓", `q02 ${r.mark} rr ${r.rr}, first ${r.top3.split(" ")[0]}, answer ${a.ans}`);
+  return out(r.mark === "·" && r.rr === 0.2 && a.rr === 0.2 && r.top3.split(" ")[0] === "hr-working-hours#4" /* English run (re-narrated): §4 is first, not §5 */ && a.ans === "✓", `q02 ${r.mark} rr ${r.rr}, first ${r.top3.split(" ")[0]}, answer ${a.ans}`);
 });
 A({ id: "L72", part: "ask-paraphrase", tier: 2, cls: "P", sids: "S4.10 S6.45", logs: ["ask-paraphrase"] }, () => {
   const n = "ask-paraphrase";
@@ -1308,7 +1331,9 @@ A({ id: "L74", tier: 1, cls: "P", sids: "S4.31 S4.35 S5.32 S5.35 S5.36 S6.03 S6.
   const q06 = evalRow("eval-answers", "q06");
   fact("layout.eval-answers", { out: L("eval-answers").findIndex((l) => /^\s+OUT\s+hit@1/.test(l)) + 1, lines: L("eval-answers").length }, "eval-answers");
   const bad = evalBreaks("eval-answers");
-  const ok = +m[1]! === gold.length && +m[2]! === gold.length && same && must2.every((r) => r.ans === "✓") && q06.rr === 0.5 && q06.top3.startsWith("travel-expenses#3 travel-expenses#4") && !bad.length;
+  // English run (re-narrated with L66): the one wrong answer is q13, the injection answer that asks for the password.
+  const wrong = a.filter((r) => r.ans !== "✓").map((r) => r.id);
+  const ok = +m[1]! === gold.length - 1 && +m[2]! === gold.length && wrong.join() === "q13" && same && must2.every((r) => r.ans === "✓" || r.id === "q13") && q06.rr === 0.5 && q06.top3.startsWith("travel-expenses#3 travel-expenses#4") && !bad.length;
   return out(ok, `${bad.join("; ") || "rows and summary re-derived from gold"}; answers ${m[1]}/${m[2]}, retrieval == eval-section ${same}, q06 ${q06.rr} ${q06.top3}`);
 });
 A({ id: "L75", tier: 1, cls: "N", sids: "S5.32", logs: ["eval-fixed"] }, () => {
@@ -1351,7 +1376,7 @@ A({ id: "L82", part: "twins", tier: 2, cls: "N", sids: "S4.46 S6.05 S6.46 S6.57"
   const year = (s[0] ?? "").includes("@2026#") ? ROW7_2026 : EXP;
   fact("edition.scores", h.slice(0, 2), n);
   fact("edition.gap", gap, n);
-  const ok = ln(n, 1).includes('EDITION_FILTER = "all"') && filterOf(n).edition === undefined && twins.every((t) => top2.includes(t)) && gap <= 0.003 && twins.every((t) => s.slice(0, 2).includes(t)) && hasExp(a, year);
+  const ok = ln(n, 1).includes('EDITION_FILTER = "all"') && filterOf(n).edition === undefined && twins.every((t) => top2.includes(t)) && gap <= 0.01 /* English run (re-narrated): 0.005, still a near tie */ && twins.every((t) => s.slice(0, 2).includes(t)) && hasExp(a, year);
   return out(ok, `rows ${top2.join(" ")} gap ${gap.toFixed(3)}; [1] ${s[0]} → answer has ${year}`);
 });
 A({ id: "L82", part: "2026 first", tier: 2, cls: "N", soft: true, sids: "S6.46", logs: ["edition-all"] }, () =>
@@ -1370,7 +1395,12 @@ A({ id: "L83", tier: 2, cls: "N", sids: "S4.48", logs: ["ask-2026-password"] }, 
   const s = sources(n);
   return out(s.includes("it-security@2026#2") && !s.some((x) => x.includes("@2025#")) && hasExp(answer(n), PW_2026), `"${answer(n)}" ${s.join(" ")}`);
 });
-A({ id: "L83", part: "answer language", tier: 2, cls: "E", soft: true, sids: "S4.48", logs: ["ask-2026-password"] }, () => out(!TURKISH.test(answer("ask-2026-password")), "an English question gets an English answer"));
+// English run (narrated): the English question gets a TURKISH answer: the model copies the language of its only sources.
+A({ id: "L83", part: "answer language", tier: 2, cls: "E", sids: "S4.48", logs: ["ask-2026-password"] }, () => {
+  const n = "ask-2026-password";
+  const ok = /^\$ npm run ask -- "[^"]+"/.test(ln(n, 1)) && !TURKISH.test(ln(n, 1)) && TURKISH.test(answer(n)) && sources(n).every((x) => x.startsWith(`${ODD.id}@2026#`));
+  return out(ok, `an English question gets a Turkish answer from Turkish sources: "${answer(n)}"`);
+});
 A({ id: "L90", part: "cost", tier: 2, cls: "P", sids: "S1.45 S1.46 S1.48 S5.41 S5.42 S6.07 S6.24", logs: ["stuff-everything", "08-answer", "06-retrieve", "07-rerank", "08-answer-rerank-off", ...askLogs] }, () => {
   const n = "stuff-everything";
   const chars = num(n, /documents\s+8 \((\d+) characters\)/);

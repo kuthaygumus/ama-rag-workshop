@@ -1,159 +1,154 @@
 ---
 id: hr-working-hours
-title: Çalışma Saatleri ve Uzaktan Çalışma
+title: Working Hours and Remote Work
 edition: "2025"
-department: İnsan Kaynakları
+department: Human Resources
 access: all
-lang: tr
+lang: en
 ---
-Kraken Air | Çalışma Saatleri ve Uzaktan Çalışma | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Kraken Air | Working Hours and Remote Work | Edition 2025
+CONFIDENTIAL – Internal use only
 
-# Çalışma Saatleri ve Uzaktan Çalışma
+# Working Hours and Remote Work
 
-## 1. Amaç ve Kapsam
+## 1. Purpose and Scope
 
-Bu politika, Kraken Air'de haftalık çalışma süresini, esnek başlangıç
-saatlerini, vardiyalı çalışmayı, fazla mesaiyi, resmi tatil
-günlerindeki uygulamayı ve uzaktan çalışma esaslarını düzenler.
-Politika, genel müdürlük ve havalimanı birimlerinde görev yapan tüm
-çalışanları kapsar.
+This policy sets the working time rules at Kraken Air. It covers the
+working week, flexible start times, shift work, overtime, work on
+public holidays and remote work. It applies to all employees who work
+at the head office or at the airport units.
 
-Uçuş ekibinin görev ve dinlenme süreleri sivil havacılık mevzuatına ve
-Ekip Planlama Yönetmeliği'ne tabidir; bu politika uçuş ekibine
-yalnızca ofiste geçirilen günler için uygulanır.
+The duty and rest times of flight crew follow civil aviation law and
+the Crew Planning Regulation. For flight crew, this policy applies
+only to the days they spend in the office.
 
-## 2. Haftalık Çalışma Süresi ve Çekirdek Saatler
+## 2. Weekly Working Time and Core Hours
 
-Standart haftalık çalışma süresi 40 saattir ve pazartesi – cuma
-günlerine eşit olarak dağıtılır. Çekirdek çalışma saatleri 10:00 –
-16:00 arasıdır; bu aralıkta tüm çalışanların toplantılara katılması ve
-telefon ile mesajlara yanıt vermesi beklenir.
+The standard working week is 40 hours. These hours are spread evenly
+from Monday to Friday. Core hours are from 10:00 to 16:00. In these
+hours, all employees are expected to join meetings and to answer
+calls and messages.
 
-Mesai başlangıcı 07:30 ile 10:00 arasında esnek olarak seçilir.
-Seçilen başlangıç saati en az bir ay boyunca sabit tutulur ve ekip
-takviminde gösterilir. Öğle arası 1 saattir ve 12:00 – 14:00
-aralığında kullanılır; öğle arası çalışma süresine dahil değildir.
+Each employee chooses a flexible start time between 07:30 and 10:00.
+The chosen start time stays the same for at least one month, and it
+is shown in the team calendar. The lunch break is 1 hour and is taken
+between 12:00 and 14:00. The lunch break does not count as working
+time.
 
-Günlük çalışma süresi 11 saati aşamaz. Birbirini izleyen iki iş günü
-arasında en az 11 saat kesintisiz dinlenme süresi bırakılır.
+A working day cannot be longer than 11 hours. There must be at least
+11 hours of rest in a row between two working days.
 
-## 3. Vardiyalı Çalışma
+## 3. Shift Work
 
-Havalimanı operasyon, yer hizmetleri, teknik hangar ve operasyon
-kontrol merkezi birimlerinde çalışma, haftanın 7 günü 24 saat esasına
-göre vardiyalı olarak düzenlenir. Vardiya çizelgeleri en az 14 gün
-önceden yayımlanır ve çalışanlar kendi çizelgelerini İK portalından
-izler.
+Airport operations, ground services, the technical hangar and the
+operations control center work in shifts. They work 24 hours a day, 7
+days a week. Shift schedules are published at least 14 days ahead.
+Employees check their own schedules on the HR portal.
 
-Sayfa 1 / 4
-Kraken Air | Çalışma Saatleri ve Uzaktan Çalışma | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 1 of 4
+Kraken Air | Working Hours and Remote Work | Edition 2025
+CONFIDENTIAL – Internal use only
 
-Gündüz vardiyası 11 saati aşamaz. Gece vardiyası (20:00 – 06:00 arası)
-7,5 saatten uzun olamaz; gece vardiyasında çalışan personel, iki
-haftayı geçmemek üzere dönüşümlü olarak gündüz vardiyasına alınır.
+A day shift cannot be longer than 11 hours. A night shift (between
+20:00 and 06:00) cannot be longer than 7.5 hours. Staff on night
+shifts rotate to day shifts, for no more than two weeks.
 
-Vardiya değişimi, iki çalışanın karşılıklı talebi ve vardiya amirinin
-onayıyla en geç 48 saat önceden yapılır. Onaysız vardiya değişimi
-devamsızlık olarak kaydedilir.
+Two employees can swap shifts if both of them ask for it and the
+shift supervisor approves. The swap must be made at least 48 hours
+ahead. A swap without approval is recorded as an absence.
 
-## 4. Fazla Mesai
+## 4. Overtime
 
-Fazla mesai, haftalık 40 saati aşan çalışmadır ve yalnızca yöneticinin
-önceden verdiği yazılı onayla yapılır. Onaysız çalışma fazla mesai
-olarak kabul edilmez. Bir çalışanın fazla mesaisi aylık 30 saati,
-yıllık 270 saati aşamaz.
+Overtime is work beyond 40 hours a week. It needs written approval
+from the manager in advance. Work without approval does not count as
+overtime. An employee cannot work more than 30 hours of overtime in a
+month or 270 hours in a year.
 
-Fazla mesai ücreti, saatlik brüt ücretin %150'si üzerinden hesaplanır.
-Çalışan, fazla mesai ücreti yerine her fazla mesai saati için 1,5 saat
-serbest zaman kullanmayı seçebilir; serbest zaman 6 ay içinde
-kullanılır. Hafta tatili ve resmi tatil günlerindeki çalışmalar 5.
-bölüme tabidir.
+Overtime is paid at 150% of the gross hourly wage. Instead of
+overtime pay, an employee can choose 1.5 hours of time off for each
+hour of overtime. This time off must be used within 6 months. Work on
+weekly rest days and on public holidays follows section 5.
 
-Yönetici ve üzeri unvanlarda fazla mesai ücreti ödenmez; bu unvanlarda
-aylık ücretin fazla çalışmaları da kapsadığı iş sözleşmesinde
-belirtilir. Fazla mesai kayıtları her ayın son iş gününe kadar İK
-portalında onaylanır.
+Managers and higher titles get no overtime pay. Their employment
+contract states that the monthly salary also covers extra hours.
+Overtime records are approved on the HR portal by the last working
+day of each month.
 
-## 5. Resmi Tatiller
+## 5. Public Holidays
 
-Kraken Air çalışanları ulusal bayram ve genel tatil günlerinde
-çalışmaz; bu günlerde genel müdürlük ofisleri kapalıdır. Resmi tatil
-takvimi her yıl aralık ayında İK portalında yayımlanır. Yılda toplam
-15,5 gün resmi tatil bulunur; bayram arifeleri 13:00'ten itibaren
-yarım gün tatildir.
+Kraken Air employees do not work on national and public holidays. The
+head office is closed on these days. The public holiday calendar for
+each year is published on the HR portal in December. There are 15.5
+days of public holidays in a year. The day before a religious holiday
+is a half-day holiday from 13:00.
 
-| Resmi tatil | Süre (gün) |
+| Public holiday | Length (days) |
 |---|---|
-| Yılbaşı (1 Ocak) | 1 |
-| Ramazan Bayramı (arife dahil) | 3,5 |
-| Ulusal Egemenlik ve Çocuk Bayramı (23 Nisan) | 1 |
-| Emek ve Dayanışma Günü (1 Mayıs) | 1 |
-| Atatürk'ü Anma, Gençlik ve Spor Bayramı (19 Mayıs) | 1 |
-| Demokrasi ve Millî Birlik Günü (15 Temmuz) | 1 |
-| Kurban Bayramı (arife dahil) | 4,5 |
-| Zafer Bayramı (30 Ağustos) | 1 |
-| Cumhuriyet Bayramı (28 Ekim öğleden sonra ve 29 Ekim) | 1,5 |
+| New Year's Day (1 January) | 1 |
+| Ramadan Feast (with the day before) | 3.5 |
+| National Sovereignty and Children's Day (23 April) | 1 |
+| Labor and Solidarity Day (1 May) | 1 |
+| Commemoration of Atatürk, Youth and Sports Day (19 May) | 1 |
+| Democracy and National Unity Day (15 July) | 1 |
+| Feast of Sacrifice (with the day before) | 4.5 |
+| Victory Day (30 August) | 1 |
+| Republic Day (28 October afternoon and 29 October) | 1.5 |
 
-Sayfa 2 / 4
-Kraken Air | Çalışma Saatleri ve Uzaktan Çalışma | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 2 of 4
+Kraken Air | Working Hours and Remote Work | Edition 2025
+CONFIDENTIAL – Internal use only
 
-Resmi tatil günleri ve hafta tatili yıllık ücretli izin süresinden
-sayılmaz; izin dönemine denk gelen tatil günleri izin süresine
-eklenir. Hafta tatili, 7 günlük dönem içinde kesintisiz en az 24
-saattir ve genel müdürlük birimlerinde pazar günüdür.
+Public holidays and weekly rest days do not count as working days of
+annual paid leave. If a public holiday falls inside your leave, your
+leave is extended by that day. The weekly rest day is at least 24 hours in a
+row in each 7-day period. At the head office, it is Sunday.
 
-Vardiyalı birimlerde resmi tatil günlerindeki çalışma vardiya
-çizelgesine göre sürer. Tatil gününde çalışan personele, o günün
-ücretine ek olarak bir günlük ücret tutarında tatil ücreti ödenir
-(toplam %200). Hafta tatilinde yapılan çalışma da %200 üzerinden
-ödenir. Tatil çalışması karşılığında serbest zaman verilmez.
+In shift units, work on public holidays follows the shift schedule.
+Staff who work on a holiday get an extra day of pay (200% in total).
+Work on a weekly rest day is also paid at 200%. No time off is given
+for holiday work.
 
-Kamu kurumları için ilan edilen idari izin ve köprü günleri Kraken
-Air'de tatil sayılmaz. Bu günlerde tatil yapmak isteyen çalışan,
-yıllık ücretli izninden kullanır.
+Extra days off and bridge days that the state gives to public offices
+are not holidays at Kraken Air. An employee who wants these days off
+uses annual paid leave.
 
-## 6. Uzaktan Çalışma
+## 6. Remote Work
 
-Görevi uygun olan genel müdürlük çalışanları haftada en fazla 2 gün
-uzaktan çalışabilir. Salı ve perşembe günleri tüm ekipler için zorunlu
-ofis günüdür; uzaktan çalışma günleri her ayın başında ekip takvimine
-işlenir ve yönetici tarafından onaylanır.
+Head office employees whose job allows it can work remotely for up to
+2 days a week. Tuesday and Thursday are required office days for all
+teams. Remote days are entered in the team calendar at the start of
+each month, and the manager approves them.
 
-Deneme süresindeki çalışanlar uzaktan çalışamaz. Havalimanı operasyon,
-yer hizmetleri, teknik hangar ve operasyon kontrol merkezi
-birimlerinde görev yapan çalışanlar ile uçuş ekibi, görevlerinin
-niteliği gereği uzaktan çalışma kapsamı dışındadır.
+Employees on probation cannot work remotely. Staff in airport
+operations, ground services, the technical hangar and the operations
+control center cannot work remotely. The same is true for flight crew.
+Their work must be done on site.
 
-Yurt dışından uzaktan çalışmaya, vergi ve sosyal güvenlik
-yükümlülükleri nedeniyle izin verilmez. Yurt içinde ikamet adresi
-dışındaki bir yerden çalışmak isteyen çalışan, bu adresi önceden İK
-portalına bildirir.
+Remote work from abroad is not allowed because of tax and social
+security rules. In Turkey, you can work from a place other than your
+home address. You must enter this address on the HR portal in
+advance.
 
-Kullanılmayan uzaktan çalışma günleri sonraki haftaya veya aya
-devredilmez; iki haftalık dönemde 4 günü art arda uzaktan çalışmak
-gibi birleştirmeler yapılamaz.
+Unused remote days do not move to the next week or month. You cannot
+combine them, for example to work 4 days in a row from home in a
+two-week period.
 
-Sayfa 3 / 4
-Kraken Air | Çalışma Saatleri ve Uzaktan Çalışma | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 3 of 4
+Kraken Air | Working Hours and Remote Work | Edition 2025
+CONFIDENTIAL – Internal use only
 
-## 7. Uzaktan Çalışmada Ekipman ve Güvenlik
+## 7. Equipment and Security for Remote Work
 
-Uzaktan çalışma yalnızca şirketin zimmetlediği dizüstü bilgisayarla ve
-şirket VPN bağlantısı açıkken yapılır. Kişisel bilgisayar, tablet veya
-telefon üzerinden şirket sistemlerine erişim yasaktır. Ayrıntılı
-kurallar Information Security Policy dokümanında yer alır.
+Remote work is done only on the laptop that the company gives you, and
+only with the company VPN on. Using a personal computer, tablet or
+phone to reach company systems is not allowed. The detailed rules are
+in the Bilgi Güvenliği Politikası document.
 
-Uzaktan çalışılan günler için ek ödeme yapılmaz. Evden çalışma
-sırasında meydana gelen iş kazaları 2 iş günü içinde yöneticiye ve
-İK'ya bildirilir.
+There is no extra pay for remote days. A work accident at home must
+be reported to the manager and to HR within 2 working days.
 
-Müşteri kişisel verileri (PNR, pasaport ve ödeme bilgileri) ev
-ortamında basılı olarak tutulmaz. Kafe, havalimanı bekleme alanı gibi
-kamuya açık yerlerde ekran başkalarının göremeyeceği şekilde
-kullanılır.
+Customer personal data (PNR, passport and payment details) must not
+be kept on paper at home. In public places such as cafés or airport
+waiting areas, use your screen so that other people cannot see it.
 
-Sayfa 4 / 4
+Page 4 of 4

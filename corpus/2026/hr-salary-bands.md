@@ -1,126 +1,132 @@
 ---
 id: hr-salary-bands
-title: Ücret Bantları ve Zam Politikası
+title: Salary Bands and Pay Raises
 edition: "2026"
-department: İnsan Kaynakları
+department: Human Resources
 access: hr-only
-lang: tr
+lang: en
 ---
-Kraken Air | Ücret Bantları ve Zam Politikası | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Kraken Air | Salary Bands and Pay Raises | Edition 2026
+CONFIDENTIAL – Internal use only
 
-# Ücret Bantları ve Zam Politikası
+# Salary Bands and Pay Raises
 
-## 1. Amaç ve Kapsam
+## 1. Purpose and Scope
 
-Bu politika, Kraken Air'de unvanlara göre uygulanan aylık brüt ücret
-bantlarını, bant içinde konumlandırma kurallarını, yıllık zam
-dönemini, terfi durumunda ücret düzenlemesini ve performans primini
-tanımlar. Politika genel müdürlük ve havalimanı birimlerindeki idari
-kadroları kapsar; uçuş ekibinin ücretleri toplu iş sözleşmesiyle
-ayrıca belirlenir.
+This policy sets the monthly gross salary bands for each job title at
+Kraken Air. It also covers the position within a band, the annual
+raise period, pay after a promotion and the performance bonus. The
+policy applies to office staff at the head office and in the airport
+units. A collective agreement sets the pay of the flight crew.
 
-## 2. Gizlilik ve Erişim
+## 2. Confidentiality and Access
 
-Bu doküman yalnızca İnsan Kaynakları ve Ücretlendirme ekiplerinin
-erişimine açıktır. Dokümanın tamamı veya herhangi bir bölümü; e-posta,
-ekran görüntüsü veya çıktı yoluyla bu ekiplerin dışına iletilemez.
+Only the Human Resources and Compensation teams can access this
+document. No part of it may be sent outside these teams by email,
+screenshot or printout.
 
-Yöneticiler, ekiplerindeki çalışanların bant bilgisine yalnızca zam ve
-terfi dönemlerinde, İK iş ortağı üzerinden erişir. Çalışanlara kendi
-bantlarının alt ve üst sınırı değil, yalnızca bant içindeki konumları
-(alt, orta veya üst dilim) bildirilir.
+Managers see the band data of their team members only during raise and
+promotion periods, through the HR business partner. Employees are not
+told the lower and upper limits of their band. They are told only
+their position in the band: the lower, middle or upper zone.
 
-Bu dokümanın yetkisiz paylaşımı Etik ve Davranış Kuralları kapsamında
-ağır ihlal sayılır ve kademe gözetilmeksizin disiplin sürecine
-taşınır.
+Sharing this document without permission is a serious breach of the
+Code of Ethics and Conduct. It leads to a disciplinary process,
+whatever the rank of the person.
 
-## 3. Ücret Bantları
+## 3. Salary Bands
 
-Aylık brüt ücret bantları aşağıdadır. Tutarlar Türk lirası (TRY)
-cinsindendir; yan haklar, fazla mesai ve prim ödemeleri bu tutarlara
-dahil değildir.
+The monthly gross salary bands are below. The amounts are in Turkish
+lira (TRY). Benefits, overtime and bonus payments are not part of
+these amounts.
 
-| Unvan | Alt sınır (TRY) | Orta nokta (TRY) | Üst sınır (TRY) |
+| Job title | Lower limit (TRY) | Midpoint (TRY) | Upper limit (TRY) |
 |---|---|---|---|
-| Uzman | 55.000 | 70.000 | 85.000 |
-| Kıdemli uzman | 75.000 | 95.000 | 115.000 |
-| Yönetici | 105.000 | 132.500 | 160.000 |
-| Direktör | 150.000 | 190.000 | 230.000 |
+| Specialist | 55,000 | 70,000 | 85,000 |
+| Senior specialist | 75,000 | 95,000 | 115,000 |
+| Manager | 105,000 | 132,500 | 160,000 |
+| Director | 150,000 | 190,000 | 230,000 |
 
-Sayfa 1 / 3
-Kraken Air | Ücret Bantları ve Zam Politikası | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 1 of 3
+Kraken Air | Salary Bands and Pay Raises | Edition 2026
+CONFIDENTIAL – Internal use only
 
-Bantlar her yıl ocak ayında, piyasa ücret araştırması ve enflasyon
-verileri dikkate alınarak Ücretlendirme Komitesi tarafından
-güncellenir. Bant güncellemesi, çalışanların mevcut ücretlerinde
-kendiliğinden bir artış anlamına gelmez.
+The Compensation Committee updates the bands every January. It uses
+market pay surveys and inflation data. A band update does not
+automatically raise the salary of any employee.
 
-## 4. Bant İçinde Konumlandırma
+## 4. Position Within the Band
 
-Yeni işe alınan çalışanın ücreti, deneyim ve yetkinliğine göre bandın
-alt sınırı ile orta noktası arasında belirlenir. Orta noktanın
-üzerinde bir teklif İK direktörünün yazılı onayını gerektirir. Bandın
-üst sınırını aşan bir ücret teklif edilemez.
+The salary of a new employee is set between the lower limit and the
+midpoint of the band. It depends on the experience and skills of the
+person. An offer above the midpoint needs written approval from the HR
+director. No offer may go above the upper limit of the band.
 
-Ücreti bandın alt sınırının altında kalan çalışanın ücreti, bant
-güncellemesini izleyen ilk bordroda alt sınıra yükseltilir. Ücreti üst
-sınıra ulaşmış çalışanın yıllık zammı, aylık ücrete eklenmek yerine
-tek seferlik ödeme olarak yapılır.
+Some employees earn less than the lower limit of their band. Their
+salary goes up to the lower limit in the first payroll after the band
+update. Other employees have reached the upper limit. Their annual
+raise is paid as a one-time payment. It is not added to the monthly
+salary.
 
-## 5. Yıllık Zam Dönemi
+## 5. Annual Raise Period
 
-Genel zam yılda bir kez, ocak bordrosuyla uygulanır. Temmuz ayında,
-ilk altı aylık enflasyonun %15'i aşması durumunda Ücretlendirme
-Komitesi ara düzeltme yapılıp yapılmayacağına karar verir.
+The general raise is given once a year, with the January payroll. In
+July, the Compensation Committee looks at inflation for the first six
+months. If it is above 15%, the Committee decides whether to make a
+mid-year correction.
 
-Bireysel zam oranı, aralık ayında tamamlanan performans
-değerlendirmesi ve çalışanın bant içindeki konumuna göre aşağıdaki
-matrisle belirlenir. Oranlar genel zamma ek olarak uygulanır.
+The individual raise rate depends on the performance review that ends
+in December. It also depends on the position of the employee in the
+band. The table below sets the rate. This rate is added to the general
+raise.
 
-| Performans notu | Alt dilim | Orta dilim | Üst dilim |
+| Performance rating | Lower zone | Middle zone | Upper zone |
 |---|---|---|---|
-| Beklentilerin çok üzerinde | %8 | %6 | %4 |
-| Beklentilerin üzerinde | %6 | %4 | %3 |
-| Beklentileri karşılıyor | %3 | %2 | %1 |
-| Gelişim gerekli | %0 | %0 | %0 |
+| Far above expectations | 8% | 6% | 4% |
+| Above expectations | 6% | 4% | 3% |
+| Meets expectations | 3% | 2% | 1% |
+| Needs improvement | 0% | 0% | 0% |
 
-Değerlendirme döneminde 6 aydan kısa süre çalışan veya son 12 ay
-içinde yazılı disiplin uyarısı alan çalışanlara bireysel zam
-uygulanmaz.
+Some employees get no individual raise. This applies to employees who
+worked less than 6 months in the review period. It also applies to
+employees who got a written disciplinary warning in the last 12
+months.
 
-Sayfa 2 / 3
-Kraken Air | Ücret Bantları ve Zam Politikası | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 2 of 3
+Kraken Air | Salary Bands and Pay Raises | Edition 2026
+CONFIDENTIAL – Internal use only
 
-## 6. Terfi ve Unvan Değişikliği
+## 6. Promotion and Title Change
 
-Terfi eden çalışanın ücreti en az %10 artırılır ve her durumda yeni
-unvanın bant alt sınırına yükseltilir. Terfi zammı, terfinin yürürlüğe
-girdiği ayın bordrosuyla uygulanır ve aynı yılın bireysel zammından
-ayrı hesaplanır.
+A promoted employee gets a salary increase of at least 10%. The new
+salary is never below the lower limit of the band for the new title.
+The promotion raise starts with the payroll of the month when the
+promotion takes effect. It is worked out separately from the
+individual raise of the same year.
 
-Aynı unvanda farklı bir birime yatay geçişte ücret değiştirilmez. Bir
-alt unvana geçiş yalnızca çalışanın yazılı talebiyle yapılır; bu
-durumda ücret yeni bandın üst sınırını aşıyorsa aşan kısım 12 ay
-içinde kademeli olarak eritilir.
+A move to another unit with the same title does not change the salary.
+A move to a lower title happens only at the written request of the
+employee. The salary may then be above the upper limit of the new
+band. In that case, the extra amount is reduced step by step over 12
+months.
 
-## 7. Performans Primi
+## 7. Performance Bonus
 
-Yıllık performans primi, şirket hedeflerinin gerçekleşme oranı ve
-bireysel performans notuna göre mart ayında ödenir. Hedef prim, Uzman
-ve Kıdemli uzman için 1 aylık brüt ücret, Yönetici için 2 aylık,
-Direktör için 3 aylık brüt ücrettir.
+The annual performance bonus is paid in March. It depends on how far
+the company met its goals and on the individual performance rating.
+The target bonus is 1 month of gross salary for a Specialist and a
+Senior specialist. It is 2 months for a Manager and 3 months for a
+Director.
 
-Prim ödeme tarihinde iş ilişkisi devam etmeyen çalışana prim ödenmez.
-"Gelişim gerekli" notu alan çalışanlara prim ödenmez.
+No bonus is paid if the employment has ended by the payment date.
+Employees rated "Needs improvement" get no bonus.
 
-## 8. İtiraz
+## 8. Appeals
 
-Çalışan, bireysel zam veya terfi kararına bildirimden itibaren 15 iş
-günü içinde İK iş ortağına yazılı olarak itiraz edebilir. İtirazlar
-Ücretlendirme Komitesi tarafından en geç 30 gün içinde sonuçlandırılır
-ve karar çalışana yazılı olarak bildirilir.
+An employee can appeal a decision on an individual raise or a
+promotion. The appeal goes in writing to the HR business partner
+within 15 working days of the notice. The Compensation Committee
+decides on the appeal within 30 days at the latest. The employee gets
+the decision in writing.
 
-Sayfa 3 / 3
+Page 3 of 3

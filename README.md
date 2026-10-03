@@ -5,7 +5,7 @@ store → retrieve → rerank → answer → evaluate. Everything runs on your l
 [Ollama](https://ollama.com), the vector database (Chroma) in a Podman container, TypeScript only.
 
 The documents are the policy handbook of **Kraken Air**, a fictional company — two editions (2025, 2026),
-one English document, one HR-only document, and one announcement with an instruction planted inside it.
+one Turkish document, one HR-only document, and one announcement with an instruction planted inside it.
 
 The course pages that walk through this repo: see the link in the repo description.
 

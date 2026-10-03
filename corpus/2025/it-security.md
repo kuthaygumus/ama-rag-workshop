@@ -1,167 +1,170 @@
 ---
 id: it-security
-title: Information Security Policy
+title: Bilgi Güvenliği Politikası
 edition: "2025"
 department: Bilgi Teknolojileri
 access: all
-lang: en
+lang: tr
 ---
-Kraken Air | Information Security Policy | Edition 2025
-CONFIDENTIAL – Internal use only
+Kraken Air | Bilgi Güvenliği Politikası | Sürüm 2025
+GİZLİ – Yalnızca şirket içi kullanım içindir
 
-# Information Security Policy
+# Bilgi Güvenliği Politikası
 
-## 1. Purpose and Scope
+## 1. Amaç ve Kapsam
 
-This policy sets the minimum information security rules for everyone
-who uses Kraken Air information systems: permanent and fixed-term
-employees, interns, contractors and third-party staff with system
-access. It applies to company-issued devices, to company data wherever
-it is stored, and to every location work is performed from, including
-home and hotel networks.
+Bu politika, Kraken Air bilgi sistemlerini kullanan herkes için asgari
+bilgi güvenliği kurallarını belirler: belirli veya belirsiz süreli
+sözleşmeyle çalışanlar, stajyerler, yükleniciler ve sistem erişimi
+olan dış firma personeli. Politika; şirketin verdiği cihazlar, tüm
+şirket verileri ve ev ile otel ağları dahil olmak üzere işin yapıldığı
+her yer için geçerlidir.
 
-The policy is published in English only and is binding for all staff
-regardless of their working language. The Information Security Office
-owns this policy and reviews it at least once a year. Questions can be
-raised through the IT Service Desk portal, which is staffed around the
-clock.
+Politika yalnızca Türkçe yayımlanır ve çalışma dili ne olursa olsun
+tüm çalışanlar için bağlayıcıdır. Politikadan Bilgi Güvenliği Birimi
+sorumludur; birim politikayı yılda en az bir kez gözden geçirir.
+Sorularınızı BT Hizmet Masası portalından iletebilirsiniz.
 
-## 2. Passwords and Authentication
+## 2. Şifreler ve Kimlik Doğrulama
 
-Passwords must be at least 14 characters long and must not contain
-your name, your username or the word Kraken. Passwords must be changed
-every 90 days; the system will not accept any of your last 10
-passwords.
+Şifreler en az 14 karakter uzunluğunda olmalı; adınızı, kullanıcı
+adınızı veya Kraken kelimesini içermemelidir. Şifreler 90 günde bir
+değiştirilmelidir; sistem son 10 şifrenizden hiçbirini kabul etmez.
 
-Multi-factor authentication (MFA) is mandatory for email, VPN, the HR
-portal, the travel portal and every system that processes customer or
-payment data. Approved authenticator apps are listed on the IT portal;
-SMS codes are accepted only as a temporary fallback for a maximum of 7
-days.
+E-posta, VPN, İK portalı, seyahat portalı ve müşteri ya da ödeme
+verisi işleyen tüm sistemlerde çok faktörlü kimlik doğrulama (MFA)
+zorunludur. Onaylı doğrulama uygulamaları BT portalında listelenir.
+SMS kodları yalnızca geçici bir yedek yöntem olarak ve en fazla 7 gün
+süreyle kabul edilir.
 
-Never share your password or MFA codes with anyone, including
-colleagues, managers or IT staff. The IT Service Desk will never ask
-for your password by phone, chat or email. Store passwords only in the
-company-approved password manager; writing them on paper or in
-plain-text files is prohibited.
+Şifrenizi veya MFA kodlarınızı iş arkadaşlarınız, yöneticileriniz ve
+BT çalışanları dahil hiç kimseyle paylaşmayın. BT Hizmet Masası
+şifrenizi asla telefonla, anlık mesajla veya e-postayla istemez.
+Şifrelerinizi yalnızca şirketin onayladığı şifre yöneticisinde
+saklayın; şifreleri kâğıda veya düz metin dosyalarına yazmak yasaktır.
 
-Page 1 of 4
-Kraken Air | Information Security Policy | Edition 2025
-CONFIDENTIAL – Internal use only
+Sayfa 1 / 4
+Kraken Air | Bilgi Güvenliği Politikası | Sürüm 2025
+GİZLİ – Yalnızca şirket içi kullanım içindir
 
-## 3. Devices and Encryption
+## 3. Cihazlar ve Şifreleme
 
-Only company-issued laptops and phones may be used to access company
-systems. All laptops are delivered with full-disk encryption enabled;
-disabling or bypassing encryption is a security violation. Screens
-must lock automatically after 5 minutes of inactivity.
+Kaybolan veya çalınan cihazlar, cihaz kilitli olsa bile en geç 24 saat
+içinde BT Hizmet Masası'na bildirilmelidir. BT, cihazdaki verileri
+uzaktan siler. Hırsızlık durumunda polise şikâyette bulunulmalı ve
+tutanak 5 iş günü içinde BT portalına yüklenmelidir.
 
-Operating system and security updates must be installed within 7 days
-of release. Devices that miss critical updates for more than 14 days
-are automatically blocked from the network until they are updated.
+Şirket sistemlerine yalnızca şirketin verdiği dizüstü bilgisayarlar ve
+telefonlarla erişilebilir. Tüm dizüstü bilgisayarlar tam disk
+şifrelemesi açık olarak teslim edilir; şifrelemeyi kapatmak veya
+atlatmak bir güvenlik ihlalidir. Ekranlar 5 dakika işlem
+yapılmadığında kendiliğinden kilitlenmelidir.
 
-Lost or stolen devices must be reported to the IT Service Desk within
-24 hours, even if the device was locked. IT will wipe the device
-remotely. In case of theft, a police report must be filed and uploaded
-to the IT portal within 5 working days.
+İşletim sistemi ve güvenlik güncellemeleri, yayımlandıktan sonra 7 gün
+içinde yüklenmelidir. Kritik güncellemeleri 14 günden uzun süre
+yüklenmemiş cihazlar, güncellenene kadar ağdan otomatik olarak
+engellenir.
 
-## 4. Removable Media
+## 4. Taşınabilir Bellekler
 
-The use of USB storage devices (flash drives, external hard disks,
-memory cards) is prohibited on all company devices. USB ports are
-blocked for storage by default; keyboards, mice, headsets and chargers
-continue to work.
+USB bellek, harici disk ve hafıza kartı gibi USB depolama aygıtlarının
+şirket cihazlarında kullanılması yasaktır. USB girişleri depolama için
+varsayılan olarak kapalıdır; klavye, fare, kulaklık ve şarj cihazları
+çalışmaya devam eder.
 
-Files must be shared through the company file-sharing service or by
-email. Where an external party can only accept physical media, the
-Information Security Office may grant a written exception for a
-maximum of 30 days, using an encrypted device issued by IT.
+Dosyalar şirketin dosya paylaşım hizmetiyle veya e-postayla
+paylaşılmalıdır. Dış bir taraf dosyayı yalnızca fiziksel bir aygıtla
+alabiliyorsa, Bilgi Güvenliği Birimi en fazla 30 gün için yazılı
+istisna tanıyabilir. Bu durumda yalnızca BT'nin verdiği şifreli bir
+aygıt kullanılır.
 
-Found USB devices must never be plugged into any computer. Hand them
-to the IT Service Desk or to building security.
+Bulunan USB aygıtları hiçbir bilgisayara takılmamalıdır. Bu aygıtları
+BT Hizmet Masası'na veya bina güvenliğine teslim edin.
 
-## 5. Email and Phishing
+## 5. E-posta ve Oltalama
 
-Treat unexpected emails that ask you to click a link, open an
-attachment, confirm credentials or make a payment as suspicious, even
-if they appear to come from a colleague or from HR. Report suspicious
-emails immediately to security@krakenair.example or with the Report
-Phishing button in the mail client, then delete them.
+Bir bağlantıya tıklamanızı, ek dosya açmanızı, kullanıcı bilgilerinizi
+doğrulamanızı veya ödeme yapmanızı isteyen beklenmedik e-postaları,
+şüpheli sayın. Bir iş arkadaşınızdan ya da İK'dan geliyor gibi
+görünmeleri bunu değiştirmez. Şüpheli e-postaları hemen
+security@krakenair.example adresine ya da e-posta programındaki
+Oltalamayı Bildir seçeneğiyle bildirin, ardından silin.
 
-Page 2 of 4
-Kraken Air | Information Security Policy | Edition 2025
-CONFIDENTIAL – Internal use only
+Sayfa 2 / 4
+Kraken Air | Bilgi Güvenliği Politikası | Sürüm 2025
+GİZLİ – Yalnızca şirket içi kullanım içindir
 
-If you have already clicked a link or entered your credentials, change
-your password at once and call the IT Service Desk. Reporting a
-mistake quickly is never penalised; hiding it is.
+Bir bağlantıya zaten tıkladıysanız veya kullanıcı bilgilerinizi
+girdiyseniz, şifrenizi hemen değiştirin ve BT Hizmet Masası'nı arayın.
+Hatayı hızlı bildirene hiçbir zaman ceza verilmez; ceza, hatayı
+gizleyene verilir.
 
-Customer personal data (PNR records, passport details, payment card
-data) must never be sent by email, including to your own private
-address. Automatic forwarding of company email to external accounts is
-blocked.
+Müşterilerin kişisel verileri (PNR kayıtları, pasaport bilgileri,
+ödeme kartı verileri), kendi özel adresiniz dahil hiçbir adrese
+e-postayla gönderilmemelidir. Şirket e-postalarının dış hesaplara
+otomatik olarak yönlendirilmesi engellenmiştir.
 
-## 6. Clean Desk and Clear Screen
+## 6. Temiz Masa ve Temiz Ekran
 
-Lock your screen whenever you leave your workstation, even briefly. At
-the end of each working day, desks must be cleared of documents,
-notebooks and removable items that contain company information.
+Çalışma alanınızdan kısa bir süreliğine bile ayrılırken ekranınızı
+kilitleyin. Her iş gününün sonunda masalarda şirket bilgisi içeren
+belge, defter ve taşınabilir eşya bırakılmamalıdır.
 
-Printouts must be collected from the printer immediately. Confidential
-documents are disposed of only in the locked shredding bins and must
-not be thrown into ordinary waste. Whiteboards in shared meeting rooms
-must be wiped after each meeting.
+Çıktılar yazıcıdan hemen alınmalıdır. Gizli belgeler yalnızca kilitli
+imha kutularına atılır, normal çöpe atılmaz. Ortak toplantı
+odalarındaki yazı tahtaları her toplantıdan sonra silinmelidir.
 
-Visitors must be escorted at all times in office areas. Do not discuss
-flight operations, customer data or security incidents in public
-places, including airport lounges and aircraft cabins.
+Ziyaretçilere ofis alanlarında her zaman eşlik edilmelidir. Uçuş
+operasyonları, müşteri verileri veya güvenlik olayları hakkında
+havalimanı bekleme alanları ve uçak kabinleri dahil kamuya açık
+yerlerde konuşmayın.
 
-## 7. Incident Reporting
+## 7. Güvenlik Olayı Bildirimi
 
-A security incident is any event that may compromise company
-information or systems: malware warnings, unexpected password reset
-messages, data sent to the wrong recipient, unauthorised access or
-suspicious behaviour of a device. All suspected incidents must be
-reported to the Information Security Office within 4 hours of
-discovery, through the IT Service Desk hotline or the incident form on
-the IT portal.
+Güvenlik olayı, şirket bilgilerine veya sistemlerine zarar verebilecek
+her türlü durumdur: zararlı yazılım uyarıları, beklenmedik şifre
+sıfırlama mesajları, yanlış kişiye gönderilen veriler, yetkisiz erişim
+ya da bir cihazın şüpheli davranışı. Şüphelenilen tüm olaylar, fark
+edildikten sonra en geç 4 saat içinde BT Hizmet Masası acil hattından
+veya BT portalındaki olay formundan Bilgi Güvenliği Birimi'ne
+bildirilmelidir.
 
-Do not investigate incidents yourself, do not switch off affected
-devices and do not delete evidence. The Information Security Office
-decides on containment and, where personal data is affected, handles
-the notification to the authorities within the legal deadline of 72
-hours.
+Olayları kendiniz araştırmayın, etkilenen cihazları kapatmayın ve
+kanıtları silmeyin. Olayı kontrol altına almak için alınacak önlemlere
+Bilgi Güvenliği Birimi karar verir. Kişisel veriler etkilendiyse
+yetkili makamlara bildirimi de yasal süre olan 72 saat içinde bu birim
+yapar.
 
-Page 3 of 4
-Kraken Air | Information Security Policy | Edition 2025
-CONFIDENTIAL – Internal use only
+Sayfa 3 / 4
+Kraken Air | Bilgi Güvenliği Politikası | Sürüm 2025
+GİZLİ – Yalnızca şirket içi kullanım içindir
 
-Failure to report a known incident, or deliberately bypassing security
-controls, is handled under the disciplinary process and may lead to
-termination of employment.
+Bilinen bir olayı bildirmemek veya güvenlik kontrollerini bilerek
+atlatmak disiplin süreci kapsamında ele alınır ve iş sözleşmesinin
+feshine yol açabilir.
 
-## 8. Software, Cloud Services and AI Tools
+## 8. Yazılım, Bulut Hizmetleri ve Yapay Zekâ Araçları
 
-Only software from the approved catalogue on the IT portal may be
-installed. Requests for new tools go through a security review that
-takes up to 10 working days.
+Yalnızca BT portalındaki onaylı katalogda yer alan yazılımlar
+yüklenebilir. Yeni araç talepleri, en fazla 10 iş günü süren bir
+güvenlik incelemesinden geçer.
 
-Company data must not be stored in personal cloud storage, personal
-email accounts or private messaging apps. Customer data, employee data
-and internal documents must not be entered into public AI chat tools
-or translation websites; use only the AI tools approved on the IT
-portal.
+Şirket verileri kişisel bulut depolama alanlarında, kişisel e-posta
+hesaplarında veya özel mesajlaşma uygulamalarında saklanmamalıdır.
+Müşteri verileri, çalışan verileri ve şirket içi belgeler herkese açık
+yapay zekâ sohbet araçlarına veya çeviri sitelerine girilmemelidir.
+Yalnızca BT portalında onaylanan yapay zekâ araçlarını kullanın.
 
-## 9. Remote Access and Travel
+## 9. Uzaktan Erişim ve Seyahat
 
-When working outside the office, connect to company systems only
-through the company VPN. Public Wi-Fi networks in hotels, airports and
-cafés may be used only with the VPN active.
+Ofis dışında çalışırken şirket sistemlerine yalnızca şirket VPN'i
+üzerinden bağlanın. Otel, havalimanı ve kafelerdeki herkese açık Wi-Fi
+ağları yalnızca VPN açıkken kullanılabilir.
 
-When travelling abroad, carry only the devices you need, keep them in
-your hand luggage and never leave them unattended in a hotel room
-outside a locked safe. Any border inspection that requires access to a
-company device must be reported to the Information Security Office on
-the same day.
+Yurt dışına seyahat ederken yalnızca ihtiyacınız olan cihazları
+yanınıza alın ve onları kabin bagajınızda taşıyın. Cihazları otelde
+kilitli bir kasaya koymadan asla gözetimsiz bırakmayın. Sınır
+kontrolünde bir şirket cihazına erişim istenirse, bu durum aynı gün
+Bilgi Güvenliği Birimi'ne bildirilmelidir.
 
-Page 4 of 4
+Sayfa 4 / 4

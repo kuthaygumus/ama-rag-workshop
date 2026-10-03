@@ -1,137 +1,140 @@
 ---
 id: code-of-conduct
-title: Etik ve Davranış Kuralları
+title: Code of Ethics and Conduct
 edition: "2026"
-department: Hukuk ve Uyum
+department: Legal and Compliance
 access: all
-lang: tr
+lang: en
 ---
-Kraken Air | Etik ve Davranış Kuralları | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Kraken Air | Code of Ethics and Conduct | Edition 2026
+CONFIDENTIAL – Internal use only
 
-# Etik ve Davranış Kuralları
+# Code of Ethics and Conduct
 
-## 1. Amaç ve Kapsam
+## 1. Purpose and Scope
 
-Etik ve Davranış Kuralları, Kraken Air çalışanlarının iş
-ilişkilerinde, müşteri ve tedarikçilerle etkileşimlerinde ve kamuya
-açık ortamlarda uyması gereken davranış standartlarını belirler.
-Kurallar; tüm çalışanlar, yönetim kurulu üyeleri, stajyerler ve şirket
-adına hareket eden danışmanlar için bağlayıcıdır.
+The Code of Ethics and Conduct sets the standards of behaviour for
+Kraken Air employees. It applies to relations at work, to contact with
+customers and suppliers, and to public places. All employees, board
+members, interns and consultants who act for the company must follow
+the code.
 
-Kurallarda açıkça düzenlenmeyen bir durumda çalışan, kararını "Bu
-davranış bir gazete manşetinde yer alsa şirketi ve beni zor durumda
-bırakır mı?" sorusuyla sınar ve tereddüt hâlinde Hukuk ve Uyum
-Direktörlüğü'ne danışır.
+Some situations are not covered by the code. Then the employee asks:
+if this were in the news, would it embarrass the company or me? If in
+doubt, the employee checks with the Legal and Compliance Department.
 
-## 2. Temel İlkeler
+## 2. Core Principles
 
-Uçuş emniyeti her türlü ticari hedefin önündedir. Hiçbir yönetici,
-emniyetle ilgili bir endişenin bildirilmesini engelleyemez veya
-bildirim nedeniyle çalışanı cezalandıramaz.
+Flight safety comes before every business goal. No manager may stop an
+employee from reporting a safety concern. No manager may punish an
+employee for such a report.
 
-Çalışanlar dürüstlük, yasalara uyum, ayrımcılık yapmama ve gizlilik
-ilkelerine uyar. Cinsiyet, yaş, etnik köken, din, engellilik veya
-başka bir kişisel özelliğe dayalı ayrımcılık, taciz ve mobbing hiçbir
-koşulda kabul edilmez.
+Employees act with honesty, follow the law, treat people fairly and
+keep information confidential. Discrimination based on gender, age,
+ethnic origin, religion, disability or any other personal trait is
+never accepted. Harassment and workplace bullying are never accepted
+either.
 
-## 3. Hediye ve Ağırlama
+## 3. Gifts and Hospitality
 
-Çalışanlar müşteri, tedarikçi veya iş ortaklarından değeri 800 TL'yi
-aşan hediye kabul edemez. Nakit, hediye çeki, kripto varlık ve benzeri
-nakde çevrilebilen hediyeler tutarından bağımsız olarak kabul edilmez.
+Employees must not accept a gift worth more than 800 TRY from a
+customer, supplier or business partner. Cash, gift vouchers, crypto
+assets and other gifts that can be turned into cash are never
+accepted, whatever their value.
 
-Değeri 800 TL'nin altında olsa bile aynı kaynaktan bir takvim yılı
-içinde alınan hediyelerin toplamı 2.000 TL'yi aşamaz. Kabul edilen her
-hediye 5 iş günü içinde Etik Beyan Formu ile bildirilir. Sınırı aşan
-hediyeler nazikçe iade edilir; iadenin mümkün olmadığı durumlarda
-hediye Hukuk ve Uyum Direktörlüğü'ne teslim edilir.
+Each gift may be worth less than 800 TRY. Even so, the gifts from one
+source in a calendar year must not add up to more than 2,000 TRY. Each
+accepted gift is reported on the Ethics Declaration Form within 5
+working days. Gifts over the limit are politely returned. If a gift
+cannot be returned, it is handed to the Legal and Compliance
+Department.
 
-Sayfa 1 / 3
-Kraken Air | Etik ve Davranış Kuralları | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 1 of 3
+Kraken Air | Code of Ethics and Conduct | Edition 2026
+CONFIDENTIAL – Internal use only
 
-İş yemeği ve ağırlamalar, makul ve iş amacıyla orantılı olduğu sürece
-kabul edilir. Tedarikçi seçim süreci devam ederken ilgili tedarikçiden
-hiçbir hediye veya ağırlama kabul edilmez. Tedarikçi masrafıyla
-yapılan seyahat ve konaklama teklifleri yalnızca Hukuk ve Uyum
-onayıyla kabul edilir.
+Business meals and hospitality are accepted if they are reasonable and
+fit the business purpose. During a supplier selection, no gift or
+hospitality is accepted from that supplier. Offers of travel and hotel
+stays paid by a supplier are accepted only with the approval of Legal
+and Compliance.
 
-## 4. Çıkar Çatışması
+## 4. Conflicts of Interest
 
-Çalışan, kişisel çıkarlarının şirketin çıkarlarıyla çatıştığı veya
-çatışıyor görünebileceği durumları, farkına vardığı tarihten itibaren
-30 gün içinde Etik Beyan Formu ile bildirir.
+An employee may have a personal interest that conflicts, or seems to
+conflict, with the interests of the company. The employee reports it
+on the Ethics Declaration Form within 30 days of becoming aware of it.
 
-Başlıca çıkar çatışması durumları şunlardır: çalışanın veya birinci
-derece yakınının bir tedarikçi ya da rakip şirkette ortaklığı veya
-yönetim görevi bulunması, birinci derece yakınların aynı raporlama
-hattında çalışması ve çalışanın satın alma kararlarında yakınlarına
-ait firmalarla iş yapması.
+These are the main cases of conflict of interest. The employee or a
+close family member is a partner or a manager in a supplier or a
+competitor. Close family members work in the same reporting line. The
+employee makes buying decisions about firms that belong to family
+members.
 
-Şirket dışında ücretli bir işte çalışmak veya başka bir şirkette
-yönetim görevi üstlenmek, yöneticinin ve Hukuk ve Uyum
-Direktörlüğü'nün önceden yazılı onayına tabidir. Beyan edilen çıkar
-çatışmaları gizli tutulur ve yalnızca değerlendirme amacıyla
-kullanılır.
+Paid work outside the company needs written approval in advance. A
+management role in another company needs the same approval. The
+approval comes from the manager and from the Legal and Compliance
+Department. Declared conflicts of interest are kept confidential and
+are used only for the review.
 
-## 5. Etik Bildirim Hattı
+## 5. Ethics Line
 
-Etik kurallara aykırı olduğundan şüphelenilen davranışlar
-etik@krakenair.example adresine, 0850 000 00 00 numaralı Etik Bildirim
-Hattı'na veya İK portalındaki isimsiz bildirim formuna iletilir.
-Bildirim hattı dış bir hizmet sağlayıcı tarafından 7 gün 24 saat
-işletilir ve arayanın numarası kaydedilmez.
+Employees report suspected breaches of the ethics rules to
+ethics@krakenair.example. They can also call the Ethics Line on
+0850 000 00 00. The HR portal also has an anonymous report form. An
+outside service provider runs the line 24 hours a day, 7 days a week.
+The line does not record the number of the caller.
 
-İsimsiz yapılan bildirimler de incelenir. Bildirimler en geç 10 iş
-günü içinde değerlendirmeye alınır; iletişim bilgisi bırakan bildirim
-sahibine sürecin sonucu hakkında bilgi verilir.
+Anonymous reports are reviewed too. Review of each report starts
+within 10 working days at the latest. A person who leaves contact
+details is told the outcome.
 
-İyi niyetle bildirimde bulunan çalışana karşı hiçbir misilleme
-yapılamaz; misilleme ayrı ve ağır bir ihlal sayılır. Bilerek asılsız
-bildirimde bulunmak ise disiplin sürecine tabidir.
+No one may punish an employee who reports in good faith. Punishing a
+reporter is a separate and serious breach. Making a false report on
+purpose leads to a disciplinary process.
 
-Sayfa 2 / 3
-Kraken Air | Etik ve Davranış Kuralları | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 2 of 3
+Kraken Air | Code of Ethics and Conduct | Edition 2026
+CONFIDENTIAL – Internal use only
 
-## 6. Sosyal Medya
+## 6. Social Media
 
-Çalışanlar kişisel sosyal medya hesaplarında şirket adına açıklama
-yapamaz. Şirket adına basın ve sosyal medya açıklamaları yalnızca
-Kurumsal İletişim Direktörlüğü tarafından yapılır. Kraken Air'de
-çalıştığını belirten çalışan, paylaşımlarının kişisel görüşü olduğunu
-açıkça belirtir.
+Employees must not speak for the company on their personal social
+media accounts. Only the Corporate Communications Department makes
+press and social media statements for the company. An employee who
+says that they work at Kraken Air makes clear that their posts are
+personal views.
 
-Uçuş operasyonlarına, olay ve kazalara, müşterilere ve iş
-arkadaşlarına ait bilgi ve görüntüler ile havalimanı güvenlikli
-alanlarından, hangardan veya kokpitten çekilen fotoğraf ve videolar
-paylaşılmaz. Üniformalı paylaşımlarda şirketin kurumsal kimlik
-kurallarına uyulur.
+Employees do not share information or images about flight operations,
+incidents, accidents, customers or colleagues. They do not share
+photos or videos taken in secure airport areas, in the hangar or in
+the cockpit. Posts in uniform follow the brand rules of the company.
 
-Şirketle ilgili olumsuz bir paylaşımla karşılaşan çalışan yanıt
-vermez; paylaşımı Kurumsal İletişim Direktörlüğü'ne iletir.
+An employee who sees a negative post about the company does not reply.
+The employee sends the post to the Corporate Communications
+Department.
 
-## 7. Şirket Varlıklarının Kullanımı
+## 7. Use of Company Assets
 
-Şirket ekipmanı, yazılımları, bilgileri ve personel biletleri gibi
-varlıklar yalnızca iş amacıyla ve ilgili politikalara uygun olarak
-kullanılır. Bilgi güvenliğine ilişkin kurallar Information Security
-Policy dokümanında yer alır.
+Company assets are used only for work and only as the related policies
+allow. These assets include equipment, software, information and staff
+tickets. The rules on information security are in the Turkish document
+Bilgi Güvenliği Politikası.
 
-Şirket kaynaklarının kişisel ticari faaliyet, siyasi propaganda veya
-bağış toplama amacıyla kullanılması yasaktır.
+Company resources must not be used for private business, political
+campaigns or fundraising.
 
-## 8. İhlaller ve Yaptırımlar
+## 8. Breaches and Penalties
 
-Bu kurallara aykırılık, ihlalin ağırlığına göre sözlü uyarı, yazılı
-uyarı, son yazılı uyarı veya iş sözleşmesinin feshiyle sonuçlanır.
-Rüşvet, yolsuzluk, emniyet bildiriminin engellenmesi ve misilleme,
-kademe gözetilmeksizin fesih nedenidir.
+A breach of this code leads to one of four penalties. These are a
+verbal warning, a written warning, a final written warning or
+dismissal. The penalty depends on how serious the breach is. Bribery,
+corruption, blocking a safety report and punishing a reporter lead to
+dismissal, whatever the rank of the person.
 
-Çalışan, disiplin sürecinde yazılı savunma hakkına sahiptir; savunma,
-bildirimden itibaren 5 iş günü içinde sunulur. Kurallar her yıl gözden
-geçirilir ve tüm çalışanlar yılda bir kez çevrim içi etik eğitimini
-tamamlar.
+In a disciplinary process, the employee has the right to give a
+written defence. The defence is due within 5 working days of the
+notice. The code is reviewed every year. All employees complete an
+online ethics course once a year.
 
-Sayfa 3 / 3
+Page 3 of 3

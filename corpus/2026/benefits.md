@@ -1,131 +1,131 @@
 ---
 id: benefits
-title: Yan Haklar
+title: Benefits
 edition: "2026"
-department: İnsan Kaynakları
+department: Human Resources
 access: all
-lang: tr
+lang: en
 ---
-Kraken Air | Yan Haklar | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Kraken Air | Benefits | Edition 2026
+CONFIDENTIAL – Internal use only
 
-# Yan Haklar
+# Benefits
 
-## 1. Amaç ve Kapsam
+## 1. Purpose and Scope
 
-Bu politika, Kraken Air'in çalışanlarına ücrete ek olarak sağladığı
-yan hakları ve bu haklardan yararlanma koşullarını açıklar. Politika
-belirsiz ve belirli süreli sözleşmeyle çalışan tüm personeli kapsar;
-aksi belirtilmedikçe haklar işe başlangıç tarihinden itibaren
-geçerlidir.
+This policy describes the benefits that Kraken Air gives its employees
+besides their salary. It also sets the conditions for using them. The
+policy covers all staff on permanent and fixed-term contracts. Unless
+stated otherwise, the benefits start on the first day of work.
 
-Yan haklar tüm unvanlara aynı şekilde uygulanır. Yan hak tutarları
-yılda bir kez gözden geçirilir; ara dönemde yapılan değişiklikler İK
-duyurusuyla ilan edilir ve ilgili duyuru, bu politikadaki tutarın
-yerine geçer.
+The benefits apply in the same way to all job titles. The benefit
+amounts are reviewed once a year. Changes during the year are
+published in an HR announcement. That announcement replaces the amount
+in this policy.
 
-## 2. Yemek Kartı
+## 2. Meal Card
 
-Her çalışana, fiilen çalışılan her iş günü için günlük 330 TL
-tutarında yemek kartı yüklemesi yapılır. Yükleme, bir önceki ayda
-çalışılan gün sayısına göre her ayın ilk iş günü yapılır. Uzaktan
-çalışılan günler çalışılan gün sayılır.
+For each working day actually worked, every employee gets 330 TRY a
+day loaded onto the meal card. The card is loaded on the first working
+day of each month. The amount depends on the number of days worked in
+the month before. Days worked remotely count as days worked.
 
-Yıllık ücretli izin, mazeret izni, ücretsiz izin ve raporlu günlerde
-yükleme yapılmaz. Kart bakiyesi sonraki aya devreder, nakde çevrilemez
-ve yalnızca anlaşmalı restoran ve marketlerde geçerlidir.
+The meal card is not loaded on days of annual paid leave, special
+leave, unpaid leave or sick leave. The card balance carries over to
+the next month. It cannot be turned into cash. It works only in
+partner restaurants and supermarkets.
 
-Personel yemekhanesi bulunan havalimanı ve hangar birimlerinde
-çalışan, yemekhane ile yemek kartı arasında yılda bir kez seçim yapar.
-Kartın kaybı hâlinde yeni kart İK portalı üzerinden talep edilir ve
-kalan bakiye yeni karta aktarılır.
+Some airport and hangar units have a staff canteen. Employees in these
+units choose once a year between the canteen and the meal card. An
+employee who loses the card asks for a new one on the HR portal. The
+remaining balance moves to the new card.
 
-## 3. Özel Sağlık Sigortası
+## 3. Private Health Insurance
 
-Tüm çalışanlar, işe başladıkları gün itibarıyla şirketin anlaşmalı
-olduğu özel sağlık sigortasına dahil edilir. Çalışanın primi şirket
-tarafından tamamen karşılanır. Poliçe yatarak tedaviyi limitsiz,
-ayakta tedaviyi yılda 20 vizite kadar kapsar.
+All employees join the company's private health insurance on their
+first day of work. The company pays the full premium for the employee.
+The insurance covers hospital stays with no limit. It also covers up
+to 20 doctor visits a year that do not need a hospital stay.
 
-Sayfa 1 / 3
-Kraken Air | Yan Haklar | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 1 of 3
+Kraken Air | Benefits | Edition 2026
+CONFIDENTIAL – Internal use only
 
-Çalışanın eşi ve 25 yaşını doldurmamış çocukları poliçeye eklenebilir;
-aile bireyleri için primin %50'si şirket tarafından karşılanır, kalan
-%50 aylık ücretten kesilir. Aile bireyleri yalnızca işe girişte veya
-evlilik ya da doğumun ardından 30 gün içinde poliçeye eklenir.
+The employee's spouse and children under 25 can be added to the
+insurance. The company pays 50% of the premium for family members. The
+other 50% is taken from the monthly salary. Family members can be
+added only at hiring, or within 30 days after a marriage or a birth.
 
-Diş tedavileri yılda 5.000 TL'ye kadar, gözlük ve lens giderleri iki
-yılda bir 2.500 TL'ye kadar karşılanır. Anlaşmalı kurum listesi
-sigorta şirketinin mobil uygulamasında yayımlanır.
+Dental care is covered up to 5,000 TRY a year. Glasses and contact
+lenses are covered up to 2,500 TRY every two years. The list of
+partner clinics and hospitals is in the mobile app of the insurance
+company.
 
-## 4. Spor Salonu Desteği
+## 4. Gym Support
 
-Çalışanların spor salonu, yüzme havuzu veya fitness stüdyosu
-üyelikleri için aylık 600 TL'ye kadar destek verilir. Destek, üyelik
-faturasının İK portalına yüklenmesini izleyen ayın bordrosuyla ödenir.
+The company pays up to 600 TRY a month toward a gym, swimming pool or
+fitness studio membership. The employee uploads the membership invoice
+to the HR portal. The support is then paid with the salary of the next
+month.
 
-Destek yalnızca çalışanın kendi adına düzenlenmiş üyelikler için
-geçerlidir. Yıllık peşin ödenen üyeliklerde destek, aylık tutar
-üzerinden 12 aya bölünerek ödenir. Genel müdürlük binasındaki şirket
-spor salonu tüm çalışanlar için ücretsizdir.
+The support covers only memberships in the employee's own name. If a
+membership is paid for a full year in advance, the support is still
+paid monthly, over 12 months. The company gym in the head office
+building is free for all employees.
 
-## 5. Ulaşım Desteği
+## 5. Transport Support
 
-Genel müdürlük ve havalimanı birimlerine, belirlenen güzergâhlarda
-ücretsiz personel servisi sağlanır. Servis güzergâhları ve saatleri İK
-portalında yayımlanır; vardiyalı birimlerde servis saatleri vardiya
-çizelgesine göre düzenlenir.
+Free staff shuttle buses run on set routes to the head office and the
+airport units. Shuttle routes and times are on the HR portal. In shift
+units, shuttle times follow the shift schedule.
 
-Servis güzergâhı dışında oturan veya servis kullanmayan çalışanların
-toplu taşıma kartına her ay 1.250 TL ulaşım desteği yüklenir. Servis
-kullanan çalışanlara ulaşım desteği ödenmez.
+Some employees live away from the shuttle routes or do not use the
+shuttle. These employees get 1,250 TRY of transport support each month
+on their public transport card. Employees who use the shuttle do not
+get transport support.
 
-Gece 00:00 ile 06:00 arasında başlayan veya biten vardiyalarda, servis
-bulunmayan saatler için taksi gideri ulaşım portalı üzerinden
-karşılanır.
+Some shifts start or end between 00:00 and 06:00. For the hours with
+no shuttle, the company pays taxi costs through the transport portal.
 
-Sayfa 2 / 3
-Kraken Air | Yan Haklar | Sürüm 2026
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 2 of 3
+Kraken Air | Benefits | Edition 2026
+CONFIDENTIAL – Internal use only
 
-## 6. Doğum Günü İzni
+## 6. Birthday Leave
 
-Her çalışan, doğum gününün bulunduğu ay içinde kullanmak üzere yılda 1
-iş günü doğum günü izni kullanır. Doğum günü izni bir yan haktır;
-yıllık ücretli izin bakiyesinden düşülmez ve yıllık izin hesabına
-dahil edilmez.
+Each employee gets 1 working day of birthday leave a year. It is used
+in the month of the birthday. Birthday leave is a benefit. It is not
+taken from the annual paid leave balance, and it does not count as
+annual leave.
 
-Doğum günü izni ilgili ay içinde kullanılmazsa yanar; sonraki aya veya
-yıla devredilmez ve iş ilişkisinin sona ermesi hâlinde ücrete
-dönüştürülmez. Vardiyalı birimlerde izin günü, vardiya planlamasıyla
-birlikte en az 14 gün önceden belirlenir.
+If birthday leave is not used in that month, it is lost. It does not
+carry over to the next month or year. It is not paid out when
+employment ends. In shift units, the leave day is set with the shift
+plan at least 14 days ahead.
 
-## 7. Personel Uçuş Hakları
+## 7. Staff Flights
 
-İşe başlangıcından itibaren 6 ayını dolduran çalışanlar, Kraken Air
-seferlerinde yer durumuna bağlı açık personel biletinden yararlanır.
-Çalışana yılda 8 adet, %90 indirimli tek yön personel bileti
-tanımlanır; vergi ve harç bedelleri çalışan tarafından ödenir.
+Employees who have completed 6 months of work can use open staff
+tickets on Kraken Air flights. Seats depend on availability. Each
+employee gets 8 one-way staff tickets a year at a 90% discount. The
+employee pays the taxes and airport fees.
 
-Çalışanın eşi ve 25 yaşını doldurmamış çocukları yılda toplam 4 adet
-%75 indirimli personel biletinden yararlanır. Personel biletleri
-devredilemez ve satılamaz; kötüye kullanım, personel uçuş haklarının
-kalıcı olarak kaldırılmasıyla sonuçlanır.
+The employee's spouse and children under 25 get 4 staff tickets a year
+in total, at a 75% discount. Staff tickets cannot be given to others
+or sold. Misuse leads to the permanent loss of staff flight rights.
 
-Personel biletiyle seyahat eden çalışan, kabin ekibinin talimatlarına
-ve kıyafet kurallarına uyar. İş seyahatleri personel biletiyle
-yapılmaz.
+An employee who flies on a staff ticket follows the instructions of
+the cabin crew and the dress code. Business trips are not made on
+staff tickets.
 
-## 8. Hak Kaybı ve Değişiklikler
+## 8. Loss of Benefits and Changes
 
-İş ilişkisinin sona ermesiyle yan haklar son çalışma günü itibarıyla
-sona erer. Özel sağlık sigortası, son çalışma gününü izleyen ayın
-sonuna kadar devam eder. Kullanılmamış yemek kartı bakiyesi çalışanda
-kalır.
+When employment ends, the benefits end on the last working day.
+Private health insurance continues until the end of the month after
+the last working day. Any unused meal card balance stays with the
+employee.
 
-Bu politikadaki tutarlar İK duyurularıyla güncellenir. Güncel tutarlar
-için her zaman İK portalındaki son duyuru esas alınır.
+The amounts in this policy are updated by HR announcements. For the
+current amounts, always use the latest announcement on the HR portal.
 
-Sayfa 3 / 3
+Page 3 of 3

@@ -1,160 +1,158 @@
 ---
 id: travel-expenses
-title: Seyahat ve Harcırah Politikası
+title: Travel and Per Diem Policy
 edition: "2025"
-department: Finans
+department: Finance
 access: all
-lang: tr
+lang: en
 ---
-Kraken Air | Seyahat ve Harcırah Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Kraken Air | Travel and Per Diem Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-# Seyahat ve Harcırah Politikası
+# Travel and Per Diem Policy
 
-## 1. Amaç ve Kapsam
+## 1. Purpose and Scope
 
-Bu politika, Kraken Air çalışanlarının iş amaçlı yurt içi ve yurt dışı
-seyahatlerinde onay, rezervasyon, harcırah, konaklama, seyahat avansı
-ve harcama bildirimi kurallarını belirler. Politika tüm unvanlardaki
-çalışanlar için geçerlidir; uçuş ekibinin görev kapsamındaki
-konaklamaları Ekip Planlama Yönetmeliği'ne tabidir.
+This policy is for Kraken Air employees who travel for work in Turkey
+or abroad. It sets the rules for approval, booking, per diem, hotels,
+travel advances and expense reports. It applies to employees of all
+titles. Hotel stays of flight crew on duty follow the Crew Planning
+Regulation.
 
-Harcırah, seyahat süresince yemek, bahşiş ve şehir içi ulaşım gibi
-küçük giderleri karşılamak üzere ödenen, belge gerektirmeyen günlük
-tutardır. Konaklama, şehirlerarası ulaşım ve vize giderleri harcırahın
-dışındadır ve belge karşılığında ayrıca ödenir.
+A per diem is a fixed daily amount for small trip costs, such as
+meals, tips and local transport. It needs no receipt. Hotels, travel
+between cities and visa costs are not part of the per diem. They are
+paid separately, against receipts.
 
-## 2. Seyahat Onayı ve Rezervasyon
+## 2. Travel Approval and Booking
 
-İş seyahatleri, seyahat başlangıcından en az 7 gün önce seyahat
-portalı üzerinden onaya sunulur. Yurt içi seyahatler yöneticinin, yurt
-dışı seyahatler ek olarak bölüm direktörünün onayına tabidir. Onaysız
-başlatılan seyahatlerin giderleri geri ödenmez.
+Send each business trip for approval on the travel portal at least 7
+days before the trip starts. Trips in Turkey need the approval of
+the manager. Trips abroad also need the approval of the department
+director. Costs of a trip that starts without approval are not paid
+back.
 
-Uçak bileti ve otel rezervasyonları yalnızca seyahat portalı üzerinden
-yapılır. Kraken Air'in sefer düzenlediği hatlarda şirket uçuşları
-tercih edilir; diğer havayollarıyla seyahat, portalın sunduğu en uygun
-ücretli seçenek üzerinden yapılır. Kişisel mil programı kazanımları
-bilet seçimini etkilemez.
+Flight tickets and hotels are booked only on the travel portal. On
+routes that Kraken Air flies, company flights come first. On other
+airlines, use the lowest fare that the portal offers. Personal air
+miles must not change the choice of ticket.
 
-Uçuş süresi 6 saate kadar olan seyahatlerde ekonomi sınıfı kullanılır.
-6 saati aşan uçuşlarda premium ekonomi, 8 saati aşan uçuşlarda
-yalnızca Direktör unvanı için business sınıfı kullanılır. Bilet
-değişikliği ve iptal ücretleri, değişiklik iş gereği yapılmışsa şirket
-tarafından karşılanır.
+Flights of up to 6 hours are in economy class. Flights over 6 hours
+are in premium economy. On flights over 8 hours, only the Director
+title flies business class. The company pays ticket change and
+cancellation fees when the change is needed for work.
 
-## 3. Yurt İçi Harcırah
+## 3. Domestic Per Diem
 
-Yurt içinde, görev yerinin bulunduğu il dışında gerçekleştirilen ve en
-az bir gece konaklama gerektiren seyahatlerde aşağıdaki günlük
-harcırah ve otel üst limitleri uygulanır. Tutarlar Türk lirası (TRY)
-cinsindendir ve vergiler dahildir.
+The hotel upper limit per night is the most you can spend on a hotel.
+The limits and the per diem below are for trips in Turkey outside the
+city where you work. The trip must include at least one hotel night.
+The amounts are in Turkish lira (TRY), with taxes included.
 
-Sayfa 1 / 4
-Kraken Air | Seyahat ve Harcırah Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 1 of 4
+Kraken Air | Travel and Per Diem Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-| Unvan | Günlük harcırah (TRY) | Otel üst limiti (TRY / gece) |
+| Job title | Daily per diem (TRY) | Hotel upper limit (TRY / night) |
 |---|---|---|
-| Uzman | 750 | 3.500 |
-| Kıdemli uzman | 850 | 4.000 |
-| Yönetici | 950 | 5.000 |
-| Direktör | 1.200 | 6.500 |
+| Specialist | 750 | 3,500 |
+| Senior specialist | 850 | 4,000 |
+| Manager | 950 | 5,000 |
+| Director | 1,200 | 6,500 |
 
-Konaklama gerektirmeyen günübirlik seyahatlerde harcırahın %50'si
-ödenir. Gidiş ve dönüş günleri tam gün olarak hesaplanır. Seyahat
-süresince yemeğin şirket veya etkinlik düzenleyicisi tarafından
-sağlandığı günlerde harcırah ödenmez.
+On day trips with no hotel night, 50% of the per diem is paid. The
+day you leave and the day you return count as full days. No per diem
+is paid on days when the company or the event organizer gives you
+meals.
 
-## 4. Yurt Dışı Harcırah
+## 4. International Per Diem
 
-Yurt dışı seyahatlerde, seyahatin başladığı günden Türkiye'ye dönüş
-gününe kadar geçen her gün için aşağıdaki günlük harcırah ve otel üst
-limitleri uygulanır. Tutarlar avro (EUR) cinsindendir; ödeme, seyahat
-başlangıcındaki Merkez Bankası döviz satış kuru üzerinden Türk lirası
-olarak yapılır.
+The amounts below are in euro (EUR). They apply to each day of a trip
+abroad, until you return to Turkey. They are paid in Turkish lira. The
+rate is the Central Bank selling rate on the day the trip starts.
 
-| Unvan | Günlük harcırah (EUR) | Otel üst limiti (EUR / gece) |
+| Job title | Daily per diem (EUR) | Hotel upper limit (EUR / night) |
 |---|---|---|
-| Uzman | 60 | 140 |
-| Kıdemli uzman | 70 | 155 |
-| Yönetici | 85 | 190 |
-| Direktör | 105 | 240 |
+| Specialist | 60 | 140 |
+| Senior specialist | 70 | 155 |
+| Manager | 85 | 190 |
+| Director | 105 | 240 |
 
-Fuar ve kongre dönemlerinde otel fiyatlarının limitin üzerine çıkması
-hâlinde, portal üzerinden önceden alınan Finans onayıyla limitin en
-fazla %20 aşılmasına izin verilir. Yurt dışı harcırahı, seyahat
-avansıyla birlikte veya dönüşte harcama bildirimiyle ödenir; harcırah
-alınan günlerde ayrıca yemek fişi sunulmaz.
+During trade fairs and conferences, hotel prices can go above the
+limit. In that case, a hotel may cost up to 20% over the limit. This
+needs Finance approval in advance on the portal. The international per
+diem is paid with the travel advance, or after the trip with the
+expense report. Do not hand in meal receipts for days with a per diem.
 
-## 5. Konaklama ve Şehir İçi Ulaşım
+## 5. Hotels and Local Transport
 
-Otel rezervasyonu seyahat portalındaki anlaşmalı oteller arasından
-yapılır. Otel üst limitleri kahvaltı dahil oda fiyatı içindir; limiti
-aşan tutar çalışanın ücretinden kesilir. Portalda limit içinde uygun
-otel bulunmadığında durum ekran görüntüsüyle belgelenir ve Finans
-onayı alınır.
+Book hotels from the partner hotels on the travel portal. The hotel
+upper limits are for the price per night, with breakfast. Any amount
+over the limit is taken from the salary of the employee. If the portal
+has no good hotel within the limit, keep a screenshot as proof and get
+Finance approval.
 
-Sayfa 2 / 4
-Kraken Air | Seyahat ve Harcırah Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 2 of 4
+Kraken Air | Travel and Per Diem Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-Şehir içi ulaşım giderleri harcırah kapsamındadır; yalnızca havalimanı
-ile otel arasındaki transferler ayrıca ödenir. Transferlerde toplu
-taşıma veya havalimanı servisi tercih edilir. Gece 23:00 ile 06:00
-arasındaki transferlerde veya toplu taşımanın bulunmadığı noktalarda
-taksi kullanılır ve fiş karşılığında ödenir.
+Local transport costs are part of the per diem. Only transfers between
+the airport and the hotel are paid separately. For transfers, use
+public transport or the airport shuttle. You may take a taxi between
+23:00 and 06:00, or where there is no public transport. Taxis are
+paid against a receipt.
 
-Şehirlerarası ulaşımda, uçuş süresi 1 saatin altında olan
-güzergâhlarda hızlı tren tercih edilir. Kişisel tercihler nedeniyle
-doğan ek ulaşım maliyeti çalışana aittir.
+Between cities, take the fast train on routes where the flight is
+shorter than 1 hour. Any extra travel cost from a personal choice is
+paid by the employee.
 
-## 6. Seyahat Avansı
+## 6. Travel Advance
 
-Seyahat avansı, seyahat başlangıcından en az 5 iş günü önce seyahat
-portalından talep edilir. Avans tutarı, tahmini toplam harcırah ve
-belgeli giderlerin %80'ini aşamaz. Kurumsal kredi kartı bulunan
-çalışanlara yurt içi seyahatlerde avans verilmez.
+Ask for a travel advance on the travel portal at least 5 working days
+before the trip starts. The advance cannot be more than 80% of the
+expected per diem and receipt costs in total. Employees with a
+company credit card get no advance for trips in Turkey.
 
-Avans, seyahat dönüşünü izleyen 10 iş günü içinde harcama bildirimiyle
-kapatılır. Süresinde kapatılmayan avans bir sonraki ücret ödemesinden
-kesilir. Kapatılmamış avansı bulunan çalışana yeni avans verilmez.
+Close the advance with an expense report within 10 working days after
+you return. An advance that is not closed in time is taken from the
+next salary payment. An employee with an open advance gets no new
+advance.
 
-## 7. Harcama Bildirimi ve Belgeler
+## 7. Expense Reports and Receipts
 
-Tüm seyahat harcamaları, seyahat dönüşünü izleyen 15 takvim günü
-içinde, fatura ve fişlerin taranmış kopyalarıyla birlikte seyahat
-portalına yüklenir. 15 günü aşan bildirimler işleme alınmaz ve
-ödenmez.
+Upload all travel costs to the travel portal within 15 calendar days
+after you return. Add scanned copies of the invoices and receipts.
+Reports sent after 15 days are not processed and not paid.
 
-Faturalar şirket unvanına düzenlenir. Yurt dışı fişlerinde para birimi
-ve tarih okunur olmalıdır. Kaybolan fiş için, yılda en fazla 2 kez
-olmak üzere, harcama beyan formu doldurulur; beyan formuyla ödenecek
-tutar tek harcamada 1.000 TL'yi aşamaz.
+Invoices must show the company name. Receipts from abroad must show
+the currency and the date clearly. For a lost receipt, fill in an
+expense statement form. You can do this at most 2 times a year. The
+amount paid with this form cannot be more than 1,000 TRY for one
+expense.
 
-Onaylanan harcamalar, bildirimin onaylanmasını izleyen ilk ücret
-ödemesiyle birlikte çalışanın banka hesabına yatırılır. Kurumsal kredi
-kartıyla yapılan harcamalar da aynı süre içinde bildirilir;
-bildirilmeyen kart harcamaları kişisel harcama sayılır.
+Approved costs are paid into the employee's bank account with the
+first salary after the report is approved. Costs paid with a company
+credit card must be reported in the same period. Card costs that are
+not reported count as personal spending.
 
-Sayfa 3 / 4
-Kraken Air | Seyahat ve Harcırah Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 3 of 4
+Kraken Air | Travel and Per Diem Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-## 8. Geri Ödenmeyen Giderler
+## 8. Costs That Are Not Paid Back
 
-Şu giderler şirket tarafından karşılanmaz: minibar ve alkollü
-içecekler, kişisel eğlence ve spor giderleri, onaysız sınıf
-yükseltmeleri, eşlik eden kişilerin giderleri, kayıp veya çalınan
-kişisel eşya bedelleri ve iş programından önce veya sonra eklenen
-kişisel günlerin konaklama giderleri.
+The company does not pay for minibar or alcohol drinks. It does not
+pay for personal entertainment and sports, or for class upgrades
+without approval. It also does not pay for people who travel with you,
+or for lost or stolen personal items. Hotel nights for personal days
+before or after the work plan are not paid either.
 
-Kişisel günlerin iş seyahatine eklenmesi, bilet maliyetini artırmamak
-koşuluyla yöneticinin onayıyla mümkündür. Bu günler için harcırah
-ödenmez ve günler yıllık ücretli izinden düşülür.
+You may add personal days to a business trip if the manager approves.
+The extra days must not raise the ticket cost. No per diem is paid for
+these days, and they are taken from your annual paid leave.
 
-Politikaya aykırı gider talepleri Finans tarafından reddedilir;
-tekrarlayan veya kasıtlı aykırılıklar Etik ve Davranış Kuralları
-kapsamında değerlendirilir.
+Finance rejects cost claims that break this policy. Repeated cases,
+and cases done on purpose, are handled under the Code of Ethics and
+Conduct.
 
-Sayfa 4 / 4
+Page 4 of 4

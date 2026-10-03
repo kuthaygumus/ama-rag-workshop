@@ -5,16 +5,16 @@ import { describe, expect, it } from "vitest";
 import type { CleanDoc } from "../../src/lib/types.js";
 
 const solutions = Boolean(process.env.SOLUTIONS);
-const confidential = solutions ? await import("../../solutions/english-confidential.js") : await import("../../src/steps/2-clean.js");
+const confidential = solutions ? await import("../../solutions/turkish-confidential.js") : await import("../../src/steps/2-clean.js");
 const similarity = solutions ? await import("../../solutions/dot.js") : await import("../../src/lib/similarity.js");
 const chunking = solutions ? await import("../../solutions/by-paragraph.js") : await import("../../src/steps/3-chunk.js");
 
-describe("step 2 · englishConfidential", () => {
-  it("matches the English footer and nothing else", () => {
-    expect(confidential.englishConfidential, "englishConfidential is still undefined — write the rule").toBeInstanceOf(RegExp);
-    expect(confidential.englishConfidential!.test("CONFIDENTIAL – Internal use only")).toBe(true);
-    expect(confidential.englishConfidential!.test("Confidential data must be encrypted.")).toBe(false);
-    expect(confidential.englishConfidential!.test("GİZLİ – Yalnızca şirket içi kullanım içindir")).toBe(false);
+describe("step 2 · turkishConfidential", () => {
+  it("matches the Turkish footer and nothing else", () => {
+    expect(confidential.turkishConfidential, "turkishConfidential is still undefined — write the rule").toBeInstanceOf(RegExp);
+    expect(confidential.turkishConfidential!.test("GİZLİ – Yalnızca şirket içi kullanım içindir")).toBe(true);
+    expect(confidential.turkishConfidential!.test("Gizli veriler şifrelenmelidir.")).toBe(false);
+    expect(confidential.turkishConfidential!.test("CONFIDENTIAL – Internal use only")).toBe(false);
   });
 });
 

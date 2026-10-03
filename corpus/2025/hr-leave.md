@@ -1,71 +1,70 @@
 ---
 id: hr-leave
-title: Yıllık İzin Politikası
+title: Annual Leave Policy
 edition: "2025"
-department: İnsan Kaynakları
+department: Human Resources
 access: all
-lang: tr
+lang: en
 ---
-Kraken Air | Yıllık İzin Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Kraken Air | Annual Leave Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-# Yıllık İzin Politikası
+# Annual Leave Policy
 
-## 1. Amaç ve Kapsam
+## 1. Purpose and Scope
 
-Bu politika, Kraken Air çalışanlarının yıllık ücretli izin, mazeret
-izni ve ücretsiz izin haklarını, bu hakların hangi koşullarda
-doğduğunu ve nasıl kullanılacağını tanımlar. Politika; genel müdürlük,
-havalimanı operasyon birimleri, teknik hangar ve çağrı merkezi dahil
-olmak üzere belirsiz ve belirli süreli iş sözleşmesiyle çalışan tüm
-personel için geçerlidir.
+This policy gives the Kraken Air rules for annual paid leave, special
+leave and unpaid leave. It also says when these rights start and how
+staff can use them. It applies to all staff on permanent and
+fixed-term contracts. This includes the head office, the airport
+operations units, the technical hangar and the call centre.
 
-Uçuş ekibinin (kokpit ve kabin) izin planlaması, uçuş ve dinlenme
-süreleri mevzuatı nedeniyle Ekip Planlama Yönetmeliği'nde ayrıca
-düzenlenir; yönetmelikte hüküm bulunmayan konularda bu politika
-uygulanır. Stajyerler ve danışmanlar politika kapsamı dışındadır.
+Flight crew (cockpit and cabin) plan their leave under the Crew
+Planning Regulation. This follows the laws on flight time and rest
+time. Where that regulation has no rule on a topic, this policy
+applies. Interns and consultants are not covered by this policy.
 
-Politikada geçen tüm süreler, aksi belirtilmedikçe iş günü
-cinsindendir. Ulusal ve dinî bayram günleri ile hafta sonları izin
-süresinin hesabında dikkate alınmaz. Politikanın güncel sürümü İK
-portalında yayımlanır; basılı veya e-postayla dolaşan kopyalar
-yalnızca bilgi amaçlıdır.
+All periods in this policy are in working days, unless the text says
+otherwise. Weekends and national and religious days off do not count
+as leave days. The current version of the policy is on the HR portal.
+Printed copies and copies sent by email are for information only.
 
-## 2. Hak Kazanma ve Deneme Süresi
+## 2. Probation and Earning Leave
 
-Yıllık ücretli izne hak kazanmak için, deneme süresi de dahil olmak
-üzere işe giriş tarihinden itibaren en az bir tam yıl çalışmış olmak
-gerekir. Hak ediş, her hizmet yılının dolduğu gün çalışanın izin
-bakiyesine tek seferde eklenir; aylık kısmi hak ediş uygulanmaz.
+One full year of work, counted from the start date, must come before
+any annual paid leave. The probation period counts as part of this
+first year. On the day each year of service ends, the new days go into
+the employee's leave balance in one step. Leave does not build up
+month by month.
 
-Deneme süresi 2 aydır. Deneme süresindeki çalışanlar yıllık ücretli
-izin kullanamaz; bu süre içinde ortaya çıkan zorunlu durumlar için 5.
-bölümde tanımlanan mazeret izinleri geçerlidir.
+The probation period lasts 2 months. During probation, an employee
+cannot use annual paid leave. For urgent events during probation, the
+special leave in section 5 applies.
 
-İlk hizmet yılını henüz doldurmamış, ancak deneme süresini tamamlamış
-çalışanlar, yöneticinin ve İK iş ortağının onayıyla en fazla 5 iş günü
-avans izin kullanabilir. Avans izin, hak ediş gerçekleştiğinde yeni
-dönemin bakiyesinden düşülür. İlk yıl dolmadan iş ilişkisi sona ererse
-kullanılmış avans izin günleri 8. bölüme göre son ücretten mahsup
-edilir.
+Some employees have finished probation but not yet the first full
+year. They can take up to 5 working days of advance leave. The manager
+and the HR business partner must approve it. When the employee earns
+the new days, the advance days come out of the new balance. If the job
+ends before the first year is over, the used advance days come out of
+the final pay. Section 8 explains the details.
 
-Kıdem hesabında Kraken Air bünyesinde geçen tüm hizmet süreleri
-birleştirilir. Önceki işverenlerde geçen süreler yıllık izin kıdemine
-eklenmez; ücretsiz izinde geçen süreler de kıdemden sayılmaz. Kıdem
-bandı, işe giriş tarihinin her yıldönümünde otomatik olarak yeniden
-belirlenir.
+For years of service, all time worked at Kraken Air is added together.
+Time worked for earlier employers does not count towards annual paid
+leave. Time spent on unpaid leave does not count either. The system
+updates the service band automatically on each anniversary of the
+start date.
 
-Sayfa 1 / 4
-Kraken Air | Yıllık İzin Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 1 of 4
+Kraken Air | Annual Leave Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-## 3. Yıllık Ücretli İzin
+## 3. Annual Paid Leave
 
-Yıllık ücretli izin süresi, işe giriş tarihinden itibaren tamamlanan
-tam hizmet yılına göre belirlenir. Tabloda her kıdem yılı için
-izin hakkı ayrı bir satırda verilmiştir.
+Part-time staff get the same number as full-time staff. The HR portal
+shows the balance for each person. Questions go to the unit's HR
+business partner.
 
-| Kıdem (tam yıl) | Yıllık ücretli izin (iş günü) |
+| Years of service (full years) | Annual paid leave (working days) |
 |---|---|
 | 1 | 16 |
 | 2 | 16 |
@@ -81,126 +80,126 @@ izin hakkı ayrı bir satırda verilmiştir.
 | 12 | 25 |
 | 13 | 25 |
 | 14 | 25 |
-| 15 ve üzeri | 28 |
+| 15 or more | 28 |
 
-İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı
-üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde
-bölüm direktörünün onayı da aranır.
+Leave requests go to the manager on the HR portal at least 15 working
+days before the leave starts. For leave longer than 10 working days
+without a break, the department director must also approve.
 
-Takvim yılı içinde kullanılmayan günler, en fazla 5 iş günü ile
-sınırlı olarak bir sonraki yıla devredilebilir; devrin koşulları 7.
-bölümde açıklanmıştır.
+Up to 5 unused working days can move to the next calendar year. For
+the conditions of this carry-over, see section 7.
 
-## 4. İzin Planlama ve Kullanım Esasları
+## 4. Planning and Using Leave
 
-Her birim, yıllık ücretli izin planını ocak ayı sonuna kadar İK
-portalına girer. Plan bağlayıcı değildir; ancak aynı döneme yoğunlaşan
-taleplerde plana önceden işlenmiş talepler önceliklidir.
+Each unit enters its yearly leave plan on the HR portal by the end of
+January. The manager checks that the plan covers the team for the
+whole year. The plan is not binding. But when many requests fall in
+the same period, requests already in the plan come first.
 
-Havalimanı operasyon, yer hizmetleri ve teknik hangar birimlerinde 15
-Haziran – 15 Eylül arasındaki yoğun sezonda kesintisiz izin süresi en
-fazla 7 iş günüdür. Bu sınırın aşılması ancak birim direktörünün
-yazılı onayıyla mümkündür. Genel müdürlük birimleri bu kısıtlamaya
-tabi değildir.
+In airport operations, ground services and the technical hangar, the
+peak season runs from 15 June to 15 September. In this season, one
+block of leave can be at most 7 working days. A longer block needs
+written approval from the unit director. Head office units do not have
+this limit.
 
-Çalışan, yıllık ücretli iznini bölerek kullanabilir; ancak yıl
-içindeki bölümlerden biri en az 10 iş günü kesintisiz olmalıdır. Yarım
-gün izin yılda en fazla 6 kez kullanılır ve iki yarım gün bir iş günü
-sayılır.
+An employee can split annual paid leave into parts. But one part in
+the year must be at least 10 working days without a break. Half-day
+leave can be used at most 6 times a year. Two half days count as one
+working day.
 
-İznini ikamet ettiği ilden farklı bir ilde geçirecek çalışana,
-belgelemesi hâlinde gidiş ve dönüş için toplam 4 güne kadar ücretsiz
-yol izni verilir.
+An employee may spend the leave in a city other than the one where
+they live. The employee must show proof of the trip. Then the employee
+gets up to 4 days of unpaid travel leave in total for the trip there
+and back.
 
-Sayfa 2 / 4
-Kraken Air | Yıllık İzin Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 2 of 4
+Kraken Air | Annual Leave Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-Onaylanmış bir izin, çalışanın rızası olmadan iptal edilemez.
-Operasyonel zorunluluk nedeniyle izni ertelenen çalışanın ertelenen
-günleri, 7. bölümdeki ek devir hakkından yararlanır.
+Approved leave cannot be cancelled without the agreement of the
+employee. If leave is put off for operational needs, the delayed days
+can use the extra carry-over in section 7.
 
-## 5. Mazeret İzinleri
+## 5. Special Leave
 
-Aşağıdaki durumlarda çalışana, yıllık ücretli izin bakiyesinden
-düşülmeksizin ücretli mazeret izni verilir. Mazeret izni olayın
-gerçekleştiği tarihten itibaren kesintisiz kullanılır ve sonraki bir
-tarihe aktarılamaz.
+In the cases below, an employee gets paid special leave. These days do
+not come out of the annual paid leave balance. Special leave starts on
+the date of the event and is taken in one block. It cannot move to a
+later date.
 
-| Durum | Süre (iş günü) |
+| Event | Length (working days) |
 |---|---|
-| Evlilik | 3 |
-| Eşin doğum yapması | 10 |
-| Anne, baba, eş, çocuk veya kardeşin vefatı | 5 |
-| Büyükanne, büyükbaba, kayınvalide veya kayınpederin vefatı | 2 |
-| Taşınma (yılda bir kez) | 1 |
+| Marriage | 3 |
+| Spouse gives birth | 10 |
+| Death of a parent, spouse, child, brother or sister | 5 |
+| Death of a grandparent or parent-in-law | 2 |
+| Moving house (once a year) | 1 |
 
-Kadın çalışanlara, doğumdan önce 8 ve doğumdan sonra 8 hafta olmak
-üzere toplam 16 hafta analık izni verilir; çoğul gebelikte doğum
-öncesi süreye 2 hafta eklenir. Doğum sonrası işe dönen çalışana, çocuk
-bir yaşını doldurana kadar günde 1,5 saat süt izni tanınır.
+A female employee gets 16 weeks of maternity leave: 8 weeks before the
+birth and 8 weeks after it. If she expects more than one baby, 2 more
+weeks are added before the birth. Back at work, a mother gets 1.5
+hours of nursing time per day until the child is one year old.
 
-Olayı gösteren belge (evlilik cüzdanı, doğum belgesi, ölüm belgesi
-veya yerleşim yeri belgesi) izin dönüşünden itibaren 10 iş günü içinde
-İK portalına yüklenir. Belgesi yüklenmeyen mazeret izni yıllık ücretli
-izin bakiyesinden düşülür.
+Within 10 working days after returning to work, the employee uploads
+proof of the event to the HR portal. This can be a marriage
+certificate, a birth certificate, a death certificate or a proof of
+address. If no document is uploaded, the days come out of the annual
+paid leave balance.
 
-Doğum günü izni bir mazeret izni değil, Yan Haklar politikasında
-düzenlenen bir yan haktır ve yıllık ücretli izin bakiyesinden
-düşülmez.
+Birthday leave is not special leave. It is a benefit in the Benefits
+policy, and it does not come out of the annual paid leave balance.
 
-## 6. Ücretsiz İzin
+## 6. Leave Without Pay
 
-Çalışan, zorunlu kişisel nedenlerle yılda toplam 90 takvim gününe
-kadar ücretsiz izin talep edebilir. Talep, izin başlangıcından en az 1
-ay önce gerekçesiyle birlikte İK portalı üzerinden yapılır ve yönetici
-ile İK direktörünün onayına tabidir.
+Unpaid leave is for serious personal reasons. It can last up to 90
+calendar days a year. The employee makes the request on the HR portal
+at least 1 month before the leave starts. The request gives the
+reason. The manager and the HR director must approve it.
 
-Ücretsiz izin süresince ücret ödenmez, yemek kartı yüklemesi yapılmaz
-ve bu süre yıllık ücretli izin kıdemine dahil edilmez. Özel sağlık
-sigortası 30 takvim gününe kadar kesintisiz devam eder; 30 günü aşan
-kısım için sigorta primi çalışan tarafından karşılanır.
+During unpaid leave, there is no pay and no meal card top-up. This
+time does not count as service for annual paid leave. Private health
+insurance continues for up to 30 calendar days. After 30 days, the
+employee pays the insurance premium.
 
-Sayfa 3 / 4
-Kraken Air | Yıllık İzin Politikası | Sürüm 2025
-GİZLİ – Yalnızca şirket içi kullanım içindir
+Page 3 of 4
+Kraken Air | Annual Leave Policy | Edition 2025
+CONFIDENTIAL – Internal use only
 
-Yıllık ücretli izin bakiyesi bulunan çalışana, bu bakiye kullanılmadan
-ücretsiz izin verilmez. Askerlik, yurt dışında eğitim ve benzeri uzun
-süreli durumlar İK tarafından ayrıca değerlendirilir.
+An employee with an annual paid leave balance must use that balance
+first. Only then can unpaid leave be given. HR looks at long cases,
+such as military service or study abroad, one by one.
 
-## 7. İzin Devri
+## 7. Carrying Over Leave
 
-Takvim yılı sonunda kullanılmayan yıllık ücretli izin günlerinden en
-fazla 5 iş günü bir sonraki yıla devredilir. Devredilen günler takip
-eden yılın 31 Mart tarihine kadar kullanılmalıdır; bu tarihe kadar
-kullanılmayan devir günleri yanar ve ücrete dönüştürülmez.
+Some unused leave can move to the next year. At year end, up to 5
+working days of unused annual paid leave move over. These days must be
+used by 31 March of the next year. Carried-over days not used by that
+date are lost. They are not paid out.
 
-5 iş gününü aşan bakiye, yıl sonundan önce yönetici ve İK tarafından
-birlikte planlanır. Çalışanın talep etmesine rağmen yöneticinin
-operasyonel gerekçeyle yazılı olarak ertelediği günler için ek olarak
-10 iş gününe kadar devir yapılır; bu günler 30 Haziran tarihine kadar
-kullanılır.
+The manager and HR plan any balance above 5 working days together
+before the year ends. Sometimes an employee asks for leave and the
+manager puts it off in writing for operational reasons. For those
+days, up to 10 more working days can move to the next year. These days
+must be used by 30 June.
 
-Avans izin, mazeret izni ve doğum günü izni devir hesabına dahil
-edilmez. Devir işlemi her yıl ocak ayının ilk haftasında sistem
-tarafından otomatik olarak yapılır; çalışan güncel bakiyesini İK
-portalından izler.
+Advance leave, special leave and birthday leave do not count for
+carry-over. The system makes the carry-over each year in the first
+week of January. Employees can see their current balance on the HR
+portal.
 
-## 8. Ayrılışta İzin Ücreti
+## 8. Leave Pay on Leaving
 
-İş sözleşmesi herhangi bir nedenle sona eren çalışanın kullanılmamış
-yıllık ücretli izin günlerinin ücreti, devredilen günler dahil olmak
-üzere son ücretle birlikte ödenir. Hesaplama, son brüt günlük ücret
-(aylık brüt ücret / 30) esas alınarak yapılır.
+When a contract ends for any reason, unused annual paid leave days are
+paid with the final pay. This includes carried-over days. The pay is
+based on the last gross daily pay (monthly gross pay / 30).
 
-İhbar süresi içinde yıllık ücretli izin kullandırılmaz; ihbar süresi
-ile izin süresi iç içe geçirilmez. Hak edilmeden kullanılmış avans
-izin günleri aynı yöntemle hesaplanarak son ücretten mahsup edilir.
+Annual paid leave is not given during the notice period. Years of
+service still count until the last working day. The notice period and
+leave days do not overlap. Advance leave days used before they were
+earned are worked out the same way and taken from the final pay.
 
-Doğum günü izni ve mazeret izinleri için ayrılışta ücret ödenmez.
-Hesaplamaya ilişkin itirazlar, son ücret bordrosunun tebliğinden
-itibaren 30 gün içinde ik@krakenair.example adresine yazılı olarak
-iletilir.
+There is no pay on leaving for birthday leave or special leave.
+Objections to the calculation go in writing to hr@krakenair.example
+within 30 days after the employee gets the final payslip.
 
-Sayfa 4 / 4
+Page 4 of 4

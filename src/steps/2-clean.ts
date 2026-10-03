@@ -1,7 +1,7 @@
 // STEP 2 — CLEAN
 // Gate: extracted text is noisy. The same page header sits on every page, so every chunk would carry
-// "Kraken Air | Yıllık İzin Politikası | Sürüm 2025" and look alike to the search. Lines are broken
-// where the PDF page ended, so "yıllık ücretli izin" and "24 iş günü" can land on different lines.
+// "Kraken Air | Annual Leave Policy | Edition 2025" and look alike to the search. Lines are broken
+// where the PDF page ended, so "annual paid leave" and "24 working days" can land on different lines.
 //
 // Nothing clever here: a few rules and a line-joiner. In real projects this is where most time goes.
 import { StaleInputError, readStep, writeStep } from "../lib/data.js";
@@ -10,19 +10,19 @@ import type { CleanDoc, Doc } from "../lib/types.js";
 import { corpusHash } from "./1-load.js";
 
 // ── YOUR TURN ───────────────────────────────────────────────────────────────────────────────────
-// The English document (it-security) repeats "CONFIDENTIAL – Internal use only" under the page header.
-// No rule removes it yet: open data/2-clean.json and find it. Write the rule the way the Turkish
-// confidentiality rule below is written, re-run step 2, and check: npm run check:sibling
-export const englishConfidential: RegExp | undefined = undefined;
+// The Turkish document (it-security) repeats "GİZLİ – Yalnızca şirket içi kullanım içindir" under the page header.
+// No rule removes it yet: find it in data/2-clean.json (copy the İ and the – from there). Write the rule the way
+// the English confidentiality rule below is written, re-run step 2, and check: npm run check:sibling
+export const turkishConfidential: RegExp | undefined = undefined;
 
 // TOGGLE noise rules — comment one out, re-run step 2, and find what it used to remove
 const NOISE: RegExp[] = [
   /^Kraken Air \| .+ \| (Sürüm|Edition) \d{4}$/, // default — page header, repeated on every page
-  /^GİZLİ – .+$/, // default — Turkish confidentiality line, under the page header
+  /^CONFIDENTIAL – .+$/, // default — English confidentiality line, under the page header
   /^Sayfa \d+ \/ \d+$/, // default — Turkish page number
   /^Page \d+ of \d+$/, // default — English page number
 
-  ...(englishConfidential ? [englishConfidential] : []),
+  ...(turkishConfidential ? [turkishConfidential] : []),
 ];
 
 /** True for a line that is extraction noise, not content. */

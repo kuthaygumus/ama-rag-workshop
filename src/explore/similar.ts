@@ -12,7 +12,7 @@ import { cosine, dot, l2 } from "../lib/similarity.js";
 import { exitOnError } from "../cli/errors.js";
 
 const PAIRS: { kind: string; a: string; b: string }[] = [
-  { kind: "paraphrase", a: "Tatil hakkım kaç gün?", b: "Yıllık ücretli izin süresi kıdeme göre belirlenir." },
+  { kind: "paraphrase", a: "How much holiday do I get?", b: "Annual paid leave depends on the length of service." },
   { kind: "TR ↔ EN", a: "Şifremi ne sıklıkla değiştirmem gerekiyor?", b: "Passwords must be changed every 90 days." },
   { kind: "twin tables", a: "Yurt içi seyahatte günlük harcırah ne kadar?", b: "Yurt dışı seyahatte günlük harcırah ne kadar?" },
   { kind: "negation trap", a: "Deneme süresindeki çalışanlar uzaktan çalışabilir.", b: "Deneme süresindeki çalışanlar uzaktan çalışamaz." },

@@ -68,5 +68,5 @@ export const config = {
   cacheFile: ".cache/embeddings.json",
 
   /** The day's question. Its answer moves as the pipeline grows. */
-  dayQuestion: "7 yıllık bir çalışanın yıllık izni kaç iş günü?",
+  dayQuestion: "How many working days of annual leave does an employee with 7 years of service get?",
 };

@@ -377,6 +377,7 @@ A({ id: "K03", tier: 1, cls: "P", sids: "S2.06 S2.11 S3.37 S4.42" }, () => {
   const hl = must(docsOf("2025", NOISE.slice(1)).find((d) => d.id === "hr-leave"), "hr-leave");
   const header = must(doc("2025", "hr-leave").body.split("\n").find((l) => HEADER_RULE.test(l.trim())), "hr-leave header");
   const headerOff = hl.noiseLines === 2 * pagesOf(doc("2025", "hr-leave")) && hl.text.includes(header.trim());
+  fact("clean.hrLeaveNoiseRule1Off", hl.noiseLines, "corpus replica (NOISE without its first rule)");
   return out(
     dNoise === pagesOf(ODD) && hw.sectionChunks === -1 && SEC25.some((c) => c.id === zero) && !s1.some((c) => c.id === zero) && hw.storeRecords === -2 && headerOff,
     `homework ${JSON.stringify(hw)}; header rule off: hr-leave noise ${hl.noiseLines}, header kept ${headerOff}`,
@@ -511,6 +512,9 @@ A({ id: "K10", tier: 1, cls: "P", sids: "S1.32 S2.20 S2.22 S2.23 S2.24 S2.32 S6.
     before: t.slice(x.s3, x.aEnd), after: t.slice(x.aEnd, x.s3 + x.headingLine.length), rowSplit: [t.slice(x.row5, x.bEnd), t.slice(x.bEnd, t.indexOf("\n", x.bEnd))],
     ids: [x.a.id, x.b.id, x.c.id], firstHeadingWord: x.firstWord,
   }, "corpus replica (fixedSize 300)");
+  const next = must(x.f[x.i + 1], "fixed chunk after the row-7 chunk");
+  fact("cut.idNext", next.id, "corpus replica (fixedSize 300)");
+  fact("cut.nextStart", must(next.text.trimStart().split(/\s+/)[0], "first word of the next chunk"), "corpus replica (fixedSize 300)");
   return out(aOk && bOk && cOk && once && twin, `${x.a.id} ends "${t.slice(x.s3, x.aEnd)}|" (${x.a.sections}); ${x.b.id} ends "${x.b.text.slice(-8).replace(/\n/g, "⏎")}" (row-5 start + ${x.bEnd - x.row5}); ${x.c.id} starts "${c.slice(0, 10).replace(/\n/g, "⏎")}" ok ${cOk}; once ${once}; 2026 twin ${twin}`);
 });
 
@@ -547,6 +551,9 @@ A({ id: "K12", tier: 1, cls: "N", sids: "S2.21" }, () => {
     return [s, !!c && c.text.includes(header)];
   }));
   fact("cut.sizeSweep", sweep, "corpus replica (fixedSize)");
+  const keep = Object.entries(sweep).filter(([, v]) => v).map(([k]) => k);
+  // The page's English list ("250, 350 or 1000"). No size keeps them: no key, so the page fill fails loudly.
+  if (keep.length) fact("cut.sizeSweepKeep", keep.length > 1 ? `${keep.slice(0, -1).join(", ")} or ${keep.at(-1)}` : keep[0], "corpus replica (fixedSize)");
   return out(sweep[300] === false, `row-7 chunk holds the header: ${JSON.stringify(sweep)}`);
 });
 

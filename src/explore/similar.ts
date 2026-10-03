@@ -13,10 +13,10 @@ import { exitOnError } from "../cli/errors.js";
 
 const PAIRS: { kind: string; a: string; b: string }[] = [
   { kind: "paraphrase", a: "How much holiday do I get?", b: "Annual paid leave depends on the length of service." },
-  { kind: "TR ↔ EN", a: "Şifremi ne sıklıkla değiştirmem gerekiyor?", b: "Passwords must be changed every 90 days." },
-  { kind: "twin tables", a: "Yurt içi seyahatte günlük harcırah ne kadar?", b: "Yurt dışı seyahatte günlük harcırah ne kadar?" },
-  { kind: "negation trap", a: "Deneme süresindeki çalışanlar uzaktan çalışabilir.", b: "Deneme süresindeki çalışanlar uzaktan çalışamaz." },
-  { kind: "unrelated", a: "Yemek kartına her ay yükleme yapılır.", b: "USB bellek kullanımı yasaktır." },
+  { kind: "EN ↔ TR", a: "How often must I change my password?", b: "Şifreler 90 günde bir değiştirilmelidir." },
+  { kind: "twin tables", a: "How much is the domestic per diem?", b: "How much is the international per diem?" },
+  { kind: "negation trap", a: "Employees on probation can work remotely.", b: "Employees on probation cannot work remotely." },
+  { kind: "unrelated", a: "Your meal card is loaded every month.", b: "USB sticks are not allowed." },
 ];
 
 const METRICS = { cosine, dot, l2 } as const;

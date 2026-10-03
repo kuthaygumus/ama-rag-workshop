@@ -84,7 +84,8 @@ const REQUIRED_LOGS = [
   "ask-out-of-corpus", "ask-out-of-corpus-rule-off", "ask-injection", "ask-injection-rule-off", "eval-section", "eval-answers",
   "ingest-fixed", "eval-fixed", "ingest-section", "ingest-2026", "question-4-2026", "edition-all", "stuff-everything",
 ];
-/** Logs capture does not write yet (P4 captures them; delete this list then). Only these may be PEND for "no log yet". */
+/** Logs capture.ts writes but no capture has recorded yet (P4 captures them; move them to REQUIRED_LOGS then).
+ *  Only these may be PEND for "no log yet". */
 const NOT_CAPTURED_YET = ["ask-paraphrase", "eval-section-json", "eval-fixed-json", "ask-2026-password"];
 /** Every log name a spec declared: L00 proves each one is in one of the two lists above. */
 const DECLARED = new Set<string>();
@@ -702,16 +703,55 @@ A({ id: "T07", part: "markers", tier: 1, cls: "N", sids: "-" }, () => {
   const hits = shippedFiles.flatMap((f) => read(f).split("\n").flatMap((l, i) => markers.filter((m) => m.test(l)).map((m) => `${f.replace(`${process.cwd()}/`, "")}:${i + 1} ${m}`)));
   return out(markers.length > 10 && !hits.length, hits.length ? hits.slice(0, 5).join("; ") : `${markers.length} markers, ${shippedFiles.length} files, 0 hits`);
 });
-A({ id: "T07", part: "stage+calque", tier: 1, cls: "E", sids: "-" }, () => {
-  // The site's "scan everything" lists: STAGE_TR (or the older single STAGE) and CALQUE, read by path, never copied.
+/** The site's "scan everything" lists hit in these texts: STAGE_TR (or the older single STAGE) and CALQUE, read by path, never copied. */
+function stageCalqueHits(texts: { f: string; t: string }[]): Outcome {
   const scripts = ["check-dist.mjs", "style-lists.mjs"].map((f) => join(SITE, "scripts", f)).filter((f) => existsSync(f));
   if (!scripts.length) return out(false, `site scripts not found under ${SITE} (set SITE_DIR)`);
   const lits = new Map(scripts.flatMap((f) => [...read(f).matchAll(/^(?:export )?const (STAGE_TR|STAGE|CALQUE) = \/(.+)\/([a-z]*);$/gm)].map((m) => [m[1]!, new RegExp(m[2]!, m[3])] as const)));
   const res = [must(lits.get("STAGE_TR") ?? lits.get("STAGE"), "STAGE_TR or STAGE in the site scripts"), must(lits.get("CALQUE"), "CALQUE in the site scripts")];
-  const pairs = [...read("src/explore/similar.ts").matchAll(/[ab]: "([^"]+)"/g)].map((m) => m[1]!);
-  const texts = [...[...filesIn(CORPUS), GOLD_FILE, ...filesIn(LOGS)].map((f) => ({ f, t: read(f) })), { f: "RULES", t: RULES.join("\n") }, { f: "similar.ts pairs", t: pairs.join("\n") }];
   const hits = texts.flatMap(({ f, t }) => res.flatMap((re) => (t.match(re) ? [`${f.split("/").pop()}: ${t.match(re)![0]}`] : [])));
   return out(!hits.length, hits.slice(0, 6).join("; ") || `${texts.length} texts clean`);
+}
+A({ id: "T07", part: "stage+calque data", tier: 1, cls: "E", sids: "-" }, () => {
+  const pairs = [...read("src/explore/similar.ts").matchAll(/[ab]: "([^"]+)"/g)].map((m) => m[1]!);
+  return stageCalqueHits([...[...filesIn(CORPUS), GOLD_FILE].map((f) => ({ f, t: read(f) })), { f: "RULES", t: RULES.join("\n") }, { f: "similar.ts pairs", t: pairs.join("\n") }]);
+});
+// The logs half runs after a capture (never in --offline): until the English capture the logs are the Turkish day's.
+A({ id: "T07", part: "stage+calque logs", tier: 1, cls: "E", sids: "-", logs: ["ask-out-of-corpus", "ask-out-of-corpus-rule-off", "map.json"] }, () =>
+  stageCalqueHits(filesIn(LOGS).map((f) => ({ f, t: read(f) }))),
+);
+
+/**
+ * T05 · no Turkish left outside the one Turkish document. A word with a Turkish letter may appear only if the
+ * Turkish document (either edition) has the same word: its header and footer in the cleaning rules and tests,
+ * the Turkish sentence in similar.ts, and logs that print its text. Two files are Turkish on purpose (the
+ * homework answer and its test), and the TR day's "7 years" phrase may appear nowhere.
+ */
+const TR_DOC_FILES = filesIn(CORPUS).filter((f) => /[\\/]it-security\.md$/.test(f));
+/** Proper names English text spells with a Turkish letter (a public holiday in hr-working-hours). */
+const TR_NAMES = [W("Atat", String.fromCodePoint(0xfc), "rk")];
+const TR_WORDS = new Set([...TR_DOC_FILES.flatMap((f) => read(f).match(/\p{L}+/gu) ?? []), ...TR_NAMES]);
+const TR_WHOLE_FILES = [join("solutions", SOLUTION_FILE), join("test", "siblings", "siblings.test.ts")].map((f) => resolve(f));
+const TR_DAY_PHRASE = new RegExp(`7 y${String.fromCodePoint(0x131)}ll${String.fromCodePoint(0x131)}k`, "i");
+const strayTurkish = (files: string[]) =>
+  files.flatMap((f) => {
+    const name = f.replace(`${process.cwd()}/`, "");
+    return read(f).split("\n").flatMap((l, i) => {
+      const where = `${name}:${i + 1}`;
+      if (TR_DAY_PHRASE.test(l)) return [`${where} "${l.match(TR_DAY_PHRASE)![0]}"`];
+      if (TR_DOC_FILES.includes(f) || TR_WHOLE_FILES.includes(f)) return [];
+      const bad = (l.match(/\p{L}+/gu) ?? []).filter((w) => w.length > 1 && TURKISH.test(w) && !TR_WORDS.has(w));
+      return bad.length ? [`${where} ${bad.slice(0, 3).join(" ")}`] : [];
+    });
+  });
+A({ id: "T05", part: "files", tier: 1, cls: "N", sids: "S1.01 S3.02" }, () => {
+  const files = shippedFiles.filter((f) => !f.startsWith(`${LOGS}/`));
+  const hits = strayTurkish(files);
+  return out(TR_DOC_FILES.length > 0 && !hits.length, hits.slice(0, 6).join("; ") || `${files.length} files, Turkish only from ${TR_DOC_FILES.length} it-security files (${TR_WORDS.size} words)`);
+});
+A({ id: "T05", part: "logs", tier: 1, cls: "N", sids: "S1.01 S3.02", logs: ["04b-similar", "map.json"] }, () => {
+  const hits = strayTurkish(filesIn(LOGS));
+  return out(!hits.length, hits.slice(0, 6).join("; ") || `${filesIn(LOGS).length} logs, Turkish only from it-security`);
 });
 
 // ═══ L · log layer ══════════════════════════════════════════════════════════════════════════════
@@ -725,7 +765,7 @@ A({ id: "L00", part: "present", tier: 1, cls: "N", sids: "-" }, () => {
   if (!existsSync(LOGS)) return out(false, `logs directory missing: ${LOGS}`);
   const missing = REQUIRED_LOGS.filter((n) => !hasLog(n));
   const empty = REQUIRED_LOGS.filter((n) => hasLog(n) && !n.endsWith(".json") && !ln(n, 1).startsWith("$ "));
-  const manifest = [...REQUIRED_LOGS].sort().join() === [...new Set(CAPTURED)].sort().join() && !NOT_CAPTURED_YET.some((n) => CAPTURED.includes(n));
+  const manifest = [...REQUIRED_LOGS, ...NOT_CAPTURED_YET].sort().join() === [...new Set(CAPTURED)].sort().join();
   return out(!missing.length && !empty.length && manifest,
     `${REQUIRED_LOGS.length - missing.length}/${REQUIRED_LOGS.length} required logs; missing [${missing.join(" ")}]; no "$ " line 1 [${empty.join(" ")}]; manifest == capture.ts ${manifest}`);
 });

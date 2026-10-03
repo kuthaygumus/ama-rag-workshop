@@ -1,6 +1,6 @@
 // STEP 3 — CHUNK
 // Gate: a whole document is too big to hand to the model on every question, and the answer to
-// "yıllık izin kaç gün?" lives in three lines of it. So we cut documents into pieces (chunks); later
+// "how many days of leave?" lives in three lines of it. So we cut documents into pieces (chunks); later
 // the search picks the few pieces that matter.
 //
 // HOW we cut decides what the search can ever find. Two ways below — try both and run `npm run question`.
@@ -71,10 +71,10 @@ function packParagraphs(body: string, max: number): string[] {
 }
 
 /**
- * Cut at the document's own headings ("## 3. Yıllık Ücretli İzin") and put the document title and
+ * Cut at the document's own headings ("## 3. Annual Paid Leave") and put the document title and
  * heading in front of every chunk. A table then stays with the heading that explains it, and even a
  * chunk that is mostly numbers says what it is about.
- * @example bySection(doc)[0].text // "[Yıllık İzin Politikası › 1. Amaç ve Kapsam]\n…"
+ * @example bySection(doc)[0].text // "[Annual Leave Policy › 1. Purpose and Scope]\n…"
  */
 export function bySection(doc: CleanDoc): Chunk[] {
   const parts = doc.text.split(/\n(?=## \d+\.)/);

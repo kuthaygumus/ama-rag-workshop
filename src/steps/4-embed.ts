@@ -1,5 +1,5 @@
 // STEP 4 — EMBED
-// Gate: words are not meaning. "tatil hakkım" and "yıllık ücretli izin" share no word, yet mean the
+// Gate: words are not meaning. "my holiday" and "annual paid leave" share no word, yet mean the
 // same thing; a keyword search cannot see that. An embedding model turns a text into a list of numbers
 // (a vector) so that texts with similar meaning land close together.
 //

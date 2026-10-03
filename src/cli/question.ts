@@ -49,7 +49,7 @@ async function pipeline(): Promise<{ store: VectorStore; how: string } | undefin
 }
 
 async function main(): Promise<void> {
-  banner(`GÜNÜN SORUSU  ${config.dayQuestion}`);
+  banner(`QUESTION OF THE DAY  ${config.dayQuestion}`);
   const p = await pipeline();
   let entry: Entry;
   if (!p) {

@@ -1,7 +1,7 @@
 // npm run step -- <n> ["question"]
 // Run ONE step. It reads the previous step's file from data/ and writes its own.
 //   npm run step -- 3                    chunk data/2-clean.json → data/3-chunks.json
-//   npm run step -- 6 "tatil hakkım?"    retrieve for any question (steps 6–8 default to the day's question)
+//   npm run step -- 6 "my holiday?"      retrieve for any question (steps 6–8 default to the day's question)
 import { cli } from "../lib/config.js";
 import { exitOnError } from "./errors.js";
 

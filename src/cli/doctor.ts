@@ -1,6 +1,6 @@
 // npm run doctor
 // Is this laptop ready for the day? Checks every moving part once and times one real answer.
-import { readdir } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { config } from "../lib/config.js";
 import { heartbeat } from "../lib/chroma.js";
 import { banner, green, more, red, yellow } from "../lib/log.js";
@@ -39,7 +39,14 @@ if (config.store === "chroma") {
 
 try {
   const files = (await readdir(`corpus/${config.edition}`)).filter((f) => f.endsWith(".md"));
-  ok(`corpus/${config.edition}`, `${files.length} documents`);
+  // Languages from each file's front matter, most common first: an old clone shows other numbers here.
+  const langs = new Map<string, number>();
+  for (const f of files) {
+    const lang = (await readFile(`corpus/${config.edition}/${f}`, "utf8")).match(/^lang:\s*(\S+)/m)?.[1] ?? "?";
+    langs.set(lang, (langs.get(lang) ?? 0) + 1);
+  }
+  const mix = [...langs].sort((x, y) => y[1] - x[1]).map(([l, n]) => `${n} ${l}`).join(", ");
+  ok(`corpus/${config.edition}`, `${files.length} documents · ${mix}`);
 } catch {
   fail(`corpus/${config.edition}`, "missing — run npm run doctor from the repo folder");
 }

@@ -12,7 +12,7 @@ import { exitOnError } from "./errors.js";
 
 const question = cli.positionals[0];
 if (!question) {
-  console.error('usage: npm run ask -- "Yurt dışı harcırahı ne kadar?" [--prompt] [--bare] [--k 8]');
+  console.error('usage: npm run ask -- "How much is the international per diem?" [--prompt] [--bare] [--k 8]');
   process.exit(1);
 }
 try {

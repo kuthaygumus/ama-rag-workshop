@@ -64,7 +64,7 @@ export async function retrieve(question: string, o: RetrieveOptions): Promise<Re
   return { question, filter, k, hits: ranked.slice(0, k), below: ranked.slice(k), embedMs, searchMs };
 }
 
-/** "Yıllık İzin Politikası › §3" */
+/** "Annual Leave Policy › §3" */
 export const where = (h: Hit) => `${h.chunk.title} › §${h.chunk.sections.join(",")}`;
 
 /** Print the ranked list with the cut line. */

@@ -42,7 +42,7 @@ function html(points: MapPoint[], star: { x: number; y: number; text: string }, 
     return `${(qx + r * Math.cos(a)).toFixed(1)},${(qy + r * Math.sin(a)).toFixed(1)}`;
   }).join(" ");
   const legend = docs.map((d, i) => `<g transform="translate(${W - 190},${P + i * 22})"><circle r="6" cx="6" cy="0" fill="${color(d)}"/><text x="18" y="4">${esc(d)}</text></g>`).join("\n");
-  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Vector map</title>
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Vector map</title>
 <style>:root{color-scheme:light dark;--bg:#fff;--fg:#1a1a1a;--mute:#777}@media (prefers-color-scheme:dark){:root{--bg:#161616;--fg:#eee;--mute:#999}}
 body{margin:0;padding:16px;background:var(--bg);color:var(--fg);font:14px system-ui,sans-serif}svg{max-width:100%;height:auto}text{fill:var(--fg);font-size:12px}.m{fill:var(--mute)}</style></head>
 <body><h1 style="font-size:18px;margin:0 0 4px">Our policies in 2-D</h1>

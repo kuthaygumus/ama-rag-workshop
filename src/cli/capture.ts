@@ -79,7 +79,7 @@ await clearData();
 await openStore().reset();
 console.log("capture: playing the day …");
 
-// Başlamadan
+// Before we start
 await run("doctor", ["src/cli/doctor.ts"]);
 await record("00-bare", "npm run step -- 0", () => steps.s0.run());
 await run("question-0-bare", ["src/cli/question.ts"]);
@@ -111,8 +111,9 @@ await record("08-answer-rerank-off", "npm run step -- 8   (after rerank off)", (
 await record("07-rerank", "npm run step -- 7", () => steps.s7.run(true));
 await run("08-answer", ["src/cli/step.ts", "8", "--prompt"]);
 await run("question-3-full", ["src/cli/question.ts"]);
+await run("ask-paraphrase", ["src/cli/ask.ts", first("paraphrase")]);
 
-// E / Güvenlik · access filter
+// E / Security · access filter
 await run("ask-access-on", ["src/cli/ask.ts", first("access")]);
 await record("ask-access-off", `npm run ask -- "${first("access")}"   (ASKER_MAY_READ = undefined)`, () => pipeline(first("access"), { access: undefined }));
 
@@ -125,12 +126,19 @@ await record("ask-injection-rule-off", `npm run ask -- "${first("injection")}"  
 // 4 · quality: section vs fixed, then answers
 await run("eval-section", ["src/cli/eval.ts"]);
 await run("eval-answers", ["src/cli/eval.ts", "--answers"]);
+// the same eval on the JSON store (brute force): eval opens the store step 5 last wrote
+await steps.s5.run("json");
+await run("eval-section-json", ["src/cli/eval.ts"]);
+await steps.s5.run("chroma");
 await record("ingest-fixed", "npm run step -- 3 / 4 / 5   (chunker: fixed)", async () => {
   await steps.s3.run("fixed");
   await steps.s4.run();
   await steps.s5.run("chroma");
 });
 await run("eval-fixed", ["src/cli/eval.ts"]);
+await steps.s5.run("json");
+await run("eval-fixed-json", ["src/cli/eval.ts"]);
+await steps.s5.run("chroma");
 await record("ingest-section", "npm run step -- 3 / 4 / 5   (chunker: section)", async () => {
   await steps.s3.run("section");
   await steps.s4.run();
@@ -148,9 +156,10 @@ await record("stuff-everything", "every document in one prompt (no retrieval)", 
   console.log(`\n${g.text}`);
 });
 
-// Veri değişince · the 2026 edition
+// When the data changes · the 2026 edition
 await run("ingest-2026", ["src/cli/ingest.ts", "--edition", "2026"]);
 await run("question-4-2026", ["src/cli/question.ts"]);
+await run("ask-2026-password", ["src/cli/ask.ts", first("en-tr")]);
 await record("edition-all", `npm run question   (EDITION_FILTER = "all")`, () => pipeline(config.dayQuestion, { edition: "all" }));
 
 console.log("capture: done — now in the site repo: npm run sync");

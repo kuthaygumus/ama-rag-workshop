@@ -71,7 +71,7 @@ export interface EmbedResult {
  * Sends them in batches of `config.embedBatch`; texts seen before come from the cache.
  * @param texts the chunks (at ingest) or the question (at query time)
  * @returns the vectors and how many were freshly computed
- * @example const { vectors } = await embed(["yıllık izin"]); vectors[0].length // 1024
+ * @example const { vectors } = await embed(["annual leave"]); vectors[0].length // 1024
  */
 export async function embed(texts: string[], model = config.embedModel): Promise<EmbedResult> {
   const store = await loadCache();

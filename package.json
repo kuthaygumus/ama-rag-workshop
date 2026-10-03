@@ -18,6 +18,7 @@
     "eval": "tsx src/cli/eval.ts",
     "catchup": "tsx src/cli/catchup.ts",
     "capture": "tsx src/cli/capture.ts",
+    "check:story": "tsx src/cli/check-story.ts",
     "typecheck": "tsc --noEmit",
     "test": "npm run check:legacy && vitest run",
     "check:sibling": "vitest run --config vitest.sibling.config.ts",

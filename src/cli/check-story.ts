@@ -747,7 +747,8 @@ const strayTurkish = (files: string[]) =>
       const where = `${name}:${i + 1}`;
       if (TR_DAY_PHRASE.test(l)) return [`${where} "${l.match(TR_DAY_PHRASE)![0]}"`];
       if (TR_DOC_FILES.includes(f) || TR_WHOLE_FILES.includes(f)) return [];
-      const bad = (l.match(/\p{L}+/gu) ?? []).filter((w) => w.length > 1 && TURKISH.test(w) && !TR_WORDS.has(w));
+      // a JSON escape (map.json) must not glue its letter onto the next word: "\nGİZLİ" is "GİZLİ"
+      const bad = (l.replace(/\\[nrt]/g, " ").match(/\p{L}+/gu) ?? []).filter((w) => w.length > 1 && TURKISH.test(w) && !TR_WORDS.has(w));
       return bad.length ? [`${where} ${bad.slice(0, 3).join(" ")}`] : [];
     });
   });

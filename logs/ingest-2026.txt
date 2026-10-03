@@ -3,21 +3,21 @@ $ npm run ingest -- --edition 2026
 ━━ STEP 1/8 · LOAD
    IN    corpus/2026/
    WHAT  read every file · front matter → metadata (id, edition, department, access, lang) · body kept as-is
-   OUT   8 documents · 42678 characters
-         announcement-meal-card   tr  all        1377 chars    37 lines
-         benefits                 tr  all        4848 chars   124 lines
-         code-of-conduct          tr  all        5253 chars   130 lines
-         hr-leave                 tr  all        7681 chars   199 lines
-         hr-salary-bands          tr  hr-only    4500 chars   119 lines
-         hr-working-hours         tr  all        6193 chars   152 lines
-         it-security              en  all        6632 chars   160 lines
-         travel-expenses          tr  all        6194 chars   153 lines
-   TIME  8 ms  →  data/1-docs.json
+   OUT   8 documents · 42987 characters
+         announcement-meal-card   en  all        1277 chars    37 lines
+         benefits                 en  all        4875 chars   124 lines
+         code-of-conduct          en  all        5371 chars   133 lines
+         hr-leave                 en  all        7776 chars   198 lines
+         hr-salary-bands          en  hr-only    4785 chars   125 lines
+         hr-working-hours         en  all        5941 chars   147 lines
+         it-security              tr  all        6935 chars   163 lines
+         travel-expenses          en  all        6027 chars   151 lines
+   TIME  5 ms  →  data/1-docs.json
 
 ━━ STEP 2/8 · CLEAN
    IN    data/1-docs.json  (8 documents, edition 2026)
    WHAT  drop noise lines (4 rules) · re-join lines the page width broke
-   OUT   1074 lines → 512 lines · 74 noise lines removed
+   OUT   1078 lines → 512 lines · 74 noise lines removed
          announcement-meal-card   − 3 noise lines
          benefits                 − 9 noise lines
          code-of-conduct          − 9 noise lines
@@ -28,28 +28,28 @@ $ npm run ingest -- --edition 2026
          travel-expenses          −12 noise lines
 
          before (hr-leave, first 6 lines):
-           │ Kraken Air | Yıllık İzin Politikası | Sürüm 2026
-           │ GİZLİ – Yalnızca şirket içi kullanım içindir
+           │ Kraken Air | Annual Leave Policy | Edition 2026
+           │ CONFIDENTIAL – Internal use only
            │
-           │ # Yıllık İzin Politikası
+           │ # Annual Leave Policy
            │
-           │ ## 1. Amaç ve Kapsam
+           │ ## 1. Purpose and Scope
          after:
-           │ # Yıllık İzin Politikası
+           │ # Annual Leave Policy
            │
-           │ ## 1. Amaç ve Kapsam
-   TIME  4 ms  →  data/2-clean.json
+           │ ## 1. Purpose and Scope
+   TIME  3 ms  →  data/2-clean.json
 
 ━━ STEP 3/8 · CHUNK
    IN    data/2-clean.json  (8 documents)
    WHAT  section: a cut at every '## n.' heading, title › heading kept in front
-   OUT   60 chunks · avg 688 chars · min 93 · max 1528
+   OUT   60 chunks · avg 695 chars · min 103 · max 1514
 
          the chunk holding "| 7 |" → hr-leave@2026#3  (sections 3)
-           │ [Yıllık İzin Politikası › 3. Yıllık Ücretli İzin]
-           │ Yıllık ücretli izin süresi, işe giriş tarihinden itibaren tamamlanan tam hizmet yılına göre belirlenir. Tabloda her kıdem yılı için izin hakkı ayrı bir satırda verilmiştir.
+           │ [Annual Leave Policy › 3. Annual Paid Leave]
+           │ Part-time staff get the same number as full-time staff. The HR portal shows the balance for each person. Questions go to the unit's HR business partner.
            │
-           │ | Kıdem (tam yıl) | Yıllık ücretli izin (iş günü) |
+           │ | Years of service (full years) | Annual paid leave (working days) |
            │ |---|---|
            │ | 1 | 16 |
            │ | 2 | 16 |
@@ -65,20 +65,20 @@ $ npm run ingest -- --edition 2026
            │ | 12 | 26 |
            │ | 13 | 26 |
            │ | 14 | 26 |
-           │ | 15 ve üzeri | 28 |
+           │ | 15 or more | 28 |
            │
-           │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da aranır.
+           │ Leave requests go to the manager on the HR portal at least 15 working days before the leave starts. For leave longer than 10 working days without a break, the department director must also approve.
            │
-           │ Takvim yılı içinde kullanılmayan günler, en fazla 5 iş günü ile sınırlı olarak bir sonraki yıla devredilebilir; devrin koşulları 7. bölümde açıklanmıştır.
-   TIME  3 ms  →  data/3-chunks.json
+           │ Up to 5 unused working days can move to the next calendar year. For the conditions of this carry-over, see section 7.
+   TIME  2 ms  →  data/3-chunks.json
 
 ━━ STEP 4/8 · EMBED
    IN    data/3-chunks.json  (60 chunks)
    WHAT  send each chunk's text to bge-m3 (Ollama /api/embed, 24 per call)
    OUT   60 vectors · 1024 numbers each · 0 computed, 60 from cache
-         announcement-meal-card@2026#1 → [-0.0538, -0.0108, -0.0047, -0.0064, -0.0463, -0.0545, … ]
+         announcement-meal-card@2026#1 → [-0.0356, 0.0001, -0.0278, -0.0149, -0.0330, -0.0674, … ]
          length (norm) of that vector: 1.000
-   TIME  31 ms  →  data/4-vectors.json
+   TIME  46 ms  →  data/4-vectors.json
 
 ━━ STEP 5/8 · STORE
    IN    data/4-vectors.json  (60 vectors, edition 2026)
@@ -86,9 +86,9 @@ $ npm run ingest -- --edition 2026
    OUT   60 records added · 120 in the store · editions: 2025, 2026
 
          the day's question, top-5 ids:
-           JSON (brute force)  hr-leave@2026#3  hr-leave@2026#4  hr-leave@2026#5  hr-leave@2026#7  hr-leave@2026#6
-           chroma              hr-leave@2026#3  hr-leave@2026#4  hr-leave@2026#5  hr-leave@2026#7  hr-leave@2026#6
+           JSON (brute force)  hr-leave@2026#3  hr-leave@2026#2  hr-leave@2026#7  hr-leave@2026#6  hr-leave@2026#4
+           chroma              hr-leave@2026#3  hr-leave@2026#2  hr-leave@2026#7  hr-leave@2026#6  hr-leave@2026#4
            identical ✓ — the database changes the scale, not the ranking
-   TIME  172 ms  →  data/5-store.json
+   TIME  185 ms  →  data/5-store.json
 
 Ingest done (edition 2026). Now: npm run question

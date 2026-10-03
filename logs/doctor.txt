@@ -6,8 +6,8 @@ $ npm run doctor
          ✓ model gemma3:4b
          ✓ model bge-m3
          ✓ Chroma                       http://localhost:8000
-         ✓ corpus/2025                  8 documents
-         ✓ embed one sentence           1024 numbers · 1924 ms
-         ✓ one answer                   4590 ms · "Ankara"
+         ✓ corpus/2025                  8 documents · 7 en, 1 tr
+         ✓ embed one sentence           1024 numbers · 122 ms
+         ✓ one answer                   172 ms · "Ankara"
 
 Ready.

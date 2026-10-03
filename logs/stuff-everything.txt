@@ -1,6 +1,6 @@
 $ every document in one prompt (no retrieval)
-   documents      8 (40092 characters)
-   prompt tokens  11358
-   time           29983 ms
+   documents      8 (40709 characters)
+   prompt tokens  9954
+   time           26337 ms
 
-Kraken Air'de 7 yıllık bir çalışanın yıllık ücretli izin hakkı 22 iş günüdür. [1]
+An employee with 7 years of service gets 22 working days of annual paid leave. [1]

@@ -3,7 +3,7 @@ $ npm run step -- 2
 ━━ STEP 2/8 · CLEAN
    IN    data/1-docs.json  (8 documents, edition 2025)
    WHAT  drop noise lines (4 rules) · re-join lines the page width broke
-   OUT   1074 lines → 512 lines · 74 noise lines removed
+   OUT   1078 lines → 512 lines · 74 noise lines removed
          announcement-meal-card   − 3 noise lines
          benefits                 − 9 noise lines
          code-of-conduct          − 9 noise lines
@@ -14,14 +14,14 @@ $ npm run step -- 2
          travel-expenses          −12 noise lines
 
          before (hr-leave, first 6 lines):
-           │ Kraken Air | Yıllık İzin Politikası | Sürüm 2025
-           │ GİZLİ – Yalnızca şirket içi kullanım içindir
+           │ Kraken Air | Annual Leave Policy | Edition 2025
+           │ CONFIDENTIAL – Internal use only
            │
-           │ # Yıllık İzin Politikası
+           │ # Annual Leave Policy
            │
-           │ ## 1. Amaç ve Kapsam
+           │ ## 1. Purpose and Scope
          after:
-           │ # Yıllık İzin Politikası
+           │ # Annual Leave Policy
            │
-           │ ## 1. Amaç ve Kapsam
-   TIME  4 ms  →  data/2-clean.json
+           │ ## 1. Purpose and Scope
+   TIME  5 ms  →  data/2-clean.json

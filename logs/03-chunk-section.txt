@@ -3,13 +3,13 @@ $ npm run step -- 3   (chunker: section)
 ━━ STEP 3/8 · CHUNK
    IN    data/2-clean.json  (8 documents)
    WHAT  section: a cut at every '## n.' heading, title › heading kept in front
-   OUT   60 chunks · avg 688 chars · min 93 · max 1528
+   OUT   60 chunks · avg 695 chars · min 103 · max 1514
 
          the chunk holding "| 7 |" → hr-leave@2025#3  (sections 3)
-           │ [Yıllık İzin Politikası › 3. Yıllık Ücretli İzin]
-           │ Yıllık ücretli izin süresi, işe giriş tarihinden itibaren tamamlanan tam hizmet yılına göre belirlenir. Tabloda her kıdem yılı için izin hakkı ayrı bir satırda verilmiştir.
+           │ [Annual Leave Policy › 3. Annual Paid Leave]
+           │ Part-time staff get the same number as full-time staff. The HR portal shows the balance for each person. Questions go to the unit's HR business partner.
            │
-           │ | Kıdem (tam yıl) | Yıllık ücretli izin (iş günü) |
+           │ | Years of service (full years) | Annual paid leave (working days) |
            │ |---|---|
            │ | 1 | 16 |
            │ | 2 | 16 |
@@ -25,9 +25,9 @@ $ npm run step -- 3   (chunker: section)
            │ | 12 | 25 |
            │ | 13 | 25 |
            │ | 14 | 25 |
-           │ | 15 ve üzeri | 28 |
+           │ | 15 or more | 28 |
            │
-           │ İzin talepleri, izin başlangıcından en az 15 iş günü önce İK portalı üzerinden yöneticiye iletilir. 10 iş gününü aşan kesintisiz izinlerde bölüm direktörünün onayı da aranır.
+           │ Leave requests go to the manager on the HR portal at least 15 working days before the leave starts. For leave longer than 10 working days without a break, the department director must also approve.
            │
-           │ Takvim yılı içinde kullanılmayan günler, en fazla 5 iş günü ile sınırlı olarak bir sonraki yıla devredilebilir; devrin koşulları 7. bölümde açıklanmıştır.
-   TIME  5 ms  →  data/3-chunks.json
+           │ Up to 5 unused working days can move to the next calendar year. For the conditions of this carry-over, see section 7.
+   TIME  2 ms  →  data/3-chunks.json

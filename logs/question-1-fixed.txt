@@ -1,14 +1,14 @@
 $ npm run question
 
-━━ GÜNÜN SORUSU  7 yıllık bir çalışanın yıllık izni kaç iş günü?
+━━ QUESTION OF THE DAY  How many working days of annual leave does an employee with 7 years of service get?
    HOW   chunker fixed · in-memory search (black box) · rerank on · filter {"edition":"2025","access":["all"]}
 
-Bu bilgi politikalarda yer almıyor.
+An employee with 7 years of service gets at most 7 working days [1].
 
-         [1] hr-leave@2025#c19  Yıllık İzin Politikası › §6,7
-         [2] hr-working-hours@2025#c11  Çalışma Saatleri ve Uzaktan Çalışma › §5
-         [3] hr-leave@2025#c11  Yıllık İzin Politikası › §4
+         [1] hr-leave@2025#c11  Annual Leave Policy › §4
+         [2] hr-leave@2025#c20  Annual Leave Policy › §7
+         [3] hr-leave@2025#c23  Annual Leave Policy › §8
 
    LEDGER (.cache/question-ledger.jsonl)
-         22:42  Yıllık izin, çalışanın işverenine bağlı olara…  bare model, no documents
-         22:42  Bu bilgi politikalarda yer almıyor.             chunker fixed · in-memory search (black box) · rerank on · filter {"e…
+         01:49  Typically, an employee with 7 years of servic…  bare model, no documents
+         01:49  An employee with 7 years of service gets at m…  chunker fixed · in-memory search (black box) · rerank on · filter {"e…

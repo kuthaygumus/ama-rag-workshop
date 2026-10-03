@@ -6,7 +6,7 @@ $ npm run step -- 5
    OUT   60 records added · 60 in the store · editions: 2025
 
          the day's question, top-5 ids:
-           JSON (brute force)  hr-leave@2025#3  hr-leave@2025#4  hr-leave@2025#5  hr-leave@2025#7  hr-leave@2025#6
-           chroma              hr-leave@2025#3  hr-leave@2025#4  hr-leave@2025#5  hr-leave@2025#7  hr-leave@2025#6
+           JSON (brute force)  hr-leave@2025#3  hr-leave@2025#2  hr-leave@2025#7  hr-leave@2025#6  hr-leave@2025#4
+           chroma              hr-leave@2025#3  hr-leave@2025#2  hr-leave@2025#7  hr-leave@2025#6  hr-leave@2025#4
            identical ✓ — the database changes the scale, not the ranking
-   TIME  133 ms  →  data/5-store.json
+   TIME  123 ms  →  data/5-store.json

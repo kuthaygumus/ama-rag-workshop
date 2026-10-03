@@ -1,40 +1,40 @@
-$ npm run ask -- "Çalışanlara hisse opsiyonu veriliyor mu?"
+$ npm run ask -- "Do employees get stock options?"
 
 ━━ STEP 6/8 · RETRIEVE
-   IN    Çalışanlara hisse opsiyonu veriliyor mu?
-   WHAT  embed the question (bge-m3, 17 ms) · ask chroma for the 5 closest · filter {"edition":"2025","access":["all"]}
+   IN    Do employees get stock options?
+   WHAT  embed the question (bge-m3, 31 ms) · ask chroma for the 5 closest · filter {"edition":"2025","access":["all"]}
    OUT   5 chunks handed on · search 11 ms
-          1  0.519  benefits@2025#7          Yan Haklar › §7                              İşe başlangıcından itibaren 6 ayını dol…
-          2  0.498  hr-leave@2025#1          Yıllık İzin Politikası › §1                  Bu politika, Kraken Air çalışanlarının …
-          3  0.497  hr-leave@2025#4          Yıllık İzin Politikası › §4                  Her birim, yıllık ücretli izin planını …
-          4  0.496  hr-leave@2025#2          Yıllık İzin Politikası › §2                  Yıllık ücretli izne hak kazanmak için, …
-          5  0.491  benefits@2025#2          Yan Haklar › §2                              Her çalışana, fiilen çalışılan her iş g…
+          1  0.543  benefits@2025#7          Benefits › §7                                Employees who have completed 6 months o…
+          2  0.520  benefits@2025#1          Benefits › §1                                This policy describes the benefits that…
+          3  0.518  benefits@2025#5          Benefits › §5                                Free staff shuttle buses run on set rou…
+          4  0.518  benefits@2025#2          Benefits › §2                                For each working day actually worked, e…
+          5  0.509  hr-leave@2025#1          Annual Leave Policy › §1                     This policy gives the Kraken Air rules …
          ─ ─ ─ cut: k = 5 ─ ─ ─
-          6  0.491  hr-working-hours@2025#1  Çalışma Saatleri ve Uzaktan Çalışma › §1     Bu politika, Kraken Air'de haftalık çal…
-          7  0.490  benefits@2025#4          Yan Haklar › §4                              Çalışanların spor salonu, yüzme havuzu …
-          8  0.488  code-of-conduct@2025#4   Etik ve Davranış Kuralları › §4              Çalışan, kişisel çıkarlarının şirketin …
-   TIME  66 ms  →  data/6-retrieved.json
+          6  0.499  hr-working-hours@2025#6  Working Hours and Remote Work › §6           Head office employees whose job allows …
+          7  0.497  hr-working-hours@2025#1  Working Hours and Remote Work › §1           This policy sets the working time rules…
+          8  0.492  hr-working-hours@2025#5  Working Hours and Remote Work › §5           Kraken Air employees do not work on nat…
+   TIME  78 ms  →  data/6-retrieved.json
 
 ━━ STEP 7/8 · RERANK
-   IN    data/6-retrieved.json  (5 chunks for "Çalışanlara hisse opsiyonu veriliyor mu?")
+   IN    data/6-retrieved.json  (5 chunks for "Do employees get stock options?")
    WHAT  gemma3:4b scores each (question, chunk) pair 0–10 · re-sort · keep the top 3
-   OUT   5 chunks scored in 5577 ms · ties: 4 of 5
-          1  ▲ was 4  rel  2  vec 0.496  hr-leave@2025#2          Yıllık İzin Politikası › §2
-          2  ▼ was 1  rel  0  vec 0.519  benefits@2025#7          Yan Haklar › §7
-          3  ▼ was 2  rel  0  vec 0.498  hr-leave@2025#1          Yıllık İzin Politikası › §1
+   OUT   5 chunks scored in 3769 ms · ties: 4 of 5
+          1  ▲ was 2  rel  2  vec 0.520  benefits@2025#1          Benefits › §1
+          2  ▼ was 1  rel  0  vec 0.543  benefits@2025#7          Benefits › §7
+          3    was 3  rel  0  vec 0.518  benefits@2025#5          Benefits › §5
          ─ ─ ─ into the prompt: top 3 ─ ─ ─
-          4  ▼ was 3  rel  0  vec 0.497  hr-leave@2025#4          Yıllık İzin Politikası › §4
-          5    was 5  rel  0  vec 0.491  benefits@2025#2          Yan Haklar › §2
-   TIME  5580 ms  →  data/7-reranked.json
+          4    was 4  rel  0  vec 0.518  benefits@2025#2          Benefits › §2
+          5    was 5  rel  0  vec 0.509  hr-leave@2025#1          Annual Leave Policy › §1
+   TIME  3772 ms  →  data/7-reranked.json
 
 ━━ STEP 8/8 · ANSWER
    IN    data/7-reranked.json  (top 3 of 5 chunks)
    WHAT  rules (7) + numbered sources + question → gemma3:4b  (add --prompt to see it)
-   OUT   1071 prompt tokens · 10 output tokens · 2803 ms · ABSTAINED
+   OUT   596 prompt tokens · 8 output tokens · 1561 ms · ABSTAINED
 
-Bu bilgi politikalarda yer almıyor.
+This is not in the policies.
 
-         [1] hr-leave@2025#2  Yıllık İzin Politikası › §2
-         [2] benefits@2025#7  Yan Haklar › §7
-         [3] hr-leave@2025#1  Yıllık İzin Politikası › §1
-   TIME  2805 ms  →  data/8-answer.json
+         [1] benefits@2025#1  Benefits › §1
+         [2] benefits@2025#7  Benefits › §7
+         [3] benefits@2025#5  Benefits › §5
+   TIME  1565 ms  →  data/8-answer.json

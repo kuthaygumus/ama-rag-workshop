@@ -3,7 +3,7 @@
 {"id":"q03","query":"I work in the technical hangar. I have been with the company for 12 years. How many days of leave can I take each year?","gold_sections":["hr-leave#3"],"expect":"25","type":"table"}
 {"id":"q04","query":"I am going to Frankfurt for a two-day meeting. I am a specialist. How much is my daily per diem?","gold_sections":["travel-expenses#4"],"expect":"60","type":"twin-table"}
 {"id":"q05","query":"I am a manager. I have a meeting in Ankara with one night in a hotel. How much daily per diem is paid?","gold_sections":["travel-expenses#3"],"expect":"950","type":"twin-table"}
-{"id":"q06","query":"I am a director. What is the most I can spend on a hotel in London per night?","gold_sections":["travel-expenses#4"],"expect":"240","type":"twin-table"}
+{"id":"q06","query":"I am a director travelling to London. How much can I spend on a hotel per night?","gold_sections":["travel-expenses#4"],"expect":"240","type":"twin-table"}
 {"id":"q07","query":"How many days do I have to upload my receipts after a trip?","gold_sections":["travel-expenses#7"],"expect":"15","type":"direct"}
 {"id":"q08","query":"After how many days must I change my password?","gold_sections":["it-security#2"],"expect":"90","type":"en-tr"}
 {"id":"q09","query":"Where should I report an email that I think is phishing?","gold_sections":["it-security#5"],"expect":"security@krakenair.example","type":"en-tr"}

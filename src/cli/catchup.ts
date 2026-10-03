@@ -7,6 +7,7 @@
 // Your own functions (the YOUR TURN exercises) are left as they are.
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { heartbeat } from "../lib/chroma.js";
 import { cli } from "../lib/config.js";
 import { clearData } from "../lib/data.js";
 import { banner, more } from "../lib/log.js";
@@ -29,12 +30,18 @@ async function main(): Promise<void> {
       more(`toggles reset: ${path} (${changed} line${changed > 1 ? "s" : ""})`);
     }
   }
-  await clearData();
-  more("data/ emptied");
-  if (n >= 5) {
-    await openStore().reset();
+  // Reset the store for every n, so old records (an earlier run, another edition) never win "latest" in step 6.
+  // Best effort: ChromaStore.reset() hides every error, so ask the heartbeat first and say so when Chroma is down.
+  // Steps 1-4 never touch the store, so `catchup -- 0..4` still works without Chroma.
+  const store = openStore();
+  if (store.kind === "chroma" && !(await heartbeat())) {
+    more("store not running: not reset");
+  } else {
+    await store.reset();
     more("store reset");
   }
+  await clearData();
+  more("data/ emptied");
   // imported only now, so the steps read the toggles we just reset
   const steps = [
     () => import("../steps/1-load.js").then((m) => m.run()),

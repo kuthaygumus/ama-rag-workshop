@@ -98,7 +98,7 @@ the same period, requests already in the plan come first.
 
 In airport operations, ground services and the technical hangar, the
 peak season runs from 15 June to 15 September. In this season, one
-block of leave can be at most one whole week. A longer block needs
+block of leave can be at most 7 working days. A longer block needs
 written approval from the unit director. Head office units do not have
 this limit.
 

@@ -12,4 +12,4 @@ $ npm run step -- 1
          hr-working-hours         en  all        5941 chars   147 lines
          it-security              tr  all        6934 chars   163 lines
          travel-expenses          en  all        6027 chars   151 lines
-   TIME  4 ms  →  data/1-docs.json
+   TIME  6 ms  →  data/1-docs.json

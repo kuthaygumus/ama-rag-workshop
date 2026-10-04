@@ -19,4 +19,4 @@ $ npm run step -- 3   (chunker: fixed)
            │ | 15 or more | 28 |
            │
            │ Leave requests go to the manager on the HR portal at least 15 working days before the leave starts. For leave longer than 10 working days without a break, the department d
-   TIME  2 ms  →  data/3-chunks.json
+   TIME  3 ms  →  data/3-chunks.json

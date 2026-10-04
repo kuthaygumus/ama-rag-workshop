@@ -3,7 +3,7 @@ $ npm run step -- 8 --prompt
 ━━ STEP 8/8 · ANSWER
    IN    data/7-reranked.json  (top 3 of 5 chunks)
    WHAT  rules (7) + numbered sources + question → gemma3:4b  (add --prompt to see it)
-   OUT   976 prompt tokens · 21 output tokens · 650 ms
+   OUT   976 prompt tokens · 21 output tokens · 674 ms
 
          ┌─ the exact text the model receives ─────────────────────────
          │ SYSTEM:
@@ -75,4 +75,4 @@ An employee with 7 years of service gets 22 working days of annual leave [1].
          [1] hr-leave@2025#3  Annual Leave Policy › §3
          [2] hr-leave@2025#7  Annual Leave Policy › §7
          [3] hr-leave@2025#4  Annual Leave Policy › §4
-   TIME  655 ms  →  data/8-answer.json
+   TIME  678 ms  →  data/8-answer.json

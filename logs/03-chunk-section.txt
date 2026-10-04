@@ -30,4 +30,4 @@ $ npm run step -- 3   (chunker: section)
            │ Leave requests go to the manager on the HR portal at least 15 working days before the leave starts. For leave longer than 10 working days without a break, the department director must also approve.
            │
            │ Up to 5 unused working days can move to the next calendar year. For the conditions of this carry-over, see section 7.
-   TIME  2 ms  →  data/3-chunks.json
+   TIME  5 ms  →  data/3-chunks.json

@@ -3,11 +3,11 @@ $ npm run step -- 7
 ━━ STEP 7/8 · RERANK
    IN    data/6-retrieved.json  (5 chunks for "How many working days of annual leave does an employee with 7 years of service get?")
    WHAT  gemma3:4b scores each (question, chunk) pair 0–10 · re-sort · keep the top 3
-   OUT   5 chunks scored in 1439 ms · ties: 2 of 5
+   OUT   5 chunks scored in 1498 ms · ties: 2 of 5
           1    was 1  rel 10  vec 0.614  hr-leave@2025#3          Annual Leave Policy › §3
           2  ▲ was 3  rel  6  vec 0.602  hr-leave@2025#7          Annual Leave Policy › §7
           3  ▲ was 5  rel  6  vec 0.598  hr-leave@2025#4          Annual Leave Policy › §4
          ─ ─ ─ into the prompt: top 3 ─ ─ ─
           4  ▼ was 2  rel  3  vec 0.604  hr-leave@2025#2          Annual Leave Policy › §2
           5  ▼ was 4  rel  2  vec 0.598  hr-leave@2025#6          Annual Leave Policy › §6
-   TIME  1441 ms  →  data/7-reranked.json
+   TIME  1500 ms  →  data/7-reranked.json

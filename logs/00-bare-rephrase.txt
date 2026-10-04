@@ -1,0 +1,10 @@
+$ npm run step -- 0 "I have worked here for 7 years. How many days of annual leave do I get?"
+
+━━ STEP 0/8 · BARE MODEL
+   IN    I have worked here for 7 years. How many days of annual leave do I get?
+   WHAT  ask gemma3:4b directly — no documents, no search
+   OUT   38 prompt tokens · 40 output tokens
+
+It depends on your company's policy. Typically, 7 years of service earns you 15-20 days of annual leave. Check your employee handbook or HR department for specifics.
+
+   TIME  1050 ms

@@ -6,4 +6,4 @@ $ npm run question
 Typically, an employee with 7 years of service gets 25-30 working days of annual leave, depending on the company's policy.
 
    LEDGER (.cache/question-ledger.jsonl)
-         01:49  Typically, an employee with 7 years of servic…  bare model, no documents
+         12:52  Typically, an employee with 7 years of servic…  bare model, no documents

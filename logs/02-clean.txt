@@ -24,4 +24,4 @@ $ npm run step -- 2
            │ # Annual Leave Policy
            │
            │ ## 1. Purpose and Scope
-   TIME  5 ms  →  data/2-clean.json
+   TIME  6 ms  →  data/2-clean.json

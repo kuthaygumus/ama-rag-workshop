@@ -7,4 +7,4 @@ $ npm run step -- 0
 
 Typically, an employee with 7 years of service gets 25-30 working days of annual leave, depending on the company's policy.
 
-   TIME  961 ms
+   TIME  985 ms

@@ -1,0 +1,10 @@
+$ npm run step -- 0 "How many days do I have to upload my receipts after a trip?"
+
+━━ STEP 0/8 · BARE MODEL
+   IN    How many days do I have to upload my receipts after a trip?
+   WHAT  ask gemma3:4b directly — no documents, no search
+   OUT   33 prompt tokens · 19 output tokens
+
+It varies by company, but most require receipts to be uploaded within **30 days**.
+
+   TIME  602 ms

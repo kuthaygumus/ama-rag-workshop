@@ -2,8 +2,8 @@ $ npm run ask -- "What is the upper limit of the monthly gross salary band for a
 
 ━━ STEP 6/8 · RETRIEVE
    IN    What is the upper limit of the monthly gross salary band for a senior specialist?
-   WHAT  embed the question (bge-m3, 31 ms) · ask chroma for the 5 closest · filter {"edition":"2025","access":["all"]}
-   OUT   5 chunks handed on · search 11 ms
+   WHAT  embed the question (bge-m3, 33 ms) · ask chroma for the 5 closest · filter {"edition":"2025","access":["all"]}
+   OUT   5 chunks handed on · search 10 ms
           1  0.470  travel-expenses@2025#4   Travel and Per Diem Policy › §4              The amounts below are in euro (EUR). Th…
           2  0.464  hr-working-hours@2025#4  Working Hours and Remote Work › §4           Overtime is work beyond 40 hours a week…
           3  0.460  travel-expenses@2025#3   Travel and Per Diem Policy › §3              The hotel upper limit per night is the …
@@ -13,28 +13,28 @@ $ npm run ask -- "What is the upper limit of the monthly gross salary band for a
           6  0.422  announcement-meal-card@2025#1 Announcement: Meal Card Limit Update › §1    Dear colleagues, food costs have gone u…
           7  0.416  benefits@2025#4          Benefits › §4                                The company pays up to 600 TRY a month …
           8  0.413  hr-leave@2025#3          Annual Leave Policy › §3                     Part-time staff get the same number as …
-   TIME  78 ms  →  data/6-retrieved.json
+   TIME  83 ms  →  data/6-retrieved.json
 
 ━━ STEP 7/8 · RERANK
    IN    data/6-retrieved.json  (5 chunks for "What is the upper limit of the monthly gross salary band for a senior specialist?")
    WHAT  gemma3:4b scores each (question, chunk) pair 0–10 · re-sort · keep the top 3
-   OUT   5 chunks scored in 4334 ms · ties: 4 of 5
+   OUT   5 chunks scored in 4454 ms · ties: 4 of 5
           1    was 1  rel 10  vec 0.470  travel-expenses@2025#4   Travel and Per Diem Policy › §4
           2  ▲ was 3  rel 10  vec 0.460  travel-expenses@2025#3   Travel and Per Diem Policy › §3
           3  ▼ was 2  rel  2  vec 0.464  hr-working-hours@2025#4  Working Hours and Remote Work › §4
          ─ ─ ─ into the prompt: top 3 ─ ─ ─
           4    was 4  rel  0  vec 0.458  announcement-meal-card@2025#2 Announcement: Meal Card Limit Update › §2
           5    was 5  rel  0  vec 0.439  benefits@2025#3          Benefits › §3
-   TIME  4337 ms  →  data/7-reranked.json
+   TIME  4457 ms  →  data/7-reranked.json
 
 ━━ STEP 8/8 · ANSWER
    IN    data/7-reranked.json  (top 3 of 5 chunks)
    WHAT  rules (7) + numbered sources + question → gemma3:4b  (add --prompt to see it)
-   OUT   847 prompt tokens · 22 output tokens · 2484 ms
+   OUT   847 prompt tokens · 22 output tokens · 2564 ms
 
 The hotel upper limit for a senior specialist is 4,000 TRY per night [2].
 
          [1] travel-expenses@2025#4  Travel and Per Diem Policy › §4
          [2] travel-expenses@2025#3  Travel and Per Diem Policy › §3
          [3] hr-working-hours@2025#4  Working Hours and Remote Work › §4
-   TIME  2486 ms  →  data/8-answer.json
+   TIME  2567 ms  →  data/8-answer.json

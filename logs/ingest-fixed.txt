@@ -19,7 +19,7 @@ $ npm run step -- 3 / 4 / 5   (chunker: fixed)
            │ | 15 or more | 28 |
            │
            │ Leave requests go to the manager on the HR portal at least 15 working days before the leave starts. For leave longer than 10 working days without a break, the department d
-   TIME  4 ms  →  data/3-chunks.json
+   TIME  2 ms  →  data/3-chunks.json
 
 ━━ STEP 4/8 · EMBED
    IN    data/3-chunks.json  (138 chunks)
@@ -27,7 +27,7 @@ $ npm run step -- 3 / 4 / 5   (chunker: fixed)
    OUT   138 vectors · 1024 numbers each · 0 computed, 138 from cache
          announcement-meal-card@2025#c00 → [-0.0356, 0.0011, -0.0225, -0.0145, -0.0362, -0.0667, … ]
          length (norm) of that vector: 1.000
-   TIME  36 ms  →  data/4-vectors.json
+   TIME  34 ms  →  data/4-vectors.json
 
 ━━ STEP 5/8 · STORE
    IN    data/4-vectors.json  (138 vectors, edition 2025)

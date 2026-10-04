@@ -7,7 +7,7 @@ $ npm run doctor
          ✓ model bge-m3
          ✓ Chroma                       http://localhost:8000
          ✓ corpus/2025                  8 documents · 7 en, 1 tr
-         ✓ embed one sentence           1024 numbers · 122 ms
-         ✓ one answer                   172 ms · "Ankara"
+         ✓ embed one sentence           1024 numbers · 150 ms
+         ✓ one answer                   176 ms · "Ankara"
 
 Ready.

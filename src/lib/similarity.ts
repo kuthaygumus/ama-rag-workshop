@@ -2,7 +2,7 @@
 
 /**
  * Cosine similarity: the angle between two vectors, ignoring their length.
- * 1 = same direction (same meaning), 0 = unrelated, −1 = opposite.
+ * 1 = same direction (same meaning), 0 = no relation in theory (real texts rarely go that low), −1 = opposite.
  * @example cosine([1, 0], [2, 0]) // 1 — same direction, different length
  */
 export function cosine(a: number[], b: number[]): number {

@@ -78,7 +78,7 @@ const hasLog = (n: string) => existsSync(logPath(n));
 
 /** Every log capture writes today. A missing one means a failed or partial recapture: FAIL, not PEND. */
 const REQUIRED_LOGS = [
-  "doctor", "00-bare", "question-0-bare", "01-load", "02-clean", "03-chunk-fixed", "question-1-fixed", "03-chunk-section",
+  "doctor", "00-bare", "question-0-bare", "00-bare-rephrase", "00-bare-receipts", "01-load", "02-clean", "03-chunk-fixed", "question-1-fixed", "03-chunk-section",
   "question-2-section", "04-embed", "04b-similar", "04b-map", "map.json", "05-store-json", "05-store-chroma", "06-retrieve",
   "07-rerank-off", "08-answer-rerank-off", "07-rerank", "08-answer", "question-3-full", "ask-access-on", "ask-access-off",
   "ask-out-of-corpus", "ask-out-of-corpus-rule-off", "ask-injection", "ask-injection-rule-off", "ask-injection-checked", "eval-section", "eval-answers",
@@ -495,6 +495,15 @@ function cutOf(ed: string) {
   return { hl, f, i, a, b, c, aEnd: (i - 1) * 300, bEnd: i * 300, s3, headingLine, firstWord, headerLine, row5 };
 }
 
+/** travel-expenses §7: the receipt deadline in days (K13 also proves the sentence on what happens after it). */
+const receiptDays = () => must(rawOf("2025", "travel-expenses.md").match(/within (\d+) calendar days/)?.[1], "receipt deadline in travel-expenses");
+A({ id: "K13", tier: 1, cls: "P", sids: "S1.35" }, () => {
+  const days = receiptDays();
+  const sec = sectionText(doc("2025", "travel-expenses"), "7");
+  const late = `Reports sent after ${days} days are not processed and not paid.`;
+  fact("policy.receiptDays", Number(days), "corpus/2025/travel-expenses.md");
+  return out(sec.startsWith("## 7. Expense Reports") && sec.includes(`within ${days} calendar days`) && sec.includes(late), `§7 says within ${days} calendar days and "${late}"`);
+});
 A({ id: "K10", tier: 1, cls: "P", sids: "S1.32 S2.20 S2.22 S2.23 S2.24 S2.32 S6.11" }, () => {
   const x = cutOf("2025");
   const t = x.hl.text;
@@ -826,6 +835,31 @@ A({ id: "L07", tier: 1, cls: "P", sids: "S1.01 S4.17 S6.38 S6.61 S7.08", logs: [
   const banners = QUESTION_LOGS.map((n) => ln(n, 3));
   const ok = ln("00-bare", 4).endsWith(q) && ln("06-retrieve", 4).endsWith(q) && ln("07-rerank", 4).includes(q) && banners.every((b) => b.endsWith(`  ${q}`)) && new Set(banners).size === 1;
   return out(ok, `day question "${q}" in 00-bare, 06, 07 and ${banners.length} banners`);
+});
+/** The two "your turn" questions capture asks the bare model, read from capture.ts (one const each). */
+const bareQ = (name: string) => must(SRC_CAPTURE.match(new RegExp(`const ${name} = "([^"]+)";`))?.[1], `capture.ts ${name}`);
+const BARE_REPHRASE = bareQ("BARE_REPHRASE");
+const BARE_RECEIPTS = bareQ("BARE_RECEIPTS");
+/** The numbers of a bare answer, minus the 7 the leave questions carry. */
+const numbersOf = (a: string) => [...new Set((a.match(/\d+/g) ?? []).filter((x) => x !== "7"))].sort();
+const bareBlock = (n: string, q: string) =>
+  ln(n, 1) === `$ npm run step -- 0 "${q}"` && ln(n, 3).startsWith("━━ STEP 0/8") && ln(n, 4) === `   IN    ${q}` && ln(n, 5).includes(`WHAT  ask ${config.chatModel} directly — no documents, no search`);
+A({ id: "L09", part: "rephrase", tier: 1, cls: "P", sids: "S1.13", logs: ["00-bare-rephrase"] }, () => out(bareBlock("00-bare-rephrase", BARE_REPHRASE), ln("00-bare-rephrase", 1)));
+A({ id: "L09", part: "number moves", tier: 2, cls: "P", sids: "S1.13", logs: ["00-bare-rephrase", "question-0-bare", "00-bare"] }, () => {
+  const a = bareAnswer("00-bare-rephrase");
+  const mine = numbersOf(a).join();
+  const before = [numbersOf(qBare()).join(), numbersOf(bareAnswer("00-bare")).join()];
+  fact("bare.rephraseAnswer", a, "00-bare-rephrase");
+  fact("bare.rephraseNumbers", numbersOf(a), "00-bare-rephrase");
+  return out(!!mine && !has22(a) && !/\[\d+\]/.test(a) && !isAbstain(a) && before.every((b) => b !== mine), `numbers [${mine}] vs the day's wording [${before[0]}] (right: ${EXP}); "${a}"`);
+});
+A({ id: "L09", part: "receipts", tier: 1, cls: "P", sids: "S1.35", logs: ["00-bare-receipts"] }, () => out(bareBlock("00-bare-receipts", BARE_RECEIPTS), ln("00-bare-receipts", 1)));
+A({ id: "L09", part: "wrong deadline", tier: 2, cls: "P", sids: "S1.35", logs: ["00-bare-receipts"] }, () => {
+  const a = bareAnswer("00-bare-receipts");
+  const days = receiptDays();
+  fact("bare.receiptsAnswer", a, "00-bare-receipts");
+  fact("bare.receiptsNumbers", numbersOf(a), "00-bare-receipts");
+  return out(numbersOf(a).length > 0 && !new RegExp(`\\b${days}\\b`).test(a) && !/\[\d+\]/.test(a) && !isAbstain(a), `numbers [${numbersOf(a)}], policy ${days}; "${a}"`);
 });
 A({ id: "L08", tier: 1, cls: "P", sids: "S1.15", logs: QUESTION_LOGS }, () => out(QUESTION_LOGS.every((n) => ln(n, 3).startsWith(`━━ ${BANNER}  `)), `banner "${BANNER}" read from question.ts`));
 

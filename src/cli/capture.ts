@@ -83,6 +83,11 @@ console.log("capture: playing the day …");
 await run("doctor", ["src/cli/doctor.ts"]);
 await record("00-bare", "npm run step -- 0", () => steps.s0.run());
 await run("question-0-bare", ["src/cli/question.ts"]);
+// the two "your turn" questions of the first pages: the same leave question in other words, and a travel question
+const BARE_REPHRASE = "I have worked here for 7 years. How many days of annual leave do I get?";
+const BARE_RECEIPTS = "How many days do I have to upload my receipts after a trip?";
+await record("00-bare-rephrase", `npm run step -- 0 "${BARE_REPHRASE}"`, () => steps.s0.run(BARE_REPHRASE));
+await record("00-bare-receipts", `npm run step -- 0 "${BARE_RECEIPTS}"`, () => steps.s0.run(BARE_RECEIPTS));
 
 // A · raw data + clean
 await record("01-load", "npm run step -- 1", () => steps.s1.run());

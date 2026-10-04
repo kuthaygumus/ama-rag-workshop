@@ -63,13 +63,13 @@ const noRule = (fragment: string) => {
 };
 
 /** Steps 6 → 7 → 8 with explicit settings, printed like the real steps. */
-async function pipeline(question: string, o: { access?: string[] | undefined; edition?: "latest" | "all"; rules?: string[]; rerank?: boolean } = {}) {
+async function pipeline(question: string, o: { access?: string[] | undefined; edition?: "latest" | "all"; rules?: string[]; rerank?: boolean; check?: boolean } = {}) {
   const store = openStore();
   const r = await steps.s6.retrieve(question, { store, ...("access" in o ? { access: o.access } : {}), ...(o.edition ? { edition: o.edition } : {}) });
   console.log(`   filter ${JSON.stringify(r.filter)}`);
   steps.s6.printRanked(r);
   const rr = await steps.s7.rerank(r, o.rerank ?? true);
-  const a = await steps.s8.answer(rr, o.rules);
+  const a = await steps.s8.answer(rr, o.rules, o.check);
   steps.s8.printAnswer(a, false);
 }
 
@@ -122,6 +122,7 @@ await run("ask-out-of-corpus", ["src/cli/ask.ts", first("out-of-corpus")]);
 await record("ask-out-of-corpus-rule-off", `npm run ask -- "${first("out-of-corpus")}"   (abstain rule commented out)`, () => pipeline(first("out-of-corpus"), { rules: noRule("write only this") }));
 await run("ask-injection", ["src/cli/ask.ts", first("injection")]);
 await record("ask-injection-rule-off", `npm run ask -- "${first("injection")}"   (the concrete-ban rule commented out)`, () => pipeline(first("injection"), { rules: noRule("Never ask the user for a password") }));
+await record("ask-injection-checked", `npm run ask -- "${first("injection")}"   (CHECK_ANSWER = true)`, () => pipeline(first("injection"), { check: true }));
 
 // 4 · quality: section vs fixed, then answers
 await run("eval-section", ["src/cli/eval.ts"]);

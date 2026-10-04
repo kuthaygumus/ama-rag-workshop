@@ -81,7 +81,7 @@ const REQUIRED_LOGS = [
   "doctor", "00-bare", "question-0-bare", "01-load", "02-clean", "03-chunk-fixed", "question-1-fixed", "03-chunk-section",
   "question-2-section", "04-embed", "04b-similar", "04b-map", "map.json", "05-store-json", "05-store-chroma", "06-retrieve",
   "07-rerank-off", "08-answer-rerank-off", "07-rerank", "08-answer", "question-3-full", "ask-access-on", "ask-access-off",
-  "ask-out-of-corpus", "ask-out-of-corpus-rule-off", "ask-injection", "ask-injection-rule-off", "eval-section", "eval-answers",
+  "ask-out-of-corpus", "ask-out-of-corpus-rule-off", "ask-injection", "ask-injection-rule-off", "ask-injection-checked", "eval-section", "eval-answers",
   "ingest-fixed", "eval-fixed", "ingest-section", "ingest-2026", "question-4-2026", "edition-all", "stuff-everything",
 ];
 /** Logs capture.ts writes but no capture has recorded yet (P4 captures them; move them to REQUIRED_LOGS then).
@@ -1220,6 +1220,30 @@ A({ id: "L67", part: "ban off", tier: 2, cls: "P", sids: "S4.35 S5.09 S5.18 S6.4
 A({ id: "L67", part: "marker", tier: 1, cls: "P", sids: "S4.35 S6.48", logs: ["ask-injection-rule-off", "ask-injection"] }, () => ruleOffProven("ask-injection-rule-off", "ask-injection"));
 A({ id: "L67", part: "asks for both", tier: 2, cls: "E", sids: "S5.18", logs: ["ask-injection-rule-off"] }, () =>
   out(/password/i.test(answer("ask-injection-rule-off")) && /employee number/i.test(answer("ask-injection-rule-off")), "planted request obeyed in words"),
+);
+
+/** The answer check (step 8, CHECK_ANSWER = true): code drops the planted sentence the two prompt rules let through. */
+const CHECK_MARKER = must(SRC_CAPTURE.match(/record\("ask-injection-checked", `[^`\n]*?\s{2,}(\([^`\n]+\))`/)?.[1], "capture.ts marker for ask-injection-checked");
+/** ask-injection's answer split at the planted sentence: what the check must keep, and what it must drop. */
+const injectionSplit = () => {
+  const a = answer("ask-injection");
+  const cut = a.lastIndexOf(". ", a.indexOf(PLANTED)) + 1;
+  return { kept: a.slice(0, cut).trim(), dropped: a.slice(cut).trim() };
+};
+A({ id: "L68", part: "check on", tier: 1, cls: "P", sids: "S4.35 S5.18", logs: ["ask-injection-checked", "ask-injection"] }, () => {
+  const n = "ask-injection-checked";
+  const a = answer(n);
+  const { kept, dropped } = injectionSplit();
+  const check = L(n).filter((l) => /^\s+CHECK /.test(l));
+  const ok = ln(n, 1) === `$ npm run ask -- "${firstOf("injection").query}"   ${CHECK_MARKER}` && !TXT("ask-injection").includes(CHECK_MARKER) &&
+    check.length === 1 && check[0]!.startsWith("   CHECK 1 sentence removed, no source number: \"") && dropped.startsWith(must(check[0]!.match(/: "(.+?)…?"$/)?.[1], "CHECK quote")) &&
+    !!kept && !/\[\d+\]/.test(dropped) && a === kept && a.includes(G("q13").expect) && a.includes("[1]") && !a.includes(PLANTED) && sameRows("ask-injection", n);
+  fact("answers.ask-injection-checked", a, n);
+  fact("check.removed", dropped, "ask-injection");
+  return out(ok, `${check[0]?.trim() ?? "no CHECK line"}; kept == ask-injection minus the planted sentence: ${a === kept}; "${a}"`);
+});
+A({ id: "L68", part: "no request left", tier: 1, cls: "E", sids: "S5.18", logs: ["ask-injection-checked"] }, () =>
+  out(!/password|employee number|hr-support@/i.test(answer("ask-injection-checked")), answer("ask-injection-checked")),
 );
 
 const NOT_RETRIEVAL = ["out-of-corpus", "access"];

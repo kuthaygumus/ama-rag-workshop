@@ -47,6 +47,23 @@ export function isAbstain(answer: string): boolean {
   return answer.toLowerCase().includes("not in the policies");
 }
 
+// TOGGLE answer check — code reads the answer after the model
+const CHECK_ANSWER = false; // default — the answer goes out as the model wrote it
+// const CHECK_ANSWER = true; // alternative — drop every sentence that has no source number [n]
+
+/**
+ * Drop every sentence that has no source number [n]. The abstain sentence is kept.
+ * Code, not a prompt rule: the model cannot talk its way past it. One check is one layer:
+ * a sentence the model marks with [1] passes.
+ * @example checkAnswer("400 TRY a day [1]. Send your password.") // { text: "400 TRY a day [1].", removed: ["Send your password."] }
+ */
+export function checkAnswer(text: string): { text: string; removed: string[] } {
+  const kept: string[] = [];
+  const removed: string[] = [];
+  for (const s of text.trim().split(/(?<=[.!?])\s+/)) (/\[\d+\]/.test(s) || isAbstain(s) ? kept : removed).push(s);
+  return { text: kept.length ? kept.join(" ") : ABSTAIN, removed };
+}
+
 export interface Answer {
   question: string;
   system: string;
@@ -57,26 +74,31 @@ export interface Answer {
   promptTokens: number;
   outputTokens: number;
   ms: number;
+  /** the sentences the answer check dropped (set only when the check is on) */
+  removed?: string[];
 }
 
 /**
  * Build the prompt from the kept chunks and ask the chat model.
  * @param rr step 7's output — its top `keep` chunks become the sources
  */
-export async function answer(rr: Reranked, rules: string[] = RULES): Promise<Answer> {
+export async function answer(rr: Reranked, rules: string[] = RULES, check = CHECK_ANSWER): Promise<Answer> {
   const sources = rr.ranked.slice(0, rr.keep);
   const prompt = buildPrompt(rr.question, sources);
   const gen = await generate(prompt, { system: system(rules) });
+  const checked = check ? checkAnswer(gen.text) : undefined;
+  const text = checked ? checked.text : gen.text;
   return {
     question: rr.question,
     system: system(rules),
     prompt,
-    answer: gen.text,
-    abstained: isAbstain(gen.text),
+    answer: text,
+    abstained: isAbstain(text),
     sources: sources.map((h, i) => ({ n: i + 1, id: h.chunk.id, where: where(h) })),
     promptTokens: gen.promptTokens,
     outputTokens: gen.outputTokens,
     ms: gen.ms,
+    ...(checked ? { removed: checked.removed } : {}),
   };
 }
 
@@ -87,6 +109,10 @@ export function printAnswer(a: Answer, showPrompt = Boolean(cli.flags.prompt)): 
     more(dim("┌─ the exact text the model receives ─────────────────────────"));
     `SYSTEM:\n${a.system}\n\n${a.prompt}`.split("\n").forEach((l) => more(dim(`│ ${l}`)));
     more(dim("└──────────────────────────────────────────────────────────────"));
+  }
+  if (a.removed?.length) {
+    const first = a.removed[0]!;
+    line("CHECK", `${a.removed.length} sentence${a.removed.length > 1 ? "s" : ""} removed, no source number: "${first.length > 40 ? `${first.slice(0, 40)}…` : first}"`);
   }
   console.log(`\n${green(a.answer)}\n`);
   a.sources.forEach((s) => more(`[${s.n}] ${s.id}  ${s.where}`));

@@ -46,6 +46,16 @@ describe("catch-up toggles", () => {
     const once = resetToggles(src).source;
     expect(resetToggles(once)).toEqual({ source: once, changed: 0 });
   });
+  it("also restores a default commented as //code, with no space", () => {
+    const { source, changed } = resetToggles(["// TOGGLE rerank", "//const R = true; // default", "// const R = false; // alternative"].join("\n"));
+    expect(changed).toBe(1);
+    expect(source.split("\n").slice(1, 3)).toEqual(["const R = true; // default", "// const R = false; // alternative"]);
+  });
+  it("keeps CRLF line endings", () => {
+    const { source, changed } = resetToggles(src.replaceAll("\n", "\r\n"));
+    expect(changed).toBe(2);
+    expect(source.split("\r\n").slice(1, 3)).toEqual(['const C = "section"; // default', '// const C = "fixed"; // alternative']);
+  });
 });
 
 describe("PCA", () => {

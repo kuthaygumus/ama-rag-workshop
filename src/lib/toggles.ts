@@ -17,9 +17,10 @@ export function resetToggles(source: string): { source: string; changed: number 
     }
     if (!l.trim()) inBlock = false;
     if (!inBlock) return l;
-    const [, indent = "", commented, code = ""] = l.match(/^(\s*)(\/\/ )?(.*)$/)!;
+    // "//" with or without a space: some editors comment a line as "//code". A CRLF line keeps its "\r".
+    const [, indent = "", commented, code = "", cr = ""] = l.match(/^(\s*)(\/\/ ?)?(.*?)(\r?)$/)!;
     const want = code.includes("// default") ? "on" : code.includes("// alternative") ? "off" : undefined;
-    const next = want === "on" ? indent + code : want === "off" ? `${indent}// ${code}` : l;
+    const next = want === "on" ? indent + code + cr : want === "off" ? `${indent}// ${code}${cr}` : l;
     if (want && Boolean(commented) !== (want === "off")) changed++;
     return next;
   });

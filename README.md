@@ -7,7 +7,8 @@ store → retrieve → rerank → answer → evaluate. Everything runs on your l
 The documents are the policy handbook of **Kraken Air**, a fictional company — two editions (2025, 2026),
 one Turkish document, one HR-only document, and one announcement with an instruction planted inside it.
 
-The course pages that walk through this repo: see the link in the repo description.
+The course pages that walk through this repo: https://ama-rag-site-last.vercel.app/en/
+Setup problems: https://ama-rag-site-last.vercel.app/en/kurulum-sorunlari/
 
 ## Install (once, before the day)
 

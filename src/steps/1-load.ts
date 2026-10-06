@@ -14,6 +14,8 @@ import type { Doc, DocMeta } from "../lib/types.js";
 const KEYS: (keyof DocMeta)[] = ["id", "title", "edition", "department", "access", "lang"];
 
 /**
+ * What it does: splits a file into its labels on top (id, edition, access…) and its text.
+ *
  * Split a file into its front matter (the `---` block on top) and its body.
  * Only `key: value` lines are supported — enough for our metadata, no YAML library needed.
  * @param raw the whole file, line endings already normalised to \n

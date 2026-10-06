@@ -26,7 +26,8 @@ tests {
 }
 
 docs {
-  Collections are Chroma's tables. Step 5 made `kraken-policies`. Note `configuration.hnsw.space:
-  cosine` — the same similarity our JSON search used. This request also remembers the collection's
+  Collections are Chroma's tables. Step 5 made `kraken-policies`. Look inside `configuration_json.hnsw`:
+  `space: cosine` is the same similarity our JSON search used; `max_neighbors` and `ef_search` are the
+  index settings. Skip the long `schema` block below it. This request also remembers the collection's
   id for the next ones.
 }

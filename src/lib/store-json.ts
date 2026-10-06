@@ -11,7 +11,11 @@ import type { VectorStore } from "./store.js";
 
 const FILE = join(config.dataDir, "store.json");
 
-/** Does this record pass the metadata filter? Shared by the JSON store and the tests. */
+/**
+ * What it does: checks if a record matches the edition and access filter.
+ *
+ * Does this record pass the metadata filter? Shared by the JSON store and the tests.
+ */
 export function passes(r: { edition: string; access: string }, filter: Filter = {}): boolean {
   if (filter.edition && r.edition !== filter.edition) return false;
   if (filter.access && !filter.access.includes(r.access)) return false;
@@ -23,6 +27,7 @@ export class JsonStore implements VectorStore {
 
   constructor(private readonly file = FILE) {}
 
+  /** What it does: reads every record from the JSON file, or an empty list if it is missing. */
   private async all(): Promise<VectorChunk[]> {
     try {
       return JSON.parse(await readFile(this.file, "utf8")) as VectorChunk[];
@@ -31,12 +36,14 @@ export class JsonStore implements VectorStore {
     }
   }
 
+  /** What it does: keeps the other editions and saves this edition's new records to the JSON file. */
   async replaceEdition(edition: string, records: VectorChunk[]): Promise<void> {
     const kept = (await this.all()).filter((r) => r.edition !== edition);
     await mkdir(config.dataDir, { recursive: true });
     await writeFile(this.file, JSON.stringify([...kept, ...records]));
   }
 
+  /** What it does: filters the records, scores every one by cosine, and returns the k best. */
   async query(vector: number[], k: number, filter?: Filter): Promise<Hit[]> {
     return (await this.all())
       .filter((r) => passes(r, filter))
@@ -45,14 +52,17 @@ export class JsonStore implements VectorStore {
       .slice(0, k);
   }
 
+  /** What it does: returns how many records are in the JSON file. */
   async count(): Promise<number> {
     return (await this.all()).length;
   }
 
+  /** What it does: lists the editions in the JSON file, sorted. */
   async editions(): Promise<string[]> {
     return [...new Set((await this.all()).map((r) => r.edition))].sort();
   }
 
+  /** What it does: empties the JSON file. */
   async reset(): Promise<void> {
     await writeFile(this.file, "[]").catch(() => undefined);
   }

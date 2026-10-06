@@ -42,6 +42,8 @@ export interface Retrieved {
 }
 
 /**
+ * What it does: embeds the question and asks the store for the closest chunks that pass the filters.
+ *
  * Embed the question and fetch the k closest chunks that pass the filters.
  * @param question plain text, any language
  * @returns hits above the cut and the three just below it
@@ -64,11 +66,20 @@ export async function retrieve(question: string, o: RetrieveOptions): Promise<Re
   return { question, filter, k, hits: ranked.slice(0, k), below: ranked.slice(k), embedMs, searchMs };
 }
 
-/** "Annual Leave Policy › §3" */
+/**
+ * What it does: builds a short label for a hit: document title and section numbers.
+ *
+ * "Annual Leave Policy › §3"
+ */
 export const where = (h: Hit) => `${h.chunk.title} › §${h.chunk.sections.join(",")}`;
 
-/** Print the ranked list with the cut line. */
+/**
+ * What it does: prints the ranked hits, with a line showing where the top k ends.
+ *
+ * Print the ranked list with the cut line.
+ */
 export function printRanked(r: Retrieved): void {
+  /** What it does: builds one printed line for a hit: rank, score, id, title and a text preview. */
   const row = (h: Hit, i: number) =>
     `${String(i + 1).padStart(2)}  ${h.score.toFixed(3)}  ${h.chunk.id.padEnd(24)} ${preview(where(h), 44).padEnd(44)} ${dim(preview(h.chunk.text.replace(/^\[.*?\]\n/, ""), 40))}`;
   r.hits.forEach((h, i) => more(row(h, i)));
@@ -76,7 +87,11 @@ export function printRanked(r: Retrieved): void {
   r.below.forEach((h, i) => more(dim(row(h, r.k + i))));
 }
 
-/** Guard: the store must hold vectors from the current data and the same embedding model. */
+/**
+ * What it does: reads the step 5 receipt and stops if the store used a different embedding model.
+ *
+ * Guard: the store must hold vectors from the current data and the same embedding model.
+ */
 export async function storeReceipt(): Promise<StoreReceipt> {
   const receipt = (await readStep<StoreReceipt>("5-store", "4-vectors")).data;
   if (receipt.embedModel !== config.embedModel) {
@@ -89,6 +104,8 @@ export async function storeReceipt(): Promise<StoreReceipt> {
 }
 
 /**
+ * What it does: finds the closest chunks for one question, prints them, and saves data/6-retrieved.json.
+ *
  * Run step 6 for one question and write data/6-retrieved.json.
  * @param question defaults to the day's question
  * @param overrides filter settings that replace the TOGGLE lines (used by capture)

@@ -19,7 +19,11 @@ export interface Vectors {
   chunks: VectorChunk[];
 }
 
-/** Run step 4 on data/3-chunks.json and write data/4-vectors.json. */
+/**
+ * What it does: turns every chunk into a vector with the embedding model and saves data/4-vectors.json.
+ *
+ * Run step 4 on data/3-chunks.json and write data/4-vectors.json.
+ */
 export async function run(): Promise<Vectors> {
   stepHeader(4, "embed");
   const t0 = performance.now();

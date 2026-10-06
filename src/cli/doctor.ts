@@ -7,7 +7,9 @@ import { banner, green, more, red, yellow } from "../lib/log.js";
 import { embed, generate, installedModels } from "../lib/ollama.js";
 
 let failed = 0;
+/** What it does: prints one green check line for a part that works. */
 const ok = (what: string, detail = "") => more(`${green("✓")} ${what.padEnd(28)} ${detail}`);
+/** What it does: counts one problem and prints a red line with the fix. */
 const fail = (what: string, fix: string) => {
   failed++;
   more(`${red("✗")} ${what.padEnd(28)} ${yellow(fix)}`);

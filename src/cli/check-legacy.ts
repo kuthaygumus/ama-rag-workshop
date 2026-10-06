@@ -26,6 +26,7 @@ const SKIP = new Set(["node_modules", ".git", "data", ".cache", ".astro"]);
 const TEXT = /\.(ts|js|mjs|cjs|json|jsonl|md|mdx|astro|css|html|svg|yaml|yml|bru|txt|env|example)$|^\.[a-z]+$/;
 const SELF = /check-legacy\.(ts|mjs)$/;
 
+/** What it does: walks a folder and gives every text file to scan, skipping node_modules and .git. */
 async function* files(dir: string): AsyncGenerator<string> {
   for (const e of await readdir(dir, { withFileTypes: true })) {
     if (SKIP.has(e.name)) continue;

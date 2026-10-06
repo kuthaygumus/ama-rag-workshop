@@ -67,13 +67,19 @@ type Outcome = boolean | { ok: boolean; detail?: string };
 /** hard: a FAIL that counts as tier 1 whatever the spec's tier (a required log is missing). */
 const ROWS: { spec: Spec; status: Status; detail: string; hard?: boolean }[] = [];
 
-/** Fail loudly when a value the story needs is absent. */
+/**
+ * What it does: returns the value, or stops with a clear error if it is missing.
+ *
+ * Fail loudly when a value the story needs is absent.
+ */
 function must<T>(v: T | null | undefined, what: string): T {
   if (v === null || v === undefined) throw new Error(`not found: ${what}`);
   return v;
 }
 
+/** What it does: gives the path of a log from its name, adding .txt unless it is .json. */
 const logPath = (n: string) => join(LOGS, n.endsWith(".json") ? n : `${n}.txt`);
+/** What it does: checks that the log file exists. */
 const hasLog = (n: string) => existsSync(logPath(n));
 
 /** Every log capture writes today. A missing one means a failed or partial recapture: FAIL, not PEND. */
@@ -90,7 +96,11 @@ const NOT_CAPTURED_YET = ["ask-paraphrase", "eval-section-json", "eval-fixed-jso
 /** Every log name a spec declared: L00 proves each one is in one of the two lists above. */
 const DECLARED = new Set<string>();
 
-/** One assertion. Its status follows from the spec (class E, missing logs) or from fn. */
+/**
+ * What it does: runs one story check and adds its result to the report.
+ *
+ * One assertion. Its status follows from the spec (class E, missing logs) or from fn.
+ */
 function A(spec: Spec, fn: () => Outcome): void {
   if (OFFLINE && spec.id.startsWith("L")) return;
   for (const n of spec.logs ?? []) DECLARED.add(n);
@@ -129,12 +139,17 @@ function A(spec: Spec, fn: () => Outcome): void {
   ROWS.push({ spec, status, detail: spec.part ? `[${spec.part}] ${detail}` : detail, hard });
 }
 
-/** Shorthand for an outcome with a detail. */
+/**
+ * What it does: wraps a yes or no and a short note as the result of a check.
+ *
+ * Shorthand for an outcome with a detail.
+ */
 const out = (ok: boolean, detail = ""): Outcome => ({ ok, detail });
 
 // ── facts: every number the pages quote, with the log it came from ─────────────────────────────
 
 const FACTS: Record<string, Record<string, { value: unknown; from: string }>> = {};
+/** What it does: keeps a number the pages quote, with the log it came from. */
 function fact(key: string, value: unknown, from: string): void {
   const [group = "misc", ...rest] = key.split(".");
   (FACTS[group] ??= {})[rest.join(".") || "value"] = { value, from };
@@ -142,13 +157,23 @@ function fact(key: string, value: unknown, from: string): void {
 
 // ── inputs: gold, source constants, the corpus replica of steps 1-3 ────────────────────────────
 
+/** What it does: reads a text file and returns its content. */
 const read = (p: string) => readFileSync(p, "utf8");
 const gold: Gold[] = read(GOLD_FILE).trim().split("\n").map((l) => JSON.parse(l) as Gold);
+/** What it does: finds a gold question by its id, or stops with an error. */
 const G = (id: string) => must(gold.find((g) => g.id === id), `gold ${id}`);
-/** The query of the first gold row of a type: what capture asks (capture.ts `first(type)`). */
+/**
+ * What it does: returns the first gold question of a given type, or stops with an error.
+ *
+ * The query of the first gold row of a type: what capture asks (capture.ts `first(type)`).
+ */
 const firstOf = (type: string) => must(gold.find((g) => g.type === type), `gold type ${type}`);
 
-/** Regex literals of a `const NAME: RegExp[] = [ … ];` block, read from source (the array is not exported). */
+/**
+ * What it does: reads the list of regexes from a named array in a source file.
+ *
+ * Regex literals of a `const NAME: RegExp[] = [ … ];` block, read from source (the array is not exported).
+ */
 function regexBlock(src: string, name: string): RegExp[] {
   const i = src.indexOf(`const ${name}`);
   const block = src.slice(i, src.indexOf("\n];", i));
@@ -183,6 +208,7 @@ const FENCE = (() => {
   const fake = [{ chunk: { title: "TTITLE", text: "XBODYX" } }] as unknown as Ranked[];
   const ls = buildPrompt("Q", fake).split("\n");
   const at = ls.indexOf("XBODYX");
+  /** What it does: turns a prompt fence line into a pattern where the number and title can vary. */
   const pat = (l: string) => new RegExp(`^${l.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace("1", "\\d").replace("TTITLE", ".+")}$`);
   return { open: pat(must(ls[at - 1], "fence open")), close: pat(must(ls[at + 1], "fence close")) };
 })();
@@ -193,10 +219,16 @@ interface RDoc extends CleanDoc {
   rawLines: number;
   afterLines: number;
 }
+/** What it does: lists the .md files of an edition folder, sorted by name. */
 const editionFiles = (ed: string) => readdirSync(join(CORPUS, ed)).filter((n) => n.endsWith(".md")).sort();
+/** What it does: reads one corpus file as text, with line endings turned into \n. */
 const rawOf = (ed: string, file: string) => read(join(CORPUS, ed, file)).replace(/\r\n/g, "\n");
 const DOCS = new Map<string, RDoc[]>();
-/** Steps 1-2 on corpus/<ed>, with the imported parser and cleaner (rules: an alternative NOISE list). */
+/**
+ * What it does: loads and cleans every file of an edition, the way steps 1 and 2 do.
+ *
+ * Steps 1-2 on corpus/<ed>, with the imported parser and cleaner (rules: an alternative NOISE list).
+ */
 function docsOf(ed: string, rules?: RegExp[]): RDoc[] {
   const key = rules ? "" : ed;
   if (key && DOCS.has(key)) return DOCS.get(key)!;
@@ -208,39 +240,72 @@ function docsOf(ed: string, rules?: RegExp[]): RDoc[] {
   if (key) DOCS.set(key, docs);
   return docs;
 }
+/** What it does: finds one cleaned document of an edition by its id, or stops with an error. */
 const doc = (ed: string, id: string) => must(docsOf(ed).find((d) => d.id === id), `doc ${id}@${ed}`);
+/** What it does: splits an edition into chunks by section, the way step 3 does. */
 const sectionChunks = (ed: string, rules?: RegExp[]) => docsOf(ed, rules).flatMap((d) => bySection(d));
+/** What it does: splits an edition into fixed 300-character chunks, the way step 3 does. */
 const fixedChunks = (ed: string) => docsOf(ed).flatMap((d) => fixedSize(d, 300));
+/** What it does: adds up a list of numbers. */
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
 
 /** The corpus language: the lang 7 of the 8 docs share. The odd doc is the one that differs. */
 const LANGS = docsOf("2025").map((d) => d.lang);
 const DATA_LANG = must(LANGS.find((l) => LANGS.filter((x) => x === l).length > 1), "majority lang");
 const ODD = must(docsOf("2025").find((d) => d.lang !== DATA_LANG), "odd-language doc");
-/** Pages of a doc = page-header lines in its raw body. */
+/**
+ * What it does: counts the pages of a document by counting its page header lines.
+ *
+ * Pages of a doc = page-header lines in its raw body.
+ */
 const pagesOf = (d: RDoc) => d.body.split("\n").filter((l) => HEADER_RULE.test(l.trim())).length;
-/** The raw line right under each page header (the confidentiality line). */
+/**
+ * What it does: returns the non-empty line right under each page header of a document.
+ *
+ * The raw line right under each page header (the confidentiality line).
+ */
 const underHeader = (d: RDoc) => {
   const ls = d.body.split("\n");
   return ls.flatMap((l, i) => (HEADER_RULE.test(l.trim()) && ls[i + 1]?.trim() ? [ls[i + 1]!.trim()] : []));
 };
-/** "| n | v |" → v, in any text. */
+/**
+ * What it does: returns the number from the table row that starts with n, in a text.
+ *
+ * "| n | v |" → v, in any text.
+ */
 const row = (txt: string, n: string | number) => new RegExp(`^\\| ${n} \\| (\\d+) \\|`, "m").exec(txt)?.[1];
-/** The text of section n of a clean doc, heading line included. */
+/**
+ * What it does: returns one numbered section of a clean document, with its heading line.
+ *
+ * The text of section n of a clean doc, heading line included.
+ */
 const sectionText = (d: RDoc, n: string) => must(d.text.split(/\n(?=## \d+\.)/).find((p) => p.startsWith(`## ${n}.`)), `${d.id} section ${n}`);
 
 // ── log parsers: code-printed English markers only, so they survive the data switch ────────────
 
 const LOGC = new Map<string, string[]>();
-/** A log's lines, final newline removed. */
+/**
+ * What it does: returns the lines of a log, read once and kept in memory.
+ *
+ * A log's lines, final newline removed.
+ */
 function L(n: string): string[] {
   if (!LOGC.has(n)) LOGC.set(n, read(logPath(n)).replace(/\n$/, "").split("\n"));
   return LOGC.get(n)!;
 }
+/** What it does: joins the lines of a log back into one text. */
 const TXT = (n: string) => L(n).join("\n");
-/** Line i of a log, counted from 1 as an editor shows it. */
+/**
+ * What it does: returns one line of a log, counting from 1.
+ *
+ * Line i of a log, counted from 1 as an editor shows it.
+ */
 const ln = (n: string, i: number) => L(n)[i - 1] ?? "";
-/** First capture group of re in a log, as a number. */
+/**
+ * What it does: returns the number a pattern captures from a log, or stops with an error.
+ *
+ * First capture group of re in a log, as a number.
+ */
 const num = (n: string, re: RegExp) => Number(must(TXT(n).match(re)?.[1], `${re} in ${n}`));
 
 const RE_HIT = /^\s+(\d+)\s+(\d\.\d{3})\s+(\S+@\d{4}#\S+)/;
@@ -248,26 +313,46 @@ const RE_RR = /^\s+(\d+)\s+(?:([▲▼])\s+)?was\s+(\d+)\s+(?:rel\s+(\d+)\s+)?ve
 const RE_SRC = /^\s+\[(\d)\] (\S+@\d{4}#\S+)/;
 const ID = /\S+@\d{4}#\S+/;
 
-/** Step-6 rows (the 5 above the cut, then the rows below it). */
+/**
+ * What it does: reads the step 6 result rows (rank, score, id) from a log.
+ *
+ * Step-6 rows (the 5 above the cut, then the rows below it).
+ */
 const hits = (n: string) =>
   L(n).flatMap((l) => {
     const m = l.match(RE_HIT);
     return m ? [{ rank: +m[1]!, score: +m[2]!, id: m[3]! }] : [];
   });
-/** Step-7 rows. */
+/**
+ * What it does: reads the step 7 result rows (position, move, scores, id) from a log.
+ *
+ * Step-7 rows.
+ */
 const rr = (n: string) =>
   L(n).flatMap((l) => {
     const m = l.match(RE_RR);
     return m ? [{ pos: +m[1]!, move: m[2] ?? "", was: +m[3]!, rel: m[4] === undefined ? undefined : +m[4], vec: +m[5]!, id: m[6]! }] : [];
   });
-/** The `[n] id` source lines under an answer. */
+/**
+ * What it does: reads the source ids listed under an answer in a log.
+ *
+ * The `[n] id` source lines under an answer.
+ */
 const sources = (n: string) => L(n).flatMap((l) => (l.match(RE_SRC)?.[2] ? [l.match(RE_SRC)![2]!] : []));
-/** The metadata filter a log printed. */
+/**
+ * What it does: reads the metadata filter that a log printed and parses it.
+ *
+ * The metadata filter a log printed.
+ */
 function filterOf(n: string): { edition?: string; access?: string[] } {
   const l = must(L(n).find((x) => /filter \{/.test(x)), `filter line in ${n}`);
   return JSON.parse(must(l.match(/filter (\{.*?\})(?: ·|$)/)?.[1], `filter json in ${n}`));
 }
-/** The answer: the paragraph just above the first `[1] id` line. */
+/**
+ * What it does: returns the answer text of a log, found just above its first source line.
+ *
+ * The answer: the paragraph just above the first `[1] id` line.
+ */
 function answer(n: string): string {
   const ls = L(n);
   let j = ls.findIndex((l) => /^\s+\[1\] \S+@\d{4}#\S+/.test(l)) - 1;
@@ -277,7 +362,11 @@ function answer(n: string): string {
   while (j >= 0 && ls[j]!.trim()) lines.unshift(ls[j--]!);
   return lines.join(" ").trim();
 }
-/** Step 0's answer: the block after OUT, before TIME. */
+/**
+ * What it does: returns the answer text of a step 0 log, found between OUT and TIME.
+ *
+ * Step 0's answer: the block after OUT, before TIME.
+ */
 function bareAnswer(n: string): string {
   const ls = L(n);
   let j = ls.findIndex((l) => /^\s+OUT /.test(l)) + 1;
@@ -286,17 +375,24 @@ function bareAnswer(n: string): string {
   while (j < ls.length && ls[j]!.trim() && !/^\s+TIME/.test(ls[j]!)) lines.push(ls[j++]!);
   return lines.join(" ");
 }
-/** stuff-everything's answer: everything after the first blank line. */
+/**
+ * What it does: returns the answer of the stuff-everything log, after its first blank line.
+ *
+ * stuff-everything's answer: everything after the first blank line.
+ */
 const stuffAnswer = () => L("stuff-everything").slice(L("stuff-everything").indexOf("") + 1).join(" ").trim();
+/** What it does: reads hit@1, recall, MRR and the question count from an eval log. */
 const evalSummary = (n: string) => {
   const m = must(TXT(n).match(/hit@1 ([\d.]+) · recall@5 ([\d.]+) · MRR ([\d.]+)\s+\((\d+) retrieval questions\)/), `eval summary in ${n}`);
   return { hit1: +m[1]!, recall: +m[2]!, mrr: +m[3]!, n: +m[4]!, line: must(L(n).find((l) => /^\s+OUT\s+hit@1/.test(l)), "OUT").trim() };
 };
+/** What it does: reads the per-question rows of an eval log. */
 const evalRows = (n: string) =>
   L(n).flatMap((l) => {
     const m = l.match(/^\s+(q\d\d)\s+(\S+)\s+(✓|✗|·|–)\s+rr ([\d.]+)\s+(.*?)(?:\s+answer (✓|✗))?$/);
     return m ? [{ id: m[1]!, type: m[2]!, mark: m[3]!, rr: +m[4]!, top3: m[5]!.trim(), ans: m[6] }] : [];
   });
+/** What it does: reads the per-type summary rows of an eval log. */
 const perType = (n: string) =>
   Object.fromEntries(
     L(n).flatMap((l) => {
@@ -304,7 +400,11 @@ const perType = (n: string) =>
       return m ? [[m[1]!, { n: +m[2]!, hit1: +m[3]!, mrr: +m[4]! }] as const] : [];
     }),
   ) as Record<string, { n: number; hit1: number; mrr: number }>;
-/** The `the chunk holding "| 7 |" → id` block of a chunk log: the id and the box lines. */
+/**
+ * What it does: finds the chunk shown in a chunk log: its id, sections and box lines.
+ *
+ * The `the chunk holding "| 7 |" → id` block of a chunk log: the id and the box lines.
+ */
 function chunkBlock(n: string): { id: string; sections: string; body: string[] } {
   const ls = L(n);
   const i = ls.findIndex((l) => /the chunk holding/.test(l));
@@ -313,13 +413,22 @@ function chunkBlock(n: string): { id: string; sections: string; body: string[] }
   for (let j = i + 1; j < ls.length && /^\s+│/.test(ls[j]!); j++) body.push(ls[j]!.replace(/^\s+│ ?/, ""));
   return { id: m[1]!, sections: m[2]!, body };
 }
-/** A table header line: two cells, neither a number nor dashes. */
+/**
+ * What it does: checks if a line is a table header row, not a number row or divider.
+ *
+ * A table header line: two cells, neither a number nor dashes.
+ */
 const isHeaderRow = (l: string) => {
   const c = l.split("|").map((x) => x.trim()).filter((x) => x !== "");
   return l.trim().startsWith("|") && c.length === 2 && !/^\d/.test(c[0]!) && !/^\d/.test(c[1]!) && !/^-+$/.test(c[0]!);
 };
-/** TIME value of a log's last TIME line. */
+/**
+ * What it does: returns the last TIME value of a log, in ms.
+ *
+ * TIME value of a log's last TIME line.
+ */
 const timeMs = (n: string) => Number(must([...TXT(n).matchAll(/TIME\s+(\d+) ms/g)].pop()?.[1], `TIME in ${n}`));
+/** What it does: checks if a text contains the expected answer of gold question q01. */
 const has22 = (s: string) => new RegExp(`\\b${G("q01").expect}\\b`).test(s);
 
 // ═══ K · corpus layer ═══════════════════════════════════════════════════════════════════════════
@@ -328,6 +437,7 @@ const D25 = docsOf("2025");
 const SEC25 = sectionChunks("2025");
 const FIX25 = fixedChunks("2025");
 const KEYS = [...must(read("src/steps/1-load.ts").match(/const KEYS[^=]*= \[([^\]]+)\]/)?.[1], "KEYS").matchAll(/"(\w+)"/g)].map((m) => m[1]!);
+/** What it does: reads the chunk count, average, min and max size from a chunk log. */
 const outCounts = (n: string) => {
   const m = must(TXT(n).match(/(\d+) chunks · avg (\d+) chars · min (\d+) · max (\d+)/), `chunk OUT in ${n}`);
   return { count: +m[1]!, avg: +m[2]!, min: +m[3]!, max: +m[4]! };
@@ -410,6 +520,7 @@ A({ id: "K05", tier: 1, cls: "N", sids: "S2.04 S2.05 S2.08" }, () => {
   const pageNums = raw.filter((l) => PAGE_RULES.some((r) => r.test(l.trim()))).length;
   const h3 = raw.findIndex((l) => /^## 3\./.test(l));
   const lead3 = raw.slice(h3 + 1, raw.findIndex((l, i) => i > h3 && l.startsWith("|"))).filter((l) => l.trim()).length;
+  /** What it does: counts the lines of the first paragraph under a section heading in hr-leave. */
   const leadLines = (n: string) => {
     const ls = sectionText(hl, n).split("\n").slice(1);
     const first = ls.findIndex((l) => l.trim());
@@ -421,13 +532,16 @@ A({ id: "K05", tier: 1, cls: "N", sids: "S2.04 S2.05 S2.08" }, () => {
 /** The injected contact address: the first x@y.example in the meal-card doc. */
 const PLANTED = must(rawOf("2025", "announcement-meal-card.md").match(/[\w.-]+@[\w.-]+\.example/)?.[0], "planted address");
 const DOMAIN = PLANTED.split("@")[1]!;
+/** What it does: reads every raw file of an edition together with its file name. */
 const allRaw = (ed: string) => editionFiles(ed).map((f) => ({ f, raw: rawOf(ed, f) }));
+/** What it does: returns section 2 of the meal card announcement. */
 const mealSection2 = (ed: string) => sectionText(doc(ed, "announcement-meal-card"), "2");
 
 A({ id: "K06", part: "content", tier: 1, cls: "P", sids: "S1.06 S5.01 S5.11 S5.16 S5.25 S6.04 S6.09 S6.13 S6.14" }, () => {
   const where = ["2025", "2026"].map((ed) => allRaw(ed).filter((x) => x.raw.includes(PLANTED)).map((x) => x.f).join());
   const body = doc("2025", "announcement-meal-card").body.split("\n");
   const h2 = body.findIndex((l) => /^## 2\./.test(l));
+  /** What it does: returns the nth line of the meal card, counting from its section 2 heading. */
   const shown = (n: number) => body[h2 + n - 1] ?? "";
   const paragraph = !shown(7).trim() && !!shown(8).trim() && !!shown(9).trim() && shown(10).startsWith(PLANTED) && !shown(11).trim();
   const cities = ["Frankfurt", "Ankara"].filter((c) => allRaw("2025").some((x) => x.raw.includes(c)));
@@ -436,10 +550,13 @@ A({ id: "K06", part: "content", tier: 1, cls: "P", sids: "S1.06 S5.01 S5.11 S5.1
   const mails = [...new Set(allRaw("2025").flatMap((x) => x.raw.match(/[\w.-]+@[\w.-]+\.\w+/g) ?? []))];
   const phones = [...new Set(allRaw("2025").flatMap((x) => (x.raw.match(/\+?\d[\d ()-]{8,}\d/g) ?? []).filter((p) => p.replace(/\D/g, "").length >= 10)))];
   const te = doc("2025", "travel-expenses");
+  /** What it does: returns the table rows of one travel-expenses section, without the divider line. */
   const table = (n: string) => sectionText(te, n).split("\n").filter((l) => l.startsWith("|") && !/^\|-/.test(l));
   const [h3, ...r3] = table("3");
   const [h4, ...r4] = table("4");
+  /** What it does: returns the first cell of a table row. */
   const label = (l: string) => l.split("|")[1]!.trim();
+  /** What it does: splits a table row into words, cutting at spaces, bars, brackets and slashes. */
   const words = (l: string) => l.split(/[\s|()/]+/).filter(Boolean);
   const hw3 = words(h3 ?? "");
   const hw4 = words(h4 ?? "");
@@ -480,8 +597,13 @@ A({ id: "K08", tier: 1, cls: "P", sids: "-" }, () => {
 });
 
 const WATCH = "| 7 |";
+/** What it does: escapes special characters so a text can go into a regex. */
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-/** The fixed-300 cut around the leave table: chunks k-1, k (header) and k+1 (row 7). */
+/**
+ * What it does: finds the fixed chunks around the leave table, plus where its heading and rows sit.
+ *
+ * The fixed-300 cut around the leave table: chunks k-1, k (header) and k+1 (row 7).
+ */
 function cutOf(ed: string) {
   const hl = doc(ed, "hr-leave");
   const f = fixedSize(hl, 300);
@@ -495,7 +617,11 @@ function cutOf(ed: string) {
   return { hl, f, i, a, b, c, aEnd: (i - 1) * 300, bEnd: i * 300, s3, headingLine, firstWord, headerLine, row5 };
 }
 
-/** travel-expenses §7: the receipt deadline in days (K13 also proves the sentence on what happens after it). */
+/**
+ * What it does: reads the receipt deadline, in days, from the travel-expenses file.
+ *
+ * travel-expenses §7: the receipt deadline in days (K13 also proves the sentence on what happens after it).
+ */
 const receiptDays = () => must(rawOf("2025", "travel-expenses.md").match(/within (\d+) calendar days/)?.[1], "receipt deadline in travel-expenses");
 A({ id: "K13", tier: 1, cls: "P", sids: "S1.35" }, () => {
   const days = receiptDays();
@@ -530,12 +656,14 @@ A({ id: "K10", tier: 1, cls: "P", sids: "S1.32 S2.20 S2.22 S2.23 S2.24 S2.32 S6.
 const READ_CHARS = Number(must(read("src/steps/7-rerank.ts").match(/READ_CHARS = (\d+)/)?.[1], "READ_CHARS"));
 A({ id: "K11", tier: 1, cls: "P", sids: "S1.08 S2.25 S2.33 S3.10 S4.20 S4.21 S5.31 S6.59 S7.10" }, () => {
   const split = [...SEC25, ...sectionChunks("2026")].filter((c) => /\.\d+$/.test(c.id)).map((c) => c.id);
+  /** What it does: returns the text of one section chunk by its id, or stops with an error. */
   const chunk = (id: string) => must(SEC25.find((c) => c.id === id), id).text;
   const h3 = chunk("hr-leave@2025#3");
   const ls = h3.split("\n");
   const rows = ls.filter((l) => l.startsWith("|") && !isHeaderRow(l) && !/^\|-/.test(l));
   const last = (rows[rows.length - 1] ?? "").split("|")[1]?.trim() ?? "";
   const shape = /^\[.+ › 3\. .+\]$/.test(ls[0] ?? "") && ls.some(isHeaderRow) && ls.includes("|---|---|") && rows.length === 15 && !/^\d+$/.test(last) && row(h3, 7) === G("q01").expect;
+  /** What it does: finds where the senior row starts inside a chunk, or -1 if there is none. */
   const senior = (id: string) => {
     const t = chunk(id);
     const r = t.split("\n").filter((l) => l.startsWith("|") && !/^\|-/.test(l))[2] ?? "";
@@ -582,12 +710,14 @@ A({ id: "K20", tier: 1, cls: "N", sids: "S1.28 S4.41 S4.48 S6.05" }, () => {
     return n >= 5 && n <= 14 && c.b.startsWith(`| ${n} |`);
   });
   const sec = changed["it-security.md"] ?? [];
+  /** What it does: returns all the numbers found in a text, as strings. */
   const nums = (s: string): string[] => s.match(/\d+/g) ?? [];
   const secOk = sec.length === 1 && nums(sec[0]!.a).includes(G("q08").expect) && !nums(sec[0]!.b).includes(G("q08").expect);
   const te = changed["travel-expenses.md"] ?? [];
   const teRaw = rawOf("2025", "travel-expenses.md").split("\n");
   const s4 = teRaw.findIndex((l) => /^## 4\./.test(l));
   const s5 = teRaw.findIndex((l) => /^## 5\./.test(l));
+  /** What it does: counts how many table cells differ between two rows. */
   const cellDiff = (x: string, y: string) => x.split("|").filter((c, i) => c !== y.split("|")[i]).length;
   const teOk = te.length === 2 && te.every((c) => c.i > s4 && c.i < s5 && c.a.startsWith("|") && cellDiff(c.a, c.b) === 1);
   const hl25 = doc("2025", "hr-leave");
@@ -634,10 +764,15 @@ A({ id: "T08", tier: 1, cls: "P", sids: "S5.34 S5.35" }, () => {
 
 /** Letters only Turkish uses (built from code points so this file stays free of them). */
 const TURKISH = new RegExp(`[${[0xe7, 0x11f, 0x131, 0xf6, 0x15f, 0xfc, 0xc7, 0x11e, 0x130, 0xd6, 0x15e, 0xdc].map((c) => String.fromCodePoint(c)).join("")}]`);
+/** What it does: lists all files under a folder, including subfolders, or none if it is missing. */
 const filesIn = (dir: string): string[] =>
   !existsSync(dir) ? [] : readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? filesIn(join(dir, e.name)) : [join(dir, e.name)]));
 const SRC_FILES = filesIn("src").filter((f) => f.endsWith(".ts"));
-/** Words built from parts, so a grep for them finds the code that uses them, not this check. */
+/**
+ * What it does: joins parts into one word, so a search for that word skips this file.
+ *
+ * Words built from parts, so a grep for them finds the code that uses them, not this check.
+ */
 const W = (...p: string[]) => p.join("");
 
 /** Turkish case rules turn "I" into a dotless i, so an English needle would never match an upper-case answer. */
@@ -648,6 +783,7 @@ A({ id: "T03", tier: 1, cls: "N", sids: "S7.35 S7.36" }, () => {
 });
 
 A({ id: "T04", part: "anchors", tier: 1, cls: "N", sids: "S1.04 S1.25 S2.17 S2.21 S2.34 S3.08 S3.22 S3.35 S3.36 S4.12 S4.16 S5.19 S5.20 S5.26 S5.33 S5.37 S5.52 S7.12 S7.13 S7.15 S7.16 S7.20 S7.22 S7.23 S7.24 S7.25 S7.26 S7.28 S7.29 S7.33 S7.38 S7.45" }, () => {
+  /** What it does: checks that a file contains every given text. */
   const has = (f: string, ...needles: string[]) => needles.every((n) => read(f).includes(n));
   const steps = readdirSync("src/steps").filter((f) => /^[1-8]-.+\.ts$/.test(f)).sort();
   const evalLines = read("src/cli/eval.ts").split("\n");
@@ -695,6 +831,7 @@ const SOLUTION_NAME = must(
 );
 A({ id: "T06", tier: 1, cls: "N", sids: "S2.13 S2.17 S2.34 S4.39 S6.53 S6.54 S6.65 S7.27 S7.49", needsAll: true }, () => {
   const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+  /** What it does: runs an npm command and returns its exit code and printed text. */
   const run = (args: string[], env: Record<string, string> = {}) => {
     const r = spawnSync(npm, args, { encoding: "utf8", env: { ...process.env, NO_COLOR: "1", FORCE_COLOR: "0", ...env } });
     return { code: r.status, text: `${r.stdout}${r.stderr}` };
@@ -719,7 +856,11 @@ A({ id: "T07", part: "markers", tier: 1, cls: "N", sids: "-" }, () => {
   const hits = shippedFiles.flatMap((f) => read(f).split("\n").flatMap((l, i) => markers.filter((m) => m.test(l)).map((m) => `${f.replace(`${process.cwd()}/`, "")}:${i + 1} ${m}`)));
   return out(markers.length > 10 && !hits.length, hits.length ? hits.slice(0, 5).join("; ") : `${markers.length} markers, ${shippedFiles.length} files, 0 hits`);
 });
-/** The site's "scan everything" lists hit in these texts: STAGE_TR (or the older single STAGE) and CALQUE, read by path, never copied. */
+/**
+ * What it does: checks texts against the site's word lists and reports every match.
+ *
+ * The site's "scan everything" lists hit in these texts: STAGE_TR (or the older single STAGE) and CALQUE, read by path, never copied.
+ */
 function stageCalqueHits(texts: { f: string; t: string }[]): Outcome {
   const scripts = ["check-dist.mjs", "style-lists.mjs"].map((f) => join(SITE, "scripts", f)).filter((f) => existsSync(f));
   if (!scripts.length) return out(false, `site scripts not found under ${SITE} (set SITE_DIR)`);
@@ -749,6 +890,7 @@ const TR_NAMES = [W("Atat", String.fromCodePoint(0xfc), "rk")];
 const TR_WORDS = new Set([...TR_DOC_FILES.flatMap((f) => read(f).match(/\p{L}+/gu) ?? []), ...TR_NAMES]);
 const TR_WHOLE_FILES = [join("solutions", SOLUTION_FILE), join("test", "siblings", "siblings.test.ts")].map((f) => resolve(f));
 const TR_DAY_PHRASE = new RegExp(`7 y${String.fromCodePoint(0x131)}ll${String.fromCodePoint(0x131)}k`, "i");
+/** What it does: finds Turkish words in files where only the Turkish document may have them. */
 const strayTurkish = (files: string[]) =>
   files.flatMap((f) => {
     const name = f.replace(`${process.cwd()}/`, "");
@@ -790,11 +932,16 @@ A({ id: "L00", part: "present", tier: 1, cls: "N", sids: "-" }, () => {
 const QUESTION_LOGS = ["question-0-bare", "question-1-fixed", "question-2-section", "question-3-full", "question-4-2026"];
 const EXP = G("q01").expect;
 /** A number in the bare answer that is neither the 7 of the question nor the right answer. */
-/** question-0-bare's answer: the paragraph that starts on line 6. */
+/**
+ * What it does: returns the answer paragraph of the question-0-bare log.
+ *
+ * question-0-bare's answer: the paragraph that starts on line 6.
+ */
 const qBare = () => {
   const ls = L("question-0-bare").slice(5);
   return ls.slice(0, Math.max(0, ls.findIndex((l) => !l.trim()))).join(" ");
 };
+/** What it does: finds the first number that is neither 7 nor the right answer. */
 const wrongNumber = (a: string) => a.match(new RegExp(`\\b(?!7\\b|${EXP}\\b)\\d+\\b`))?.[0];
 
 A({ id: "L01", tier: 1, cls: "N", sids: "S1.10 S1.12 S1.15 S1.47", logs: ["question-0-bare"] }, () => {
@@ -836,12 +983,21 @@ A({ id: "L07", tier: 1, cls: "P", sids: "S1.01 S4.17 S6.38 S6.61 S7.08", logs: [
   const ok = ln("00-bare", 4).endsWith(q) && ln("06-retrieve", 4).endsWith(q) && ln("07-rerank", 4).includes(q) && banners.every((b) => b.endsWith(`  ${q}`)) && new Set(banners).size === 1;
   return out(ok, `day question "${q}" in 00-bare, 06, 07 and ${banners.length} banners`);
 });
-/** The two "your turn" questions capture asks the bare model, read from capture.ts (one const each). */
+/**
+ * What it does: reads one question text from a const in capture.ts.
+ *
+ * The two "your turn" questions capture asks the bare model, read from capture.ts (one const each).
+ */
 const bareQ = (name: string) => must(SRC_CAPTURE.match(new RegExp(`const ${name} = "([^"]+)";`))?.[1], `capture.ts ${name}`);
 const BARE_REPHRASE = bareQ("BARE_REPHRASE");
 const BARE_RECEIPTS = bareQ("BARE_RECEIPTS");
-/** The numbers of a bare answer, minus the 7 the leave questions carry. */
+/**
+ * What it does: returns the sorted, unique numbers of an answer, without 7.
+ *
+ * The numbers of a bare answer, minus the 7 the leave questions carry.
+ */
 const numbersOf = (a: string) => [...new Set((a.match(/\d+/g) ?? []).filter((x) => x !== "7"))].sort();
+/** What it does: checks that the header lines of a step 0 log match its command and question. */
 const bareBlock = (n: string, q: string) =>
   ln(n, 1) === `$ npm run step -- 0 "${q}"` && ln(n, 3).startsWith("━━ STEP 0/8") && ln(n, 4) === `   IN    ${q}` && ln(n, 5).includes(`WHAT  ask ${config.chatModel} directly — no documents, no search`);
 A({ id: "L09", part: "rephrase", tier: 1, cls: "P", sids: "S1.13", logs: ["00-bare-rephrase"] }, () => out(bareBlock("00-bare-rephrase", BARE_REPHRASE), ln("00-bare-rephrase", 1)));
@@ -877,6 +1033,7 @@ A({ id: "L10", tier: 1, cls: "N", sids: "S2.02 S2.03 S7.02 S7.03 S7.04", logs: [
   return out(ok, `${rows.length} docs, odd ${odd}, chars ${sum(rows.map((r) => r.chars))} == ${total}`);
 });
 
+/** What it does: returns the text inside a boxed part of a log, between two marker lines. */
 const box = (n: string, from: RegExp, to: RegExp) => {
   const ls = L(n);
   const a = ls.findIndex((l) => from.test(l));
@@ -928,6 +1085,7 @@ A({ id: "L14", tier: 1, cls: "N", sids: "S2.29 S5.31", logs: ["03-chunk-fixed", 
   return out(f.count >= 1.5 * s.count && s.avg >= 1.5 * f.avg && s.count === headings + 1, `fixed ${f.count} x ${f.avg} · section ${s.count} x ${s.avg} · headings ${headings} + 1`);
 });
 
+/** What it does: checks if a text has the expected answer as a whole word. */
 const hasExp = (s: string, v = EXP) => new RegExp(`\\b${v}\\b`).test(s);
 A({ id: "L20", tier: 2, cls: "P", sids: "S1.17 S1.49 S2.19 S2.25 S5.22 S6.22 S6.38 S6.42 S7.35", logs: ["question-1-fixed", "03-chunk-fixed"] }, () => {
   const n = "question-1-fixed";
@@ -964,10 +1122,15 @@ A({ id: "L23", tier: 2, cls: "E", soft: true, sids: "S5.21", logs: ["question-2-
   const a = [answer("question-2-section"), answer("question-3-full"), answer("08-answer"), stuffAnswer()];
   return out(a.every((x) => x.includes(`${EXP} working days`)) && answer("question-4-2026").includes(`${ROW7_2026} working days`), "the page copies the phrase the log has");
 });
-/** Ledger rows: [answer preview, how]. */
+/**
+ * What it does: reads the ledger rows (answer preview and how) printed in a log.
+ *
+ * Ledger rows: [answer preview, how].
+ */
 const ledger = (n: string) => L(n).filter((l) => /^\s+\d\d:\d\d\s{2}/.test(l)).map((l) => l.replace(/^\s+\d\d:\d\d\s{2}/, "").split(/\s{2,}/));
 A({ id: "L24", tier: 1, cls: "P", sids: "S1.03 S1.20 S2.28 S6.41", logs: ["question-4-2026", "question-2-section"] }, () => {
   const r = ledger("question-4-2026");
+  /** What it does: returns the answer preview of ledger row i, or an empty text. */
   const p = (i: number) => r[i]?.[0] ?? "";
   const ok = r.length === 5 && (r[0]?.[1] ?? "").includes("bare model, no documents") && !hasExp(p(0)) && p(1) === preview(answer("question-1-fixed"), 46) && !hasExp(p(1)) && !isAbstain(answer("question-1-fixed")) && hasExp(p(2)) && hasExp(p(3)) && hasExp(p(4), ROW7_2026) && /^\s+LEDGER/.test(ln("question-4-2026", 12));
   const r2 = ledger("question-2-section");
@@ -988,16 +1151,20 @@ A({ id: "L30", part: "vectors", tier: 1, cls: "N", sids: "S3.04 S3.05 S3.07 S3.0
 A({ id: "L30", part: "warm cache", tier: 3, cls: "N", sids: "S5.45", logs: ["04-embed"] }, () => out(/ 0 computed, /.test(TXT("04-embed")), "needs a warm .cache/"));
 
 const STOP = new Set("the and for are how many what much with our you your its per any all can not has have does did was were will from this that there into when which who".split(" "));
+/** What it does: reads the sentence pairs and their scores from the similar log. */
 const pairs = () =>
   L("04b-similar").flatMap((l, i, ls) => {
     const m = l.match(/^\s+(\d\.\d{3}) [█░]+\s+(.+)$/);
     return m ? [{ score: +m[1]!, kind: m[2]!.trim(), a: (ls[i + 1] ?? "").trim(), b: (ls[i + 2] ?? "").trim() }] : [];
   });
+/** What it does: finds one sentence pair by its kind, or stops with an error. */
 const pair = (k: string) => must(pairs().find((p) => (k === "cross" ? p.kind.includes("↔") : p.kind === k)), `pair ${k}`);
 A({ id: "L31", part: "relations", tier: 1, cls: "N", sids: "S3.03 S3.11 S3.12 S3.13 S3.14 S3.23 S4.11 S7.37 S7.41", logs: ["04b-similar"] }, () => {
   const [para, cross, twin, neg, unrel] = ["paraphrase", "cross", "twin tables", "negation trap", "unrelated"].map(pair) as [ReturnType<typeof pair>, ReturnType<typeof pair>, ReturnType<typeof pair>, ReturnType<typeof pair>, ReturnType<typeof pair>];
+  /** What it does: splits a text at spaces into tokens. */
   const toks = (s: string) => s.split(/\s+/);
   const diff = toks(neg.a).filter((t) => !toks(neg.b).includes(t)).length + toks(neg.b).filter((t) => !toks(neg.a).includes(t)).length;
+  /** What it does: returns the set of words with three or more letters, without common small words. */
   const words = (s: string) => new Set((s.toLowerCase().match(/\p{L}{3,}/gu) ?? []).filter((w) => !STOP.has(w)));
   const shared = [...words(para.a)].filter((w) => words(para.b).has(w));
   const gap = para.score - unrel.score;
@@ -1016,6 +1183,7 @@ A({ id: "L32", tier: 2, cls: "N", sids: "S2.10 S3.16 S3.17 S3.18 S3.19", logs: [
   const near = must(t.match(/lands next to: ([^\n]+?)\s+\(on the 2-D/)?.[1], "lands next to").split(", ");
   const m = JSON.parse(read(logPath("map.json"))) as { points: { id: string; docId: string; x: number; y: number; text: string }[] };
   const P = m.points;
+  /** What it does: returns the distance between two points on the map. */
   const d = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y);
   const byDoc = new Map<string, typeof P>();
   for (const p of P) byDoc.set(p.docId, [...(byDoc.get(p.docId) ?? []), p]);
@@ -1026,6 +1194,7 @@ A({ id: "L32", tier: 2, cls: "N", sids: "S2.10 S3.16 S3.17 S3.18 S3.19", logs: [
   const side = (cen.get(ODD.id)?.x ?? 0) < meanX ? 1 : -1;
   const extreme = [...P].sort((a, b) => side * (a.x - b.x)).slice(0, odd.length);
   const oddShare = extreme.filter((p) => p.docId === ODD.id).length / Math.max(1, odd.length);
+  /** What it does: returns the mean distance between all pairs of points in a list. */
   const mp = (a: typeof P) => { let s = 0, n = 0; for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) { s += d(a[i]!, a[j]!); n++; } return s / n; };
   const s1 = P.filter((p) => /#1$/.test(p.id) && p.docId !== ODD.id && !p.docId.startsWith("announcement-"));
   const zero = P.find((p) => p.id === `${ODD.id}@2025#0`)?.text ?? "";
@@ -1042,6 +1211,7 @@ A({ id: "L40", tier: 1, cls: "N", sids: "S1.25 S3.27 S3.31", logs: ["05-store-js
   return out(ln("05-store-json", 1) === "$ npm run step -- 5 --store json" && num("05-store-json", /(\d+) vectors, edition 2025/) === SEC25.length && !!m && +m[1]! === SEC25.length && m[1] === m[2], `${m?.[1]} records`);
 });
 const storeLogs = ["05-store-chroma", "ingest-fixed", "ingest-section", "ingest-2026"];
+/** What it does: reads the ids printed after a label on one line of a log. */
 const top5 = (n: string, who: RegExp) => must(L(n).find((l) => who.test(l.trim())), `${who} in ${n}`).trim().replace(who, "").trim().split(/\s+/);
 A({ id: "L41", tier: 1, cls: "N", sids: "S3.32 S3.33 S3.34 S3.37 S6.38 S6.40 S6.64 S7.07 S7.38", logs: [...storeLogs, "06-retrieve"] }, () => {
   const same = storeLogs.map((n) => top5(n, /^JSON \(brute force\)/).join() === top5(n, /^chroma(?=\s+\S+@)/).join() && TXT(n).includes("identical ✓"));
@@ -1095,6 +1265,8 @@ A({ id: "L52", part: "moves", tier: 2, cls: "N", sids: "S1.08 S1.43 S4.07 S4.08 
   return out(ok, r.map((x) => `${x.move}${x.id.split("#")[1]} rel ${x.rel}`).join(", "));
 });
 /**
+ * What it does: checks the rerank rows match the retrieve top 5 and lists what is broken.
+ *
  * Retrieve → rerank, as one chain: the rerank rows are exactly the retrieve top 5, each row's `was` and `vec` are that
  * chunk's retrieve rank and score, the arrow agrees with was → position, and rel never rises down the rows.
  * Returns what broke (empty = the chain holds).
@@ -1112,9 +1284,17 @@ function chainBreaks(ret: string, rer: string): string[] {
   });
   return bad;
 }
-/** The answer log cites the rerank top 3, in order. */
+/**
+ * What it does: checks that an answer log cites the rerank top 3 sources, in order.
+ *
+ * The answer log cites the rerank top 3, in order.
+ */
 const citesTop3 = (ans: string, rer: string) => sources(ans).join() === rr(rer).slice(0, 3).map((x) => x.id).join();
-/** One ask log: its own chain holds and its sources are its own rerank top 3. */
+/**
+ * What it does: checks one ask log: its chain holds and its sources are its rerank top 3.
+ *
+ * One ask log: its own chain holds and its sources are its own rerank top 3.
+ */
 const askChain = (n: string) => {
   const bad = chainBreaks(n, n);
   if (!citesTop3(n, n)) bad.push(`sources ${sources(n).join(" ")} != rerank top 3`);
@@ -1166,13 +1346,20 @@ A({ id: "L55", tier: 2, cls: "N", sids: "S4.29", logs: ["08-answer", "08-answer-
   out(["08-answer", "08-answer-rerank-off"].every((n) => !new RegExp(`\\|\\s*7\\s*\\|\\s*${EXP}\\s*\\|`).test(answer(n))), "the model skips rule 7's row copy"),
 );
 
+/** What it does: checks that the first line of a log is the ask command for a question. */
 const asks = (n: string, q: string) => ln(n, 1).startsWith(`$ npm run ask -- "${q}"`);
+/** What it does: checks that two logs show the same retrieve rows and the same sources. */
 const sameRows = (a: string, b: string) => hits(a).map((x) => x.id + x.score).join() === hits(b).map((x) => x.id + x.score).join() && sources(a).join() === sources(b).join();
-/** The senior row of the abroad table (travel-expenses §4, second data row): its money cells. */
+/**
+ * What it does: returns the money cells of the senior row in a travel-expenses section.
+ *
+ * The senior row of the abroad table (travel-expenses §4, second data row): its money cells.
+ */
 const seniorRow = (sec: string) => {
   const r = must(sectionText(doc("2025", "travel-expenses"), sec).split("\n").filter((l) => l.startsWith("|") && !/^\|-/.test(l))[2], `senior row §${sec}`); // [0] is the header
   return r.split("|").slice(2).map((c) => c.trim()).filter(Boolean);
 };
+/** What it does: returns the senior row of the abroad table, in section 4. */
 const seniorAbroad = () => seniorRow("4");
 A({ id: "L60", tier: 1, cls: "P", sids: "S4.14 S4.22 S5.03 S5.12 S5.15 S6.23 S7.09", logs: ["ask-access-on"] }, () => {
   const n = "ask-access-on";
@@ -1221,7 +1408,11 @@ A({ id: "L65", part: "rule off", tier: 2, cls: "P", sids: "S4.32 S6.47 S7.35", l
   fact("answers.ask-out-of-corpus-rule-off", a, "ask-out-of-corpus-rule-off");
   return out(!isAbstain(a) && a !== ABSTAIN && sameRows("ask-out-of-corpus", "ask-out-of-corpus-rule-off"), `"${a}"`);
 });
-/** Line 1 of the rule-off log ends with capture's marker; the rule-on log has it nowhere. */
+/**
+ * What it does: checks the rule-off log shows capture's marker and the normal log does not.
+ *
+ * Line 1 of the rule-off log ends with capture's marker; the rule-on log has it nowhere.
+ */
 const ruleOffProven = (off: string, on: string) => {
   const mark = must(RULE_OFF_MARKER[off], `capture.ts marker for ${off}`);
   return out(ln(off, 1).endsWith(`   ${mark}`) && !TXT(on).includes(mark), `${off} line 1 ends "${mark}": ${ln(off, 1).endsWith(`   ${mark}`)}; ${on} free of it: ${!TXT(on).includes(mark)}`);
@@ -1258,7 +1449,11 @@ A({ id: "L67", part: "asks for both", tier: 2, cls: "E", sids: "S5.18", logs: ["
 
 /** The answer check (step 8, CHECK_ANSWER = true): code drops the planted sentence the two prompt rules let through. */
 const CHECK_MARKER = must(SRC_CAPTURE.match(/record\("ask-injection-checked", `[^`\n]*?\s{2,}(\([^`\n]+\))`/)?.[1], "capture.ts marker for ask-injection-checked");
-/** ask-injection's answer split at the planted sentence: what the check must keep, and what it must drop. */
+/**
+ * What it does: splits the injection answer at the planted sentence into kept and dropped parts.
+ *
+ * ask-injection's answer split at the planted sentence: what the check must keep, and what it must drop.
+ */
 const injectionSplit = () => {
   const a = answer("ask-injection");
   const cut = a.lastIndexOf(". ", a.indexOf(PLANTED)) + 1;
@@ -1282,6 +1477,7 @@ A({ id: "L68", part: "no request left", tier: 1, cls: "E", sids: "S5.18", logs: 
 
 const NOT_RETRIEVAL = ["out-of-corpus", "access"];
 const RETRIEVAL_N = gold.filter((g) => !NOT_RETRIEVAL.includes(g.type)).length;
+/** What it does: finds one question's row in an eval log, or stops with an error. */
 const evalRow = (n: string, id: string) => must(evalRows(n).find((r) => r.id === id), `${id} in ${n}`);
 /** The cross-lingual gold type: every gold section of it lies in the odd-language doc. */
 const CROSS = must(
@@ -1290,8 +1486,11 @@ const CROSS = must(
 );
 /** rr values a row may print when its gold section is below the printed top 3 (rank 4, rank 5, not in the top k = 5). */
 const DEEPER_RR = [0.25, 0.2, 0];
+/** What it does: checks that two numbers agree up to the given number of decimals. */
 const near = (a: number, b: number, digits: number) => Math.abs(a - b) <= 0.5 * 10 ** -digits + 1e-9;
 /**
+ * What it does: re-computes an eval log's scores from the gold file and lists what does not match.
+ *
  * Re-derive an eval log from the gold file. Each row: the first rank of a gold section in its top 3 gives rr = 1/rank
  * (or one of DEEPER_RR when none is there), and the mark is ✓ only for rr 1. Then hit@1, recall@5 and MRR over the
  * retrieval rows must equal the OUT line, and each per-type row its own n, hit@1 and MRR. Returns what broke.
@@ -1311,7 +1510,9 @@ function evalBreaks(n: string): string[] {
     if (retrieval && g.gold_sections.length !== 1) bad.push(`${r.id}: ${g.gold_sections.length} gold sections, recall not derivable`);
     if (retrieval) scored.push({ type: g.type, rr: want });
   }
+  /** What it does: returns the average of a list of numbers. */
   const mean = (xs: number[]) => sum(xs) / xs.length;
+  /** What it does: computes hit@1, recall and MRR from a list of rr values. */
   const calc = (xs: { rr: number }[]) => ({ hit1: mean(xs.map((x) => (x.rr === 1 ? 1 : 0))), recall: mean(xs.map((x) => (x.rr > 0 ? 1 : 0))), mrr: mean(xs.map((x) => x.rr)) });
   const s = evalSummary(n);
   const c = calc(scored);
@@ -1343,6 +1544,7 @@ A({ id: "L71", tier: 1, cls: "N", sids: "S2.25 S5.28 S5.29 S5.31 S6.40", logs: [
   const ps = perType("eval-section");
   const pf = perType("eval-fixed");
   const types = Object.keys(ps).every((t) => ps[t]!.hit1 >= (pf[t]?.hit1 ?? 0));
+  /** What it does: returns the ids of the questions with a check mark in an eval log. */
   const tick = (n: string) => new Set(evalRows(n).filter((r) => r.mark === "✓").map((r) => r.id));
   const ts = tick("eval-section");
   const tf = tick("eval-fixed");
@@ -1495,9 +1697,14 @@ A({ id: "L00", part: "declared", tier: 1, cls: "N", sids: "-" }, () => {
 
 // ═══ facts.json and the report ══════════════════════════════════════════════════════════════════
 
-/** Where each block a page slices with <Log from to> sits in every log (line numbers from 1). */
+/**
+ * What it does: finds the line numbers of the key parts (steps, OUT, ledger, rows) in a log.
+ *
+ * Where each block a page slices with <Log from to> sits in every log (line numbers from 1).
+ */
 function layoutOf(n: string) {
   const ls = L(n);
+  /** What it does: returns the line numbers, counted from 1, where a pattern matches. */
   const at = (re: RegExp) => ls.flatMap((l, i) => (re.test(l) ? [i + 1] : []));
   const rows = at(/^\s+(q\d\d\s|\d+\s+(\d\.\d{3}|[▲▼]?\s*was)\s)|^\s+\d\d:\d\d\s{2}|^\s+\[\d\] /);
   return {
@@ -1520,6 +1727,7 @@ if (WRITE_FACTS) {
 for (const r of ROWS) {
   console.log(`${r.status}  ${r.spec.id.padEnd(4)}  t${r.spec.tier}  ${r.spec.sids}  ${r.detail}`);
 }
+/** What it does: counts how many report rows have a given status. */
 const count = (s: Status) => ROWS.filter((r) => r.status === s).length;
 const failed = ROWS.filter((r) => r.status === "FAIL");
 const exitCode = failed.some((r) => r.spec.tier === 1 || r.hard) ? 1 : failed.length ? 2 : 0;

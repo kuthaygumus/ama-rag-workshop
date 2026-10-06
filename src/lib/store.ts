@@ -19,7 +19,11 @@ export interface VectorStore {
   reset(): Promise<void>;
 }
 
-/** Open the store chosen by `--store` / `STORE` (default: chroma). */
+/**
+ * What it does: creates the Chroma store or the JSON store, as chosen.
+ *
+ * Open the store chosen by `--store` / `STORE` (default: chroma).
+ */
 export function openStore(kind: StoreKind = config.store): VectorStore {
   if (kind === "json") return new JsonStore();
   if (kind === "chroma") return new ChromaStore();

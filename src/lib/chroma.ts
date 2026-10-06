@@ -13,7 +13,11 @@ export const chroma = new ChromaClient({
   ssl: url.protocol === "https:",
 });
 
-/** True when Chroma answers its heartbeat. */
+/**
+ * What it does: checks if the Chroma server is running and answers.
+ *
+ * True when Chroma answers its heartbeat.
+ */
 export async function heartbeat(): Promise<boolean> {
   try {
     await chroma.heartbeat();
@@ -23,7 +27,11 @@ export async function heartbeat(): Promise<boolean> {
   }
 }
 
-/** Filter → Chroma's `where`. Chroma wants `$and` only when there are two or more conditions. */
+/**
+ * What it does: turns our edition and access filter into the format Chroma wants.
+ *
+ * Filter → Chroma's `where`. Chroma wants `$and` only when there are two or more conditions.
+ */
 export function toWhere(filter: Filter = {}): Where | undefined {
   const conditions: Where[] = [];
   if (filter.edition) conditions.push({ edition: filter.edition });
@@ -37,6 +45,7 @@ export class ChromaStore implements VectorStore {
 
   constructor(private readonly name = config.collection) {}
 
+  /** What it does: opens or creates our Chroma collection, and fails clearly if Chroma is down. */
   private async collection(): Promise<Collection> {
     if (!(await heartbeat())) {
       throw new Error(
@@ -51,6 +60,7 @@ export class ChromaStore implements VectorStore {
     });
   }
 
+  /** What it does: deletes one edition's old chunks, then adds the new ones in batches of 100. */
   async replaceEdition(edition: string, records: VectorChunk[]): Promise<void> {
     const col = await this.collection();
     await col.delete({ where: { edition } });
@@ -73,6 +83,7 @@ export class ChromaStore implements VectorStore {
     }
   }
 
+  /** What it does: asks Chroma for the k closest chunks that pass the filter, with cosine scores. */
   async query(vector: number[], k: number, filter?: Filter): Promise<Hit[]> {
     const col = await this.collection();
     const res = await col.query({
@@ -99,16 +110,19 @@ export class ChromaStore implements VectorStore {
     });
   }
 
+  /** What it does: returns how many chunks are in the collection. */
   async count(): Promise<number> {
     return (await this.collection()).count();
   }
 
+  /** What it does: lists the editions found in the collection, sorted. */
   async editions(): Promise<string[]> {
     const col = await this.collection();
     const res = await col.get({ include: [IncludeEnum.metadatas] });
     return [...new Set(res.metadatas.map((m) => String(m?.edition)))].sort();
   }
 
+  /** What it does: deletes the whole collection, and does nothing if it does not exist. */
   async reset(): Promise<void> {
     try {
       await chroma.deleteCollection({ name: this.name });

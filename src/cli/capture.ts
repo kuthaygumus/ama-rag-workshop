@@ -24,9 +24,14 @@ const steps = {
   s8: await import("../steps/8-answer.js"),
 };
 
+/** What it does: removes color codes, trailing spaces and extra blank lines from a log text. */
 const clean = (s: string) => s.replace(/\x1b\[[0-9;]*m/g, "").replace(/[ \t]+$/gm, "").replace(/\n{3,}/g, "\n\n").trim() + "\n";
 
-/** Record console output of an in-process call. */
+/**
+ * What it does: runs one step in this process and saves everything it prints as a log file.
+ *
+ * Record console output of an in-process call.
+ */
 async function record(name: string, command: string, fn: () => Promise<unknown>): Promise<void> {
   const out: string[] = [`$ ${command}`];
   const orig = { log: console.log, error: console.error };
@@ -39,21 +44,30 @@ async function record(name: string, command: string, fn: () => Promise<unknown>)
   await save(name, out.join("\n"));
 }
 
-/** Record a CLI exactly as a participant would run it. */
+/**
+ * What it does: runs a script in a new process and saves its output as a log file.
+ *
+ * Record a CLI exactly as a participant would run it.
+ */
 async function run(name: string, args: string[]): Promise<void> {
   const res = spawnSync("npx", ["tsx", ...args], { encoding: "utf8", env: { ...process.env, NO_COLOR: "1" } });
   const shown = `npm run ${args[0]!.replace(/^src\/(cli|explore)\/|\.ts$/g, "")}${args.length > 1 ? ` -- ${args.slice(1).map((a) => (a.includes(" ") ? `"${a}"` : a)).join(" ")}` : ""}`;
   await save(name, `$ ${shown}\n${res.stdout}${res.stderr}`);
 }
 
+/** What it does: cleans the text, writes it to logs/<name>.txt and prints a check line. */
 async function save(name: string, text: string): Promise<void> {
   await writeFile(`logs/${name}.txt`, clean(text));
   console.log(`  ✓ logs/${name}.txt`);
 }
 
 const gold = (await readFile("eval/gold.jsonl", "utf8")).trim().split("\n").map((l) => JSON.parse(l) as Gold);
+/** What it does: returns the query of the first gold question of a given type. */
 const first = (type: string) => gold.find((g) => g.type === type)!.query;
-/** The rules without the ONE rule that holds `fragment`. Throws when the fragment is in no rule or in several:
+/**
+ * What it does: returns the answer rules without the one rule that contains the given text.
+ *
+ * The rules without the ONE rule that holds `fragment`. Throws when the fragment is in no rule or in several:
  *  a stale fragment would otherwise record a "rule-off" log with every rule still on. */
 const noRule = (fragment: string) => {
   const left = steps.s8.RULES.filter((r) => !r.includes(fragment));
@@ -62,7 +76,11 @@ const noRule = (fragment: string) => {
   return left;
 };
 
-/** Steps 6 → 7 → 8 with explicit settings, printed like the real steps. */
+/**
+ * What it does: runs retrieve, rerank and answer on one question with chosen settings.
+ *
+ * Steps 6 → 7 → 8 with explicit settings, printed like the real steps.
+ */
 async function pipeline(question: string, o: { access?: string[] | undefined; edition?: "latest" | "all"; rules?: string[]; rerank?: boolean; check?: boolean } = {}) {
   const store = openStore();
   const r = await steps.s6.retrieve(question, { store, ...("access" in o ? { access: o.access } : {}), ...(o.edition ? { edition: o.edition } : {}) });

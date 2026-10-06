@@ -19,15 +19,25 @@ export interface StepFile<T> {
 
 export class StaleInputError extends Error {}
 
-/** A short, stable fingerprint of any JSON-able value. */
+/**
+ * What it does: turns any value into a short fingerprint, so we can tell if it changed.
+ *
+ * A short, stable fingerprint of any JSON-able value.
+ */
 export function hashOf(value: unknown): string {
   return createHash("sha256").update(JSON.stringify(value)).digest("hex").slice(0, 12);
 }
 
-/** data/3-chunks.json for "3-chunks". */
+/**
+ * What it does: builds the path of a step's file inside the data folder.
+ *
+ * data/3-chunks.json for "3-chunks".
+ */
 export const dataPath = (name: string) => join(config.dataDir, `${name}.json`);
 
 /**
+ * What it does: saves a step's result to a JSON file with its fingerprint and its input's.
+ *
  * Write a step's result.
  * @param name file name without extension, e.g. "3-chunks"
  * @param data the payload participants will open
@@ -43,6 +53,8 @@ export async function writeStep<T>(name: string, data: T, inputHash: string): Pr
 }
 
 /**
+ * What it does: loads a step's JSON file, and can check that its input file is still current.
+ *
  * Read a step's result. With `upstream`, also check that it was made from the CURRENT upstream file.
  * @param name e.g. "3-chunks"
  * @param upstream e.g. "2-clean" — the file `name` was made from
@@ -67,7 +79,11 @@ export async function readStep<T>(name: string, upstream?: string): Promise<Step
   return file;
 }
 
-/** Delete everything in data/ (catch-up does this). The embedding cache lives in .cache/ and survives. */
+/**
+ * What it does: deletes the whole data folder, but keeps the embedding cache.
+ *
+ * Delete everything in data/ (catch-up does this). The embedding cache lives in .cache/ and survives.
+ */
 export async function clearData(): Promise<void> {
   await rm(config.dataDir, { recursive: true, force: true });
 }

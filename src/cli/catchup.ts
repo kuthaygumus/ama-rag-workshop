@@ -15,6 +15,7 @@ import { openStore } from "../lib/store.js";
 import { resetToggles } from "../lib/toggles.js";
 import { exitOnError } from "./errors.js";
 
+/** What it does: runs npm run catchup: resets toggles, data and store, then reruns steps 1 to n. */
 async function main(): Promise<void> {
   const n = Number(cli.positionals[0]);
   if (!Number.isInteger(n) || n < 0 || n > 8) {

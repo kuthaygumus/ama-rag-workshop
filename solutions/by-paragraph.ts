@@ -1,6 +1,7 @@
 // Solution — step 3, HOMEWORK: paragraph chunks with a title prefix.
 import type { Chunk, CleanDoc } from "../src/lib/types.js";
 
+/** What it does: builds paragraph chunks, packed up to a size limit, each with the title in front. */
 export function byParagraph(doc: CleanDoc, max = 600): Chunk[] {
   const pieces: string[] = [];
   let buf = "";

@@ -22,16 +22,24 @@ export interface MapPoint {
   text: string;
 }
 
+/** What it does: makes text safe to put inside HTML. */
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-/** A self-contained HTML page: inline SVG, no scripts, no network. */
+/**
+ * What it does: builds the map page with one dot per chunk and one star for the question.
+ *
+ * A self-contained HTML page: inline SVG, no scripts, no network.
+ */
 function html(points: MapPoint[], star: { x: number; y: number; text: string }, explained: [number, number]): string {
   const W = 900, H = 620, P = 40;
   const xs = [...points.map((p) => p.x), star.x], ys = [...points.map((p) => p.y), star.y];
   const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+  /** What it does: turns a PCA x value into a horizontal position on the picture. */
   const sx = (x: number) => P + ((x - x0) / (x1 - x0 || 1)) * (W - 2 * P - 200);
+  /** What it does: turns a PCA y value into a vertical position on the picture. */
   const sy = (y: number) => H - P - ((y - y0) / (y1 - y0 || 1)) * (H - 2 * P);
   const docs = [...new Set(points.map((p) => p.docId))];
+  /** What it does: gives each document its own color from the list. */
   const color = (d: string) => COLORS[docs.indexOf(d) % COLORS.length];
   const dots = points
     .map((p) => `<circle cx="${sx(p.x).toFixed(1)}" cy="${sy(p.y).toFixed(1)}" r="6" fill="${color(p.docId)}" fill-opacity=".8"><title>${esc(p.id)}\n${esc(p.text.slice(0, 200))}</title></circle>`)
@@ -55,6 +63,7 @@ ${legend}
 </svg></body></html>`;
 }
 
+/** What it does: runs npm run map: projects the chunks and the question to 2-D, writes data/map.html. */
 async function main(): Promise<void> {
   const question = cli.positionals[0] ?? config.dayQuestion;
   banner("STEP 4b · MAP — our chunks in two dimensions");

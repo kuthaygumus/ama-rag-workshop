@@ -25,17 +25,31 @@ const NOISE: RegExp[] = [
   ...(turkishConfidential ? [turkishConfidential] : []),
 ];
 
-/** True for a line that is extraction noise, not content. */
+/**
+ * What it does: checks if a line matches a noise rule, such as a page header.
+ *
+ * True for a line that is extraction noise, not content.
+ */
 export function isNoise(l: string, rules: RegExp[] = NOISE): boolean {
   return rules.some((re) => re.test(l.trim()));
 }
 
-/** Headings, table rows and blank lines are complete on their own — nothing is joined onto them. */
+/**
+ * What it does: checks if a line is a heading, a table row, or a blank line.
+ *
+ * Headings, table rows and blank lines are complete on their own — nothing is joined onto them.
+ */
 const closed = (l: string) => l.startsWith("#") || l.startsWith("|") || l.trim() === "";
-/** Headings, table rows, blank lines and list items always start a new line. */
+/**
+ * What it does: checks if a line must start fresh, not be joined to the line before.
+ *
+ * Headings, table rows, blank lines and list items always start a new line.
+ */
 const opens = (l: string) => closed(l) || /^\s*([-*]|\d+\.)\s/.test(l);
 
 /**
+ * What it does: drops noise lines, then joins lines that the page width broke apart.
+ *
  * Remove noise lines, then re-join prose lines that the page width broke apart.
  * @param body a document body from step 1
  * @returns the clean text and how many noise lines were dropped
@@ -53,7 +67,11 @@ export function cleanText(body: string, rules: RegExp[] = NOISE): { text: string
   return { text, noiseLines: lines.length - kept.length };
 }
 
-/** Run step 2 on data/1-docs.json and write data/2-clean.json. */
+/**
+ * What it does: cleans the step 1 documents, shows a before and after, and saves data/2-clean.json.
+ *
+ * Run step 2 on data/1-docs.json and write data/2-clean.json.
+ */
 export async function run(): Promise<CleanDoc[]> {
   stepHeader(2, "clean");
   const t0 = performance.now();

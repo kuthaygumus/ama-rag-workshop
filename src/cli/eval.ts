@@ -25,12 +25,14 @@ export interface Gold {
   type: string;
 }
 
+/** What it does: returns the average of a list of numbers, or 0 for an empty list. */
 const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
 const NOT_RETRIEVAL = ["out-of-corpus", "access"];
 // The expected answers were written against the 2025 handbook. A gold set is versioned like the corpus:
 // once 2026 is in the store, "latest" would score 2026 answers against 2025 values. Pin the edition.
 const GOLD_EDITION = "2025";
 
+/** What it does: runs npm run eval: searches every gold question and prints hit@1, recall and MRR. */
 async function main(): Promise<void> {
   const gold = (await readFile("eval/gold.jsonl", "utf8"))
     .split("\n")

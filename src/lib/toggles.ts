@@ -2,6 +2,8 @@
 // Catch-up uses this to put every block back to its default without touching anything else.
 
 /**
+ * What it does: sets every TOGGLE block back to its default lines and counts the changed lines.
+ *
  * Put every TOGGLE block of a source file back to its defaults.
  * Inside a block (from a "// TOGGLE" line to the next blank line): lines marked "// default" are made
  * active, lines marked "// alternative" are commented out, anything else is left alone.

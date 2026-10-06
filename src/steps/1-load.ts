@@ -32,7 +32,11 @@ export function parseFrontMatter(raw: string): { meta: Record<string, string>; b
   return { meta, body: m[2]! };
 }
 
-/** Every file in corpus/<edition>/, in a stable order. Windows line endings become \n here, once. */
+/**
+ * What it does: reads every .md file in one edition folder and returns each file's path and text.
+ *
+ * Every file in corpus/<edition>/, in a stable order. Windows line endings become \n here, once.
+ */
 async function readEditionFiles(edition: string): Promise<{ path: string; raw: string }[]> {
   const dir = join("corpus", edition);
   let names: string[];
@@ -46,12 +50,18 @@ async function readEditionFiles(edition: string): Promise<{ path: string; raw: s
   );
 }
 
-/** Fingerprint of an edition's files — step 2 uses it to notice that the corpus changed. */
+/**
+ * What it does: makes one fingerprint from an edition's files, so step 2 can spot changes.
+ *
+ * Fingerprint of an edition's files — step 2 uses it to notice that the corpus changed.
+ */
 export async function corpusHash(edition: string): Promise<string> {
   return hashOf(await readEditionFiles(edition));
 }
 
 /**
+ * What it does: turns each file of one edition into a document with labels and text.
+ *
  * Read one edition of the corpus.
  * @param edition folder name under corpus/, e.g. "2025"
  * @returns one Doc per file: metadata from the front matter, body untouched
@@ -66,7 +76,11 @@ export async function loadCorpus(edition: string): Promise<Doc[]> {
   });
 }
 
-/** Run step 1 for the configured edition and write data/1-docs.json. */
+/**
+ * What it does: loads one edition of the corpus, prints a summary, and saves data/1-docs.json.
+ *
+ * Run step 1 for the configured edition and write data/1-docs.json.
+ */
 export async function run(edition = config.edition): Promise<Doc[]> {
   stepHeader(1, "load");
   const t0 = performance.now();

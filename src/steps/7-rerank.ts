@@ -40,6 +40,8 @@ export interface Reranked {
 const SCHEMA = { type: "object", properties: { score: { type: "integer", minimum: 0, maximum: 10 } }, required: ["score"] };
 
 /**
+ * What it does: asks the chat model to score one chunk from 0 to 10 for the question.
+ *
  * Score one (question, chunk) pair with the chat model.
  * @returns 0 = unrelated … 10 = the answer is right here
  */
@@ -54,6 +56,8 @@ export async function relevance(question: string, text: string): Promise<number>
 }
 
 /**
+ * What it does: re-orders the hits by chat-model score, or keeps the order if rerank is off.
+ *
  * Re-order the retrieved hits by the reranker's score (vector score breaks ties).
  * @param on defaults to the TOGGLE above
  */
@@ -70,7 +74,11 @@ export async function rerank(r: Retrieved, on: boolean = RERANK): Promise<Rerank
   return { question: r.question, rerank: on, ranked, keep: config.contextK, ms: Math.round(performance.now() - t0), ties };
 }
 
-/** Print before → after with the keep line. */
+/**
+ * What it does: prints the new order with arrows for moves and a line after the kept chunks.
+ *
+ * Print before → after with the keep line.
+ */
 export function printReranked(rr: Reranked): void {
   rr.ranked.forEach((h, i) => {
     const move = h.was === i + 1 ? "  " : h.was > i + 1 ? "▲ " : "▼ ";
@@ -81,7 +89,11 @@ export function printReranked(rr: Reranked): void {
   });
 }
 
-/** Run step 7 on data/6-retrieved.json and write data/7-reranked.json. */
+/**
+ * What it does: reranks the retrieved chunks, prints the new order, and saves data/7-reranked.json.
+ *
+ * Run step 7 on data/6-retrieved.json and write data/7-reranked.json.
+ */
 export async function run(on: boolean = RERANK): Promise<Reranked> {
   stepHeader(7, "rerank");
   const t0 = performance.now();

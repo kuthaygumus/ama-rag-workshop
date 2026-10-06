@@ -26,7 +26,11 @@ interface Entry {
   sources: string[];
 }
 
-/** Pick the most complete pipeline the data/ folder supports. */
+/**
+ * What it does: checks data/ and picks the best search it can: the store, memory or none.
+ *
+ * Pick the most complete pipeline the data/ folder supports.
+ */
 async function pipeline(): Promise<{ store: VectorStore; how: string } | undefined> {
   let chunks: Chunk[];
   try {
@@ -48,6 +52,7 @@ async function pipeline(): Promise<{ store: VectorStore; how: string } | undefin
   }
 }
 
+/** What it does: runs npm run question: answers the day's question with today's steps, then prints the ledger. */
 async function main(): Promise<void> {
   banner(`QUESTION OF THE DAY  ${config.dayQuestion}`);
   const p = await pipeline();

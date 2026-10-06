@@ -1,6 +1,8 @@
 // How close are two vectors? Three common answers. The retriever uses cosine.
 
 /**
+ * What it does: scores how close two vectors are by their angle, ignoring length.
+ *
  * Cosine similarity: the angle between two vectors, ignoring their length.
  * 1 = same direction (same meaning), 0 = no relation in theory (real texts rarely go that low), −1 = opposite.
  * @example cosine([1, 0], [2, 0]) // 1 — same direction, different length
@@ -18,6 +20,8 @@ export function cosine(a: number[], b: number[]): number {
 }
 
 /**
+ * What it does: measures the straight-line distance between two vectors, so smaller is closer.
+ *
  * Euclidean (L2) distance: the straight-line distance between the two points.
  * 0 = the same point; bigger = further apart. Note the direction: SMALLER is closer.
  * @example l2([0, 0], [3, 4]) // 5
@@ -28,7 +32,11 @@ export function l2(a: number[], b: number[]): number {
   return Math.sqrt(sum);
 }
 
-/** Length of a vector. Step 4 prints it: bge-m3 vectors come out with length 1.000. */
+/**
+ * What it does: measures the length of a vector, which step 4 prints for the first chunk.
+ *
+ * Length of a vector. Step 4 prints it: bge-m3 vectors come out with length 1.000.
+ */
 export function norm(a: number[]): number {
   return Math.sqrt(a.reduce((s, x) => s + x * x, 0));
 }
@@ -40,6 +48,8 @@ export function norm(a: number[]): number {
 // how does dot() compare to cosine()? Try it: npm run similar -- --metric dot
 
 /**
+ * What it does: multiplies two vectors item by item and adds up the results.
+ *
  * Dot product: sum of a[i] × b[i].
  * @example dot([1, 2, 3], [4, 5, 6]) // 32
  */

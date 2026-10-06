@@ -6,6 +6,8 @@ import { done, line, stepHeader, yellow } from "../lib/log.js";
 import { generate } from "../lib/ollama.js";
 
 /**
+ * What it does: sends the question to the chat model with no documents and returns its answer.
+ *
  * Ask the chat model a question with no sources at all.
  * @param question defaults to the day's question
  * @returns the model's answer text

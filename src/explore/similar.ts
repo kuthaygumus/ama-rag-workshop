@@ -22,9 +22,14 @@ const PAIRS: { kind: string; a: string; b: string }[] = [
 const METRICS = { cosine, dot, l2 } as const;
 type Metric = keyof typeof METRICS;
 
-/** A 20-character bar for a similarity between 0 and 1. */
+/**
+ * What it does: draws a 20-character bar for a similarity score.
+ *
+ * A 20-character bar for a similarity between 0 and 1.
+ */
 const bar = (x: number) => "█".repeat(Math.round(Math.max(0, Math.min(1, x)) * 20)).padEnd(20, "░");
 
+/** What it does: runs npm run similar: embeds text pairs and prints how close each pair is. */
 async function main(): Promise<void> {
   const metric = (typeof cli.flags.metric === "string" ? cli.flags.metric : "cosine") as Metric;
   if (!METRICS[metric]) throw new Error(`--metric must be one of: ${Object.keys(METRICS).join(", ")}`);

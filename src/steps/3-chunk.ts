@@ -17,12 +17,20 @@ const CHUNKER: ChunkerName = "section"; // default
 /** A chunk that section-aware splitting would find too long is split again at paragraphs. */
 const MAX_SECTION_CHARS = 1500;
 
-/** Where each "## n." section starts in the text. */
+/**
+ * What it does: finds where each numbered "## n." section begins in a text.
+ *
+ * Where each "## n." section starts in the text.
+ */
 function sectionStarts(text: string): { n: string; at: number }[] {
   return [...text.matchAll(/^## (\d+)\./gm)].map((m) => ({ n: m[1]!, at: m.index! }));
 }
 
-/** Section numbers overlapped by the character range [from, to). "0" = the part before section 1. */
+/**
+ * What it does: lists which section numbers a character range touches, so a chunk knows its sections.
+ *
+ * Section numbers overlapped by the character range [from, to). "0" = the part before section 1.
+ */
 function sectionsIn(text: string, from: number, to: number): string[] {
   const starts = sectionStarts(text);
   const out: string[] = [];
@@ -34,9 +42,12 @@ function sectionsIn(text: string, from: number, to: number): string[] {
   return [...new Set(out)];
 }
 
+/** What it does: builds the labels every chunk carries: document id, edition, title, access, language. */
 const base = (d: CleanDoc) => ({ docId: d.id, edition: d.edition, title: d.title, access: d.access, lang: d.lang });
 
 /**
+ * What it does: cuts a document into equal-size chunks, blind to headings and tables.
+ *
  * Cut every `size` characters, blind to what is there — mid-word, mid-table, mid-sentence.
  * The baseline everyone starts with.
  * @example fixedSize(doc, 300).length // ≈ doc.text.length / 300
@@ -56,7 +67,11 @@ export function fixedSize(doc: CleanDoc, size = 300): Chunk[] {
   return chunks;
 }
 
-/** Pack paragraphs into pieces of at most `max` characters. */
+/**
+ * What it does: joins paragraphs into pieces, starting a new piece before the size limit is passed.
+ *
+ * Pack paragraphs into pieces of at most `max` characters.
+ */
 function packParagraphs(body: string, max: number): string[] {
   const out: string[] = [];
   let buf = "";
@@ -71,6 +86,8 @@ function packParagraphs(body: string, max: number): string[] {
 }
 
 /**
+ * What it does: cuts a document at its numbered headings, with title and heading in front.
+ *
  * Cut at the document's own headings ("## 3. Annual Paid Leave") and put the document title and
  * heading in front of every chunk. A table then stays with the heading that explains it, and even a
  * chunk that is mostly numbers says what it is about.
@@ -103,6 +120,8 @@ export function bySection(doc: CleanDoc): Chunk[] {
 // title prefix so every chunk still says what it is about. Check: npm run check:sibling
 
 /**
+ * What it does: builds paragraph chunks, packed up to a size limit, each with the title in front.
+ *
  * Paragraph chunks with a title prefix, each at most `max` characters (plus the prefix).
  * @example byParagraph(doc, 600).every((c) => c.text.startsWith(`[${doc.title}]`)) // true
  */
@@ -119,6 +138,8 @@ export const CHUNKERS: Record<ChunkerName, (d: CleanDoc) => Chunk[]> = {
 const WATCH = "| 7 |";
 
 /**
+ * What it does: cuts the documents into chunks, prints the chunk with row 7, and saves data/3-chunks.json.
+ *
  * Run step 3 on data/2-clean.json and write data/3-chunks.json.
  * @param chunker defaults to the TOGGLE above
  */

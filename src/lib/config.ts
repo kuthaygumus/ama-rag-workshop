@@ -30,6 +30,7 @@ const { values: flags, positionals } = parseArgs({
 /** CLI flags and positional arguments, parsed once for every entry point. */
 export const cli = { flags, positionals };
 
+/** What it does: returns the text value of a command-line flag, or nothing if there is none. */
 function flag(name: string): string | undefined {
   const v = flags[name];
   return typeof v === "string" ? v : undefined;

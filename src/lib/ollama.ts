@@ -8,6 +8,7 @@ import { config } from "./config.js";
 
 export class OllamaError extends Error {}
 
+/** What it does: sends a JSON POST to Ollama and returns the reply, with clear errors. */
 async function post<T>(path: string, body: unknown): Promise<T> {
   let res: Response;
   try {
@@ -27,7 +28,11 @@ async function post<T>(path: string, body: unknown): Promise<T> {
   return (await res.json()) as T;
 }
 
-/** Names of the models installed in the local Ollama, e.g. `["bge-m3:latest", "gemma3:4b"]`. */
+/**
+ * What it does: asks Ollama which models are installed on this machine.
+ *
+ * Names of the models installed in the local Ollama, e.g. `["bge-m3:latest", "gemma3:4b"]`.
+ */
 export async function installedModels(): Promise<string[]> {
   const res = await fetch(`${config.ollamaUrl}/api/tags`);
   if (!res.ok) throw new OllamaError(`Ollama /api/tags → HTTP ${res.status}`);
@@ -42,8 +47,10 @@ export async function installedModels(): Promise<string[]> {
 type Cache = Record<string, number[]>;
 let cache: Cache | undefined;
 
+/** What it does: builds a fingerprint from the model and the text, used as the cache key. */
 const cacheKey = (model: string, text: string) => createHash("sha256").update(`${model}\n${text}`).digest("hex");
 
+/** What it does: reads the embedding cache file once, or starts with an empty cache. */
 async function loadCache(): Promise<Cache> {
   if (!cache) {
     try {
@@ -55,6 +62,7 @@ async function loadCache(): Promise<Cache> {
   return cache;
 }
 
+/** What it does: writes the embedding cache back to the cache file. */
 async function saveCache(): Promise<void> {
   await mkdir(dirname(config.cacheFile), { recursive: true });
   await writeFile(config.cacheFile, JSON.stringify(cache));
@@ -67,6 +75,8 @@ export interface EmbedResult {
 }
 
 /**
+ * What it does: turns texts into vectors with the embedding model, and reuses cached vectors.
+ *
  * Turn texts into vectors with the embedding model — one vector per text, same order.
  * Sends them in batches of `config.embedBatch`; texts seen before come from the cache.
  * @param texts the chunks (at ingest) or the question (at query time)
@@ -105,6 +115,8 @@ export interface GenerateOptions {
 }
 
 /**
+ * What it does: sends the prompt to the chat model and returns its answer.
+ *
  * Ask the chat model. Deterministic on purpose: temperature 0 and a fixed seed, so the same machine
  * gives the same answer to the same prompt (other hardware may differ slightly).
  * @param prompt the user message — for RAG, the sources plus the question

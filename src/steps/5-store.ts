@@ -25,6 +25,8 @@ export interface StoreReceipt {
 }
 
 /**
+ * What it does: compares the store's top 5 with a brute-force search for the day's question.
+ *
  * Same question, two stores: the ids brute force ranks first, and the ids the store ranks first.
  * Identical lists mean the database changed the speed and the scale — not the answer.
  */
@@ -44,6 +46,8 @@ async function compareWithBruteForce(store: VectorStore, vectors: Vectors): Prom
 }
 
 /**
+ * What it does: puts the vectors into the store, replacing this edition, and saves data/5-store.json.
+ *
  * Run step 5: put data/4-vectors.json into the store, replacing that edition's old records.
  * @param kind "chroma" (default) or "json" — see --store
  */

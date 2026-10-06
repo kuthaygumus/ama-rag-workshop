@@ -13,9 +13,14 @@ export interface Pca {
   coords: [number, number][];
 }
 
+/** What it does: multiplies two vectors item by item and adds up the results. */
 const dotp = (a: number[], b: number[]) => a.reduce((s, x, i) => s + x * b[i]!, 0);
 
-/** Top eigenvector of a symmetric matrix by power iteration (deterministic start). */
+/**
+ * What it does: finds the strongest direction of a matrix by multiplying a vector by it 300 times.
+ *
+ * Top eigenvector of a symmetric matrix by power iteration (deterministic start).
+ */
 function topEigen(m: number[][]): { vec: number[]; val: number } {
   let v = m.map((_, i) => 1 + i / m.length);
   for (let it = 0; it < 300; it++) {
@@ -27,6 +32,8 @@ function topEigen(m: number[][]): { vec: number[]; val: number } {
 }
 
 /**
+ * What it does: finds the two directions where chunks differ most and places each chunk on them.
+ *
  * Fit a 2-component PCA with the Gram-matrix trick (n×n instead of 1024×1024).
  * @param x one row per chunk vector
  */
@@ -54,7 +61,11 @@ export function pca2(x: number[][]): Pca {
   return { mean, axes: [axes[0]!, axes[1]!], explained: [explained[0]!, explained[1]!], coords };
 }
 
-/** Where a new vector (e.g. the question) lands on the same two axes. */
+/**
+ * What it does: places one new vector, like the question, on the same two axes.
+ *
+ * Where a new vector (e.g. the question) lands on the same two axes.
+ */
 export function project(p: Pca, v: number[]): [number, number] {
   const c = v.map((x, j) => x - p.mean[j]!);
   return [dotp(c, p.axes[0]), dotp(c, p.axes[1])];

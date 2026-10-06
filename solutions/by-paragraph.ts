@@ -1,29 +1,22 @@
-// Solution — step 3, HOMEWORK: paragraph chunks with a title prefix.
+// Solution — step 3, YOUR TURN: paragraph chunks with a title prefix and the sections they touch.
 import type { Chunk, CleanDoc } from "../src/lib/types.js";
+import { base, packParagraphs, sectionsIn } from "../src/steps/3-chunk.js";
 
-/** What it does: builds paragraph chunks, packed up to a size limit, each with the title in front. */
+/**
+ * What it does: cuts a document at blank lines, packs paragraphs up to a size limit, puts the title in front.
+ *
+ * Like fixedSize(), it tracks where each piece starts, so a chunk lists every section it touches.
+ * @example byParagraph(doc, 600)[0].id // "hr-leave@2025#p00"
+ */
 export function byParagraph(doc: CleanDoc, max = 600): Chunk[] {
-  const pieces: string[] = [];
-  let buf = "";
-  for (const p of doc.text.replace(/^# .*\n?/, "").split(/\n\n+/)) {
-    if (buf && buf.length + p.length + 2 > max) {
-      pieces.push(buf);
-      buf = p;
-    } else buf = buf ? `${buf}\n\n${p}` : p;
-  }
-  if (buf.trim()) pieces.push(buf);
-  let section = "0";
-  return pieces.map((piece, i) => {
-    const heading = piece.match(/^## (\d+)\./m);
-    if (heading) section = heading[1]!;
+  const body = doc.text.replace(/^# .*\n?/, "").trim();
+  let at = 0;
+  return packParagraphs(body, max).map((piece, i) => {
+    at = body.indexOf(piece, at); // where this piece starts in the body
     return {
+      ...base(doc),
       id: `${doc.id}@${doc.edition}#p${String(i).padStart(2, "0")}`,
-      docId: doc.id,
-      edition: doc.edition,
-      title: doc.title,
-      access: doc.access,
-      lang: doc.lang,
-      sections: [section],
+      sections: sectionsIn(body, at, at + piece.length),
       text: `[${doc.title}]\n${piece}`,
     };
   });

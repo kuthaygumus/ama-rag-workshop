@@ -38,7 +38,7 @@ async function pipeline(): Promise<{ store: VectorStore; how: string } | undefin
   } catch {
     return undefined;
   }
-  const chunker = chunks.some((c) => /#c\d/.test(c.id)) ? "fixed" : "section";
+  const chunker = chunks.some((c) => /#c\d/.test(c.id)) ? "fixed" : chunks.some((c) => /#p\d/.test(c.id)) ? "paragraph" : "section";
   try {
     await readStep("4-vectors", "3-chunks");
     const receipt = (await readStep<{ store: "chroma" | "json" }>("5-store", "4-vectors")).data;

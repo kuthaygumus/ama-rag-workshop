@@ -29,7 +29,7 @@ describe("similarity · dot", () => {
   });
 });
 
-describe("step 3 · byParagraph (homework)", () => {
+describe("step 3 · byParagraph (your turn)", () => {
   const doc: CleanDoc = {
     id: "d", title: "Doc", edition: "2025", department: "x", access: "all", lang: "tr", noiseLines: 0,
     text: "# Doc\n\n## 1. One\n\n" + "a ".repeat(200) + "\n\n" + "b ".repeat(200) + "\n\n## 2. Two\n\nshort",
@@ -41,5 +41,12 @@ describe("step 3 · byParagraph (homework)", () => {
       expect(c.text.startsWith("[Doc]")).toBe(true);
       expect(c.text.length).toBeLessThanOrEqual(500 + "[Doc]\n".length);
     }
+  });
+  it("labels every chunk with the sections it touches", () => {
+    const chunks = chunking.byParagraph(doc, 500);
+    for (const c of chunks) expect(c.sections.length).toBeGreaterThan(0);
+    expect(chunks[0]!.sections).toContain("1");
+    // the second chunk starts in section 1 and runs into section 2: it must list both
+    expect(chunks[1]!.sections).toEqual(["1", "2"]);
   });
 });

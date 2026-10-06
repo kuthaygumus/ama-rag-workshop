@@ -1,0 +1,51 @@
+$ npm run step -- 3 / 4 / 5   (chunker: paragraph)
+
+━━ STEP 3/8 · CHUNK
+   IN    data/2-clean.json  (8 documents)
+   WHAT  paragraph: a cut at blank lines, packed up to 600 characters, title kept in front
+   OUT   85 chunks · avg 500 chars · min 94 · max 625
+
+         the chunk holding "| 7 |" → hr-leave@2025#p05  (sections 3)
+           │ [Annual Leave Policy]
+           │ | Years of service (full years) | Annual paid leave (working days) |
+           │ |---|---|
+           │ | 1 | 16 |
+           │ | 2 | 16 |
+           │ | 3 | 18 |
+           │ | 4 | 18 |
+           │ | 5 | 22 |
+           │ | 6 | 22 |
+           │ | 7 | 22 |
+           │ | 8 | 22 |
+           │ | 9 | 22 |
+           │ | 10 | 25 |
+           │ | 11 | 25 |
+           │ | 12 | 25 |
+           │ | 13 | 25 |
+           │ | 14 | 25 |
+           │ | 15 or more | 28 |
+           │
+           │ Leave requests go to the manager on the HR portal at least 15 working days before the leave starts. For leave longer than 10 working days without a break, the department director must also approve.
+           │
+           │ Up to 5 unused working days can move to the next calendar year. For the conditions of this carry-over, see section 7.
+   TIME  3 ms  →  data/3-chunks.json
+
+━━ STEP 4/8 · EMBED
+   IN    data/3-chunks.json  (85 chunks)
+   WHAT  send each chunk's text to bge-m3 (Ollama /api/embed, 24 per call)
+   OUT   85 vectors · 1024 numbers each · 76 computed, 9 from cache
+         announcement-meal-card@2025#p00 → [-0.0165, 0.0016, -0.0297, -0.0172, -0.0260, -0.0688, … ]
+         length (norm) of that vector: 1.000
+         58.7 ms per chunk
+   TIME  4481 ms  →  data/4-vectors.json
+
+━━ STEP 5/8 · STORE
+   IN    data/4-vectors.json  (85 vectors, edition 2025)
+   WHAT  replace edition 2025 in Chroma collection "kraken-policies" (HNSW index, cosine)
+   OUT   85 records added · 85 in the store · editions: 2025
+
+         the day's question, top-5 ids:
+           JSON (brute force)  hr-leave@2025#p05  hr-leave@2025#p07  hr-leave@2025#p12  hr-leave@2025#p02  hr-leave@2025#p11
+           chroma              hr-leave@2025#p05  hr-leave@2025#p07  hr-leave@2025#p12  hr-leave@2025#p02  hr-leave@2025#p11
+           identical ✓ — the database changes the scale, not the ranking
+   TIME  146 ms  →  data/5-store.json

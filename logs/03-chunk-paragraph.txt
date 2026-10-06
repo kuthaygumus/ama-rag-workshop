@@ -1,0 +1,31 @@
+$ npm run step -- 3   (chunker: paragraph)
+
+━━ STEP 3/8 · CHUNK
+   IN    data/2-clean.json  (8 documents)
+   WHAT  paragraph: a cut at blank lines, packed up to 600 characters, title kept in front
+   OUT   85 chunks · avg 500 chars · min 94 · max 625
+
+         the chunk holding "| 7 |" → hr-leave@2025#p05  (sections 3)
+           │ [Annual Leave Policy]
+           │ | Years of service (full years) | Annual paid leave (working days) |
+           │ |---|---|
+           │ | 1 | 16 |
+           │ | 2 | 16 |
+           │ | 3 | 18 |
+           │ | 4 | 18 |
+           │ | 5 | 22 |
+           │ | 6 | 22 |
+           │ | 7 | 22 |
+           │ | 8 | 22 |
+           │ | 9 | 22 |
+           │ | 10 | 25 |
+           │ | 11 | 25 |
+           │ | 12 | 25 |
+           │ | 13 | 25 |
+           │ | 14 | 25 |
+           │ | 15 or more | 28 |
+           │
+           │ Leave requests go to the manager on the HR portal at least 15 working days before the leave starts. For leave longer than 10 working days without a break, the department director must also approve.
+           │
+           │ Up to 5 unused working days can move to the next calendar year. For the conditions of this carry-over, see section 7.
+   TIME  9 ms  →  data/3-chunks.json

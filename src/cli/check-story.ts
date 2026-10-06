@@ -88,7 +88,8 @@ const REQUIRED_LOGS = [
   "question-2-section", "04-embed", "04b-similar", "04b-map", "map.json", "05-store-json", "05-store-chroma", "06-retrieve",
   "07-rerank-off", "08-answer-rerank-off", "07-rerank", "08-answer", "question-3-full", "ask-access-on", "ask-access-off",
   "ask-out-of-corpus", "ask-out-of-corpus-rule-off", "ask-injection", "ask-injection-rule-off", "ask-injection-checked", "eval-section", "eval-answers",
-  "ingest-fixed", "eval-fixed", "ingest-section", "ingest-2026", "question-4-2026", "edition-all", "stuff-everything",
+  "ingest-fixed", "eval-fixed", "ingest-section", "ask-carryover-section", "03-chunk-paragraph", "ingest-paragraph", "eval-paragraph",
+  "ask-carryover-paragraph", "eval-paragraph-json", "ingest-2026", "question-4-2026", "edition-all", "stuff-everything",
 ];
 /** Logs capture.ts writes but no capture has recorded yet (P4 captures them; move them to REQUIRED_LOGS then).
  *  Only these may be PEND for "no log yet". */

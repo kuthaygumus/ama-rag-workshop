@@ -3,16 +3,18 @@
 // "how many days of leave?" lives in three lines of it. So we cut documents into pieces (chunks); later
 // the search picks the few pieces that matter.
 //
-// HOW we cut decides what the search can ever find. Two ways below — try both and run `npm run question`.
+// HOW we cut decides what the search can ever find. Three ways below: fixed, section, and paragraph,
+// which you write. Try them and run `npm run question`.
 import { readStep, writeStep } from "../lib/data.js";
 import { done, line, more, stepHeader } from "../lib/log.js";
 import type { Chunk, CleanDoc } from "../lib/types.js";
 
-export type ChunkerName = "section" | "fixed";
+export type ChunkerName = "section" | "fixed" | "paragraph";
 
 // TOGGLE chunker — keep exactly one line active, then: npm run step -- 3  (and npm run question)
 const CHUNKER: ChunkerName = "section"; // default
 // const CHUNKER: ChunkerName = "fixed"; // alternative
+// const CHUNKER: ChunkerName = "paragraph"; // alternative
 
 /** A chunk that section-aware splitting would find too long is split again at paragraphs. */
 const MAX_SECTION_CHARS = 1500;
@@ -31,7 +33,7 @@ function sectionStarts(text: string): { n: string; at: number }[] {
  *
  * Section numbers overlapped by the character range [from, to). "0" = the part before section 1.
  */
-function sectionsIn(text: string, from: number, to: number): string[] {
+export function sectionsIn(text: string, from: number, to: number): string[] {
   const starts = sectionStarts(text);
   const out: string[] = [];
   starts.forEach((s, i) => {
@@ -43,7 +45,7 @@ function sectionsIn(text: string, from: number, to: number): string[] {
 }
 
 /** What it does: builds the labels every chunk carries: document id, edition, title, access, language. */
-const base = (d: CleanDoc) => ({ docId: d.id, edition: d.edition, title: d.title, access: d.access, lang: d.lang });
+export const base = (d: CleanDoc) => ({ docId: d.id, edition: d.edition, title: d.title, access: d.access, lang: d.lang });
 
 /**
  * What it does: cuts a document into equal-size chunks, blind to headings and tables.
@@ -72,7 +74,7 @@ export function fixedSize(doc: CleanDoc, size = 300): Chunk[] {
  *
  * Pack paragraphs into pieces of at most `max` characters.
  */
-function packParagraphs(body: string, max: number): string[] {
+export function packParagraphs(body: string, max: number): string[] {
   const out: string[] = [];
   let buf = "";
   for (const p of body.split(/\n\n+/)) {
@@ -114,24 +116,33 @@ export function bySection(doc: CleanDoc): Chunk[] {
   return chunks;
 }
 
-// ── HOMEWORK ────────────────────────────────────────────────────────────────────────────────────
-// A third way, between the two above: cut at blank lines (paragraphs), then pack paragraphs into
-// chunks of at most `max` characters — packParagraphs() above already does the packing. Keep the
-// title prefix so every chunk still says what it is about. Check: npm run check:sibling
+// ── YOUR TURN ───────────────────────────────────────────────────────────────────────────────────
+// A third way to cut: by paragraph. It sits between fixed and section.
+// 1. Remove the "# title" line. Cut the rest at blank lines.
+//    Pack the paragraphs into pieces of up to `max` characters. packParagraphs() does this.
+// 2. Put the title in front of each piece, like bySection does: "[title]\n" + piece.
+// 3. Give each chunk the sections it touches. fixedSize() above shows how:
+//    it calls sectionsIn() on the text it cuts, with the start and the end of the piece.
+// 4. Give each chunk an id like "hr-leave@2025#p03". base() fills the other labels.
+// Check: npm run check:sibling
+// Then switch the TOGGLE chunker to "paragraph". Rebuild the store: npm run ingest
+// Run npm run eval and compare the numbers with section.
 
 /**
- * What it does: builds paragraph chunks, packed up to a size limit, each with the title in front.
+ * What it does: cuts a document at blank lines, packs paragraphs up to a size limit, puts the title in front.
  *
  * Paragraph chunks with a title prefix, each at most `max` characters (plus the prefix).
+ * Each chunk lists every section it touches.
  * @example byParagraph(doc, 600).every((c) => c.text.startsWith(`[${doc.title}]`)) // true
  */
 export function byParagraph(doc: CleanDoc, max = 600): Chunk[] {
-  throw new Error("byParagraph() is homework — see the note above it in src/steps/3-chunk.ts");
+  throw new Error("byParagraph() is not written yet — see the YOUR TURN note above it in src/steps/3-chunk.ts");
 }
 
 export const CHUNKERS: Record<ChunkerName, (d: CleanDoc) => Chunk[]> = {
   section: bySection,
   fixed: (d) => fixedSize(d, 300),
+  paragraph: (d) => byParagraph(d, 600),
 };
 
 /** The words to look for: which chunk holds the row the day's question needs? */
@@ -152,7 +163,9 @@ export async function run(chunker: ChunkerName = CHUNKER): Promise<Chunk[]> {
     "WHAT",
     chunker === "fixed"
       ? "fixed: a cut every 300 characters, blind to headings and tables"
-      : "section: a cut at every '## n.' heading, title › heading kept in front",
+      : chunker === "paragraph"
+        ? "paragraph: a cut at blank lines, packed up to 600 characters, title kept in front"
+        : "section: a cut at every '## n.' heading, title › heading kept in front",
   );
   const chunks = input.data.flatMap(CHUNKERS[chunker]);
   const sizes = chunks.map((c) => c.text.length);

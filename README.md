@@ -40,7 +40,7 @@ Each step runs on its own, reads the previous step's file in `data/` and writes 
 | `npm run step -- 0` | ask the model with no documents | — |
 | `npm run step -- 1` | load `corpus/2025/`, front matter → metadata | `data/1-docs.json` |
 | `npm run step -- 2` | clean: drop page headers/footers, re-join broken lines | `data/2-clean.json` |
-| `npm run step -- 3` | chunk: by section (default) or every 300 characters | `data/3-chunks.json` |
+| `npm run step -- 3` | chunk: by section (default), every 300 characters, or by paragraph (YOUR TURN) | `data/3-chunks.json` |
 | `npm run step -- 4` | embed every chunk with `bge-m3` (1024 numbers each) | `data/4-vectors.json` |
 | `npm run similar` / `npm run map` | what did the embedding model decide? | `data/map.html` |
 | `npm run step -- 5` | store in Chroma (`--store json` for the JSON file) | `data/5-store.json` |

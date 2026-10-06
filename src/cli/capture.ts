@@ -10,6 +10,7 @@ import { config } from "../lib/config.js";
 import { clearData } from "../lib/data.js";
 import { generate } from "../lib/ollama.js";
 import { openStore } from "../lib/store.js";
+import { byParagraph } from "../../solutions/by-paragraph.js";
 import type { Gold } from "./eval.js";
 
 const steps = {
@@ -64,6 +65,8 @@ async function save(name: string, text: string): Promise<void> {
 const gold = (await readFile("eval/gold.jsonl", "utf8")).trim().split("\n").map((l) => JSON.parse(l) as Gold);
 /** What it does: returns the query of the first gold question of a given type. */
 const first = (type: string) => gold.find((g) => g.type === type)!.query;
+/** The carry-over question: its answer sits in one paragraph of hr-leave §7. */
+const CARRYOVER = gold.find((g) => g.id === "q22")!.query;
 /**
  * What it does: returns the answer rules without the one rule that contains the given text.
  *
@@ -168,6 +171,25 @@ await record("ingest-section", "npm run step -- 3 / 4 / 5   (chunker: section)",
   await steps.s4.run();
   await steps.s5.run("chroma");
 });
+await run("ask-carryover-section", ["src/cli/ask.ts", CARRYOVER]);
+
+// B · YOUR TURN: paragraph chunks, measured like section and fixed
+// the byParagraph() stub in src/ throws until the room writes it, so capture uses the solution
+steps.s3.CHUNKERS.paragraph = (d) => byParagraph(d, 600);
+await record("03-chunk-paragraph", "npm run step -- 3   (chunker: paragraph)", () => steps.s3.run("paragraph"));
+await record("ingest-paragraph", "npm run step -- 3 / 4 / 5   (chunker: paragraph)", async () => {
+  await steps.s3.run("paragraph");
+  await steps.s4.run();
+  await steps.s5.run("chroma");
+});
+await run("eval-paragraph", ["src/cli/eval.ts"]);
+await run("ask-carryover-paragraph", ["src/cli/ask.ts", CARRYOVER]);
+await steps.s5.run("json");
+await run("eval-paragraph-json", ["src/cli/eval.ts"]);
+// back to section chunks in Chroma: the 2026 ingest below adds to this store
+await steps.s3.run("section");
+await steps.s4.run();
+await steps.s5.run("chroma");
 
 // 4 · performance and cost: stuff the whole handbook into the prompt
 await record("stuff-everything", "every document in one prompt (no retrieval)", async () => {

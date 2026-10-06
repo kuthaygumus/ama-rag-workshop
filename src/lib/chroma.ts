@@ -53,6 +53,13 @@ export class ChromaStore implements VectorStore {
       );
     }
     // cosine space: Chroma returns distance = 1 − cosine similarity
+    /**
+     * HNSW settings: we set only `space`. Chroma fills in the rest with its defaults
+     * (see them in Bruno: collections → configuration_json → hnsw).
+     * For a more accurate search, add more, for example { space: "cosine", ef_search: 200, max_neighbors: 32 }.
+     * Higher means closer to exact, but slower. Checking every vector is brute force.
+     * max_neighbors only applies when the collection is created: run npm run catchup -- 5.
+     */
     return chroma.getOrCreateCollection({
       name: this.name,
       embeddingFunction: null,

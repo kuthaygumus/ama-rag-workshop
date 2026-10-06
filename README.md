@@ -54,7 +54,7 @@ Shortcuts: `npm run ingest` (steps 1–5), `npm run ask -- "question"` (steps 6�
 
 **Toggles** — lines marked `// default` and `// alternative` inside a `// TOGGLE` block: swap which one is
 commented, re-run the step, compare. **YOUR TURN** — a function left for you to write below a similar one;
-check with `npm run check:sibling`. Finished versions are in `solutions/`.
+check it with the command in its note (a step or `npm run similar`). Finished versions are in `solutions/`.
 
 **Fell behind?** `npm run catchup -- 5` puts every toggle back to its default, empties `data/` and runs steps
 1–5 — your own code stays as it is. `npm run catchup -- 0` goes back to the start of the day: nothing

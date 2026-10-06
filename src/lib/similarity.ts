@@ -43,9 +43,9 @@ export function norm(a: number[]): number {
 
 // ── YOUR TURN ───────────────────────────────────────────────────────────────────────────────────
 // Write the sibling of cosine(): the dot product. Multiply the vectors element by element and sum.
-// Unlike cosine it does NOT divide by the lengths. Then run: npm run check:sibling
+// Unlike cosine it does NOT divide by the lengths. Check: npm run similar -- --metric dot → a score for each pair.
 // Question to answer afterwards: step 4 printed "norm 1.000" for every vector — so for OUR vectors,
-// how does dot() compare to cosine()? Try it: npm run similar -- --metric dot
+// how does dot() compare to cosine()?
 
 /**
  * What it does: multiplies two vectors item by item and adds up the results.

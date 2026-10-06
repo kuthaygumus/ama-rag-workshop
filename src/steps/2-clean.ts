@@ -12,7 +12,7 @@ import { corpusHash } from "./1-load.js";
 // ── YOUR TURN ───────────────────────────────────────────────────────────────────────────────────
 // The Turkish document (it-security) repeats "GİZLİ – Yalnızca şirket içi kullanım içindir" under the page header.
 // No rule removes it yet: find it in data/2-clean.json (copy the İ and the – from there). Write the rule the way
-// the English confidentiality rule below is written, re-run step 2, and check: npm run check:sibling
+// the English confidentiality rule below is written. Check: npm run step -- 2 → it-security shows −12 noise lines, not −8.
 export const turkishConfidential: RegExp | undefined = undefined;
 
 // TOGGLE noise rules — comment one out, re-run step 2, and find what it used to remove

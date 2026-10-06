@@ -124,8 +124,8 @@ export function bySection(doc: CleanDoc): Chunk[] {
 // 3. Give each chunk the sections it touches. fixedSize() above shows how:
 //    it calls sectionsIn() on the text it cuts, with the start and the end of the piece.
 // 4. Give each chunk an id like "hr-leave@2025#p03". base() fills the other labels.
-// Check: npm run check:sibling -- -t byParagraph
-// Then switch the TOGGLE chunker to "paragraph". Run npm run step -- 3, then npm run question.
+// Check: switch the TOGGLE chunker to "paragraph" and run npm run step -- 3 → 85 chunks.
+// Then run npm run question.
 // Then switch the TOGGLE back to "section" and run npm run step -- 3 again.
 // We measure it on the Measuring quality page.
 
